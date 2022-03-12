@@ -9,7 +9,38 @@ import SwiftUI
 
 struct LoginView: View {
     var body: some View {
-        Text("Hi i'm view")
+        Color("moradologin")
+            .ignoresSafeArea()
+                .overlay(
+                    VStack{
+                        HStack{
+                            VStack{
+                                
+                                Image("login")
+                                
+                            }
+                        }.padding(.vertical,100)
+                        
+                        HStack{
+                            vistaLogin
+                        }
+                    }
+              )
+                .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+               }
+    
+    var vistaLogin: some View{
+        VStack{
+            HStack{
+                Spacer()
+            }
+            //Spacer()
+            Text("Iniciar Sesión").padding(.top,3)
+            Spacer()
+        }.background(Color(.white))
+        .cornerRadius(50)
+        .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .ignoresSafeArea()
     }
 }
 

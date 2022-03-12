@@ -19,29 +19,36 @@ struct MainNavigationView: View {
     var body: some View {
         VStack{
             toolBar
+            Divider()
+            Spacer()
             vistas
             Spacer()
             
             bottomNavigation
-            /*
-            TabView{
-                HomeView().tabItem { Label("Inicio", systemImage: "house") } .cornerRadius(90, corners: [.topLeft,.topRight])
-                FotosView().tabItem { Label("Fotos", systemImage: "house") }
-                CrushView().tabItem { Label("Crush", systemImage: "house") }
-                SettingsView().tabItem() { Label("Inicio", systemImage: "house") }.accentColor(.red) .cornerRadius(90, corners: [.topLeft,.topRight])
-                
-            }
-            .accentColor(Color("SoftGradient1"))
-            */
+         	
         }.frame(width: .infinity, height: .infinity)
-        .background(Color("BackGroundVistas"))
+        .background(Color(
+                        .white))
+       
       
         
     }
     var toolBar:some View{
         HStack{
             
-        }.background(Color(.white))
+            Image("Toolbarmenu")
+                .resizable()
+                .frame(width: 35, height: 31, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .padding(.horizontal)
+            Spacer()
+            Image("VectornotificationSg")
+                .padding(.horizontal)
+          
+            
+        }
+        .frame(width: .infinity, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .background(Color(.white))
+        
     }
     var vistas:some View{
         ZStack{
@@ -49,6 +56,7 @@ struct MainNavigationView: View {
             case 0 :
                 HomeView()
             case 1:
+             
                 FotosView()
             case 2 :
                 CrushView()

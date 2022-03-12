@@ -35,6 +35,13 @@
 		793E157827D671DC0024C0C3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E157727D671DC0024C0C3 /* SettingsView.swift */; };
 		793E158027D671F80024C0C3 /* ViewModelSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E157F27D671F80024C0C3 /* ViewModelSetting.swift */; };
 		793E158827D714920024C0C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 793E158727D714920024C0C3 /* Assets.xcassets */; };
+		793E158E27D840910024C0C3 /* ItemPersonaHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E158D27D840910024C0C3 /* ItemPersonaHome.swift */; };
+		793E159727D8419E0024C0C3 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E159627D8419E0024C0C3 /* UserClass.swift */; };
+		793E15A227D8531E0024C0C3 /* CrushDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E15A127D8531E0024C0C3 /* CrushDetailView.swift */; };
+		793E15AA27D853440024C0C3 /* ViewModelCrushDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E15A927D853440024C0C3 /* ViewModelCrushDetail.swift */; };
+		793E15AF27D853770024C0C3 /* ItemPersonHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E15AE27D853770024C0C3 /* ItemPersonHomeViewModel.swift */; };
+		793E15B527DAC8990024C0C3 /* ItemGalery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E15B427DAC8990024C0C3 /* ItemGalery.swift */; };
+		793E15BD27DAC8DC0024C0C3 /* ViewModelItemGalery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E15BC27DAC8DC0024C0C3 /* ViewModelItemGalery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +96,13 @@
 		793E157727D671DC0024C0C3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		793E157F27D671F80024C0C3 /* ViewModelSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSetting.swift; sourceTree = "<group>"; };
 		793E158727D714920024C0C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		793E158D27D840910024C0C3 /* ItemPersonaHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPersonaHome.swift; sourceTree = "<group>"; };
+		793E159627D8419E0024C0C3 /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
+		793E15A127D8531E0024C0C3 /* CrushDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrushDetailView.swift; sourceTree = "<group>"; };
+		793E15A927D853440024C0C3 /* ViewModelCrushDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelCrushDetail.swift; sourceTree = "<group>"; };
+		793E15AE27D853770024C0C3 /* ItemPersonHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPersonHomeViewModel.swift; sourceTree = "<group>"; };
+		793E15B427DAC8990024C0C3 /* ItemGalery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGalery.swift; sourceTree = "<group>"; };
+		793E15BC27DAC8DC0024C0C3 /* ViewModelItemGalery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelItemGalery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +215,7 @@
 		793E14C727D44E5E0024C0C3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				793E159527D841670024C0C3 /* Models */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -334,6 +349,7 @@
 		793E152B27D65D6F0024C0C3 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				793E159E27D852CC0024C0C3 /* DetailCrush */,
 				793E153027D666560024C0C3 /* Settings */,
 				793E152F27D6663A0024C0C3 /* Crush */,
 				793E152E27D6662F0024C0C3 /* Fotos */,
@@ -407,6 +423,7 @@
 		793E154027D667C00024C0C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				793E158C27D840690024C0C3 /* item */,
 				793E154227D66BA70024C0C3 /* HomeView.swift */,
 				793E154A27D66BD40024C0C3 /* ViewModelHome.swift */,
 			);
@@ -423,6 +440,7 @@
 		793E154F27D66C3C0024C0C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				793E15B327DAC81A0024C0C3 /* ItemGalery */,
 				793E155127D66C5B0024C0C3 /* FotosView.swift */,
 				793E155927D66C7A0024C0C3 /* ViewModelFotos.swift */,
 			);
@@ -466,6 +484,57 @@
 			children = (
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		793E158C27D840690024C0C3 /* item */ = {
+			isa = PBXGroup;
+			children = (
+				793E158D27D840910024C0C3 /* ItemPersonaHome.swift */,
+				793E15AE27D853770024C0C3 /* ItemPersonHomeViewModel.swift */,
+			);
+			name = item;
+			sourceTree = "<group>";
+		};
+		793E159527D841670024C0C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				793E159627D8419E0024C0C3 /* UserClass.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		793E159E27D852CC0024C0C3 /* DetailCrush */ = {
+			isa = PBXGroup;
+			children = (
+				793E15A027D852ED0024C0C3 /* Views */,
+				793E159F27D852DF0024C0C3 /* Services */,
+			);
+			name = DetailCrush;
+			sourceTree = "<group>";
+		};
+		793E159F27D852DF0024C0C3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		793E15A027D852ED0024C0C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				793E15A127D8531E0024C0C3 /* CrushDetailView.swift */,
+				793E15A927D853440024C0C3 /* ViewModelCrushDetail.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		793E15B327DAC81A0024C0C3 /* ItemGalery */ = {
+			isa = PBXGroup;
+			children = (
+				793E15B427DAC8990024C0C3 /* ItemGalery.swift */,
+				793E15BC27DAC8DC0024C0C3 /* ViewModelItemGalery.swift */,
+			);
+			name = ItemGalery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,12 +667,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				793E158E27D840910024C0C3 /* ItemPersonaHome.swift in Sources */,
 				793E14FF27D45A730024C0C3 /* SplashScreenView.swift in Sources */,
+				793E15B527DAC8990024C0C3 /* ItemGalery.swift in Sources */,
 				793E149227D445B20024C0C3 /* ContentView.swift in Sources */,
 				793E153C27D667400024C0C3 /*  ViewModelMainNavigation.swift in Sources */,
 				793E14CF27D454A60024C0C3 /* NavigationStack.swift in Sources */,
 				793E155A27D66C7A0024C0C3 /* ViewModelFotos.swift in Sources */,
 				793E14EF27D459960024C0C3 /* ViewModelsLogin.swift in Sources */,
+				793E15AF27D853770024C0C3 /* ItemPersonHomeViewModel.swift in Sources */,
 				793E157127D671190024C0C3 /* CurshViewModel.swift in Sources */,
 				793E156C27D670820024C0C3 /* CrushView.swift in Sources */,
 				793E149027D445B20024C0C3 /* CrushAppApp.swift in Sources */,
@@ -612,13 +684,17 @@
 				793E158027D671F80024C0C3 /* ViewModelSetting.swift in Sources */,
 				793E152427D5B91A0024C0C3 /* ButtonStyles.swift in Sources */,
 				793E14E227D457140024C0C3 /* LoginView.swift in Sources */,
+				793E15BD27DAC8DC0024C0C3 /* ViewModelItemGalery.swift in Sources */,
+				793E159727D8419E0024C0C3 /* UserClass.swift in Sources */,
 				793E153427D667250024C0C3 /* MainNavigationView.swift in Sources */,
+				793E15A227D8531E0024C0C3 /* CrushDetailView.swift in Sources */,
 				793E150927D45B350024C0C3 /* Modal.swift in Sources */,
 				793E14D727D4551C0024C0C3 /* ViewManifests.swift in Sources */,
 				793E154327D66BA70024C0C3 /* HomeView.swift in Sources */,
 				793E155227D66C5B0024C0C3 /* FotosView.swift in Sources */,
 				793E151127D46F160024C0C3 /* TerminosView.swift in Sources */,
 				793E151E27D46FB60024C0C3 /* ViewModelSplash.swift in Sources */,
+				793E15AA27D853440024C0C3 /* ViewModelCrushDetail.swift in Sources */,
 				793E154B27D66BD40024C0C3 /* ViewModelHome.swift in Sources */,
 				793E157827D671DC0024C0C3 /* SettingsView.swift in Sources */,
 			);

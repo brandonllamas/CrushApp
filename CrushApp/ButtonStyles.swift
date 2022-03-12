@@ -31,3 +31,27 @@ struct greenButtonDefault: ButtonStyle {
             .cornerRadius(30)
     }
 }
+
+
+struct crushButtonDefault: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label
+            .frame(width: 330, height: 25)
+            .foregroundColor(.black)
+            .padding()
+            .background(Color("azul"))
+            .cornerRadius(30)
+    }
+}
+
+
+struct crushButtonPhoto: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label
+            .frame(width: 330, height: 25)
+            .foregroundColor(.black)
+            .padding()
+            .background(Color("azul"))
+            .cornerRadius(30)
+    }
+}

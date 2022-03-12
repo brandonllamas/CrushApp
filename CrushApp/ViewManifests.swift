@@ -12,6 +12,7 @@ enum Views {
     case TerminosView
     case PortadaView
     case MainNavigation
+    case CrushDetailView
     
     case Login
     case RegisterFastView
