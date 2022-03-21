@@ -19,8 +19,35 @@ class ViewModelSplashScreen:ObservableObject{
     
     func login(nav:NavigationStack) {
         self.navigation = nav
-      print("aqui toy")
-        nav.advance(AnyView(TerminosView()), tag: .TerminosView)
+        var Cellphone:String = KeyChain.load(key: "cellphone") ?? ""
+        var pwsd:String = KeyChain.load(key: "indicative") ?? ""
+        
+        if(Cellphone != "" && pwsd != ""){
+            LoginService().login(cellphone: Cellphone, indicative: pwsd)
+            { response in
+                
+                DataApp.authUser = response.data
+                DataApp.user = response.data.user
+                LoginService().saveCellphone(cellphone: pwsd, indicative: Cellphone)
+                nav.advance(AnyView(MainNavigationView()), tag: .MainNavigation)
+                 
+               print(response)
+                
+            } onDefault: { response in
+            
+                print(response)
+                
+            } onError: { error in
+                 
+                print(error)
+                
+            }
+        }else{
+            print("Sin keyns")
+            nav.advance(AnyView(LoginView()), tag: .TerminosView)
+        }
+   
+       
 
     }
 }

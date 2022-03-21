@@ -24,12 +24,15 @@ struct SplashScreenView: View {
             logoFondo
             logoNormal
            
+        }.onAppear(){
+            self.viewmodel.login(nav: self.navigation)
         }
+        
         
     }
     var botton: some View{
         Button(action: {
-            self.viewmodel.login(nav: navigation)
+            //self.viewmodel.login(nav: navigation)
         }, label: {
             Text("ingresar")
         })

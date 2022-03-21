@@ -41,7 +41,7 @@ struct HomeView: View {
             Spacer()
             
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(self.viewModel.list, id: \.self) { homePeople in
+                ForEach(self.viewModel.ListContactPost, id: \.self) { homePeople in
                  
                     NavigationLink(destination:
                     CrushDetailView(user: homePeople)

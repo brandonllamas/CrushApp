@@ -17,6 +17,7 @@ class ViewModelCrushDetail:ObservableObject{
         
       print("aqui toy")
 //        nav.advance(AnyView(CrushDetailView()), tag: .CrushDetailView)
-
+        
     }
+    
 }

@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct CrushDetailView: View {
-    var users:UserHome;
+    var users:GeneralUsuario;
+    var urlImage:String = "";
+    var idss:String = "";
+   @State var alertRating:Bool = false;
+    @State var alertButtonCrush:Bool = false;
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible()),
     ]
     
-    init(user:UserHome) {
+    init(user:GeneralUsuario) {
         self.users = user;
+        
+        self.idss = String(self.users.id);
+        self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name)";
     }
     
     var body: some View {
@@ -25,7 +33,7 @@ struct CrushDetailView: View {
                 ScrollView{
                     VStack{
                         imagenPeople
-                        Text(self.users.name).padding()
+                        Text(self.users.contact?.name ?? "no name").padding()
                             .font(.system(size: 20, weight: .bold, design: .default))
                         botomCrush
                         galeria
@@ -34,17 +42,58 @@ struct CrushDetailView: View {
                 }
           )
             .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-       
+            .customDialog(isShowing: self.$alertRating){
+                DialogCalificate
+             }
+            .customDialog(isShowing: self.$alertButtonCrush){
+                DialogAcction
+            }
         
  
         
     }
     
+    
+    var DialogAcction:some View{
+        VStack{
+            Text("hi").bold().foregroundColor(.white)
+        }
+    }
+    
+    
+    var DialogCalificate:some View{
+        VStack {
+            Text("Califica foto de perfil de \(self.users.contact?.name ?? "no name")")
+                  .padding(.bottom, 10)
+            Divider()
+            HStack{
+                Button(action: {
+                    self.alertRating = false
+                }) {
+                  Text("Close dialog")
+                    .autocapitalization(.allCharacters)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding()
+                }
+                
+                Button(action: {
+                    self.alertRating = false
+                }) {
+                  Text("Acept")
+                    .autocapitalization(.allCharacters)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding()
+                }
+            }
+              }.padding()
+    }
+    
+    
     var imagenPeople:some View{
         HStack{
             ZStack{
-                Image(self.users.iconImagenActivate)
-                    .resizable()
+                ImageWeb(url: self.urlImage, placeHolder: "defaultBoy")
+                    .scaleEffect()
                     .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .cornerRadius(16)
                     .overlay(
@@ -67,11 +116,14 @@ struct CrushDetailView: View {
                                         HStack{
                                             Image("Vectorstartwe")
                                         }
-                                    )
-                                    
+                                    ).onTapGesture {
+                                        self.alertRating.toggle()
+                                       
+                                    }
                                     .cornerRadius(20, corners: [.topLeft,.bottomRight])
                                     .frame(width: 62, height: 38, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .foregroundColor(Color("Degradado"))
+                                    
                                 
                                     
                             }
@@ -94,7 +146,7 @@ struct CrushDetailView: View {
             HStack{
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(0..<8) {_ in
-                        Image(self.users.iconImagenActivate)
+                        Image("DefaultBoy")
                             .resizable()
                             .frame(width: 106, height: 121, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     }
@@ -121,6 +173,6 @@ struct CrushDetailView: View {
 struct CrushDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let userExample:UserHome = UserHome(name: "Darkmoon", iconImagenActivate: "defaultBoy", index: 1, id: 1)
-        CrushDetailView(user: userExample)
+       // CrushDetailView(user: userExample)
     }
 }
