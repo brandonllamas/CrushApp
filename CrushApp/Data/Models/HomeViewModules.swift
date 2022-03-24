@@ -17,6 +17,39 @@ struct GeneralResponseUserList:Codable, Hashable {
 
 }
 
+struct GeneralDetailCrushResponse:Codable, Hashable {
+     var success:Bool;
+    //var message:String;
+     var data:DataDetailCrushResponse ;
+    enum CodingKeys: String, CodingKey {
+        case success,data
+    }
+
+}
+
+struct DataDetailCrushResponse:Codable, Hashable {
+     var data:GeneralUsuario ;
+    enum CodingKeys: String, CodingKey {
+        case data
+    }
+
+}
+
+
+struct GeneralUsuarioDetai:Codable, Hashable {
+    var id,id_type_user,active,indicative,image_profile:Int;
+    var name,username,password:String?;
+    var email,phone_completed:String? ;
+    var image:ImageUserListApp?;
+    var gallery:[ImageUserListApp]?;
+    var contact:ContactUserListApp?;
+    
+    var phone,created_at,updated_at:String ;
+    enum CodingKeys: String, CodingKey {
+        case name,phone,image_profile,created_at,updated_at,phone_completed
+        case id,id_type_user,active,indicative,image,contact,password,gallery
+    }
+}
 
 struct DataUserList:Codable, Hashable {
    
@@ -32,16 +65,30 @@ struct DataUserList:Codable, Hashable {
 struct GeneralUsuario:Codable, Hashable {
     var id,id_type_user,active,indicative,image_profile:Int;
     var name,username,password:String?;
-    var email:String? ;
+    var email,phone_completed:String? ;
     var image:ImageUserListApp?;
     var gallery:[ImageUserListApp]?;
     var contact:ContactUserListApp?;
+    var sended_match:[MachSended]?;
     
-    var phone,created_at,updated_at,phone_completed:String ;
+    var phone,created_at,updated_at:String ;
     enum CodingKeys: String, CodingKey {
         case name,phone,image_profile,created_at,updated_at,phone_completed
         case id,id_type_user,active,indicative,image,contact,password,gallery
+        case sended_match
     }
+}
+
+
+struct MachSended:Codable, Hashable {
+    var id,id_user_send,id_user_recibe,id_action:Int;
+    var created_at,updated_at:String ;
+    var action:GeneralResponseActionsRes;
+       enum CodingKeys: String, CodingKey {
+        case id,id_user_send,id_user_recibe,id_action
+        case created_at,updated_at
+        case action
+       }
 }
 
 

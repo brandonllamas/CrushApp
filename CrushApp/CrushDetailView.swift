@@ -11,8 +11,10 @@ struct CrushDetailView: View {
     var users:GeneralUsuario;
     var urlImage:String = "";
     var idss:String = "";
+   @ObservedObject var viewModel:ViewModelCrushDetail;
+    
    @State var alertRating:Bool = false;
-    @State var alertButtonCrush:Bool = false;
+   @State var alertButtonCrush:Bool = false;
     
     let columns = [
         GridItem(.flexible()),
@@ -22,6 +24,7 @@ struct CrushDetailView: View {
     
     init(user:GeneralUsuario) {
         self.users = user;
+        self.viewModel = ViewModelCrushDetail(id:users.id)
         
         self.idss = String(self.users.id);
         self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name)";
@@ -38,17 +41,19 @@ struct CrushDetailView: View {
                         botomCrush
                         galeria
                         Spacer()
+                    }.onAppear(){
+                        self.viewModel.detail()
                     }
+                }
+                .customDialog(isShowing: self.$alertRating){
+                    DialogCalificate
+                 }
+                .CustomDialogNofondo(isShowing: self.$alertButtonCrush){
+                    DialogAcction
                 }
           )
             .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .customDialog(isShowing: self.$alertRating){
-                DialogCalificate
-             }
-            .customDialog(isShowing: self.$alertButtonCrush){
-                DialogAcction
-            }
-        
+            
  
         
     }
@@ -56,8 +61,49 @@ struct CrushDetailView: View {
     
     var DialogAcction:some View{
         VStack{
-            Text("hi").bold().foregroundColor(.white)
-        }
+            Spacer()
+            Text(self.users.contact?.name ?? "No name")
+                .font(.title)
+                .bold()
+                .foregroundColor(Color(.white))
+                .fontWeight(.medium)
+            
+            HStack{
+                Spacer()
+                VStack{
+                    
+                    ForEach(self.viewModel.AccionesCrush, id: \.self){ action in
+                        if(self.viewModel.existAction(idAction: action.id)){
+                            Button(action: {
+                               print("crush")
+                            }, label: {
+                                Text(action.name)
+                            })
+                            .buttonStyle(btnDialogDetailAcept())
+                        }else{
+                            Button(action: {
+                               print("crush")
+                                self.viewModel.addActionM(action: action.id)
+                            }, label: {
+                                Text(action.name)
+                            })
+                            .buttonStyle(btnDialogDetail())
+                        }
+                       }
+                 
+                    
+                     
+                    
+                    Button(action: {
+                        self.alertButtonCrush = false;
+                    }, label: {
+                        Text("Cancelar")
+                    })
+                    .buttonStyle(btnDialogDetail())
+                }
+                Spacer()
+            }
+        }.frame(width: .infinity, height: .infinity, alignment: .center)
     }
     
     
@@ -145,11 +191,16 @@ struct CrushDetailView: View {
                
             HStack{
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(0..<8) {_ in
-                        Image("DefaultBoy")
-                            .resizable()
-                            .frame(width: 106, height: 121, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    }
+                     
+                    ForEach(self.viewModel.images, id: \.self){ images in
+                            ImageWeb(url: "\( Connections.url_photo)/\(idss)/\(images.name)", placeHolder: "defaultBoy")
+                                .scaleEffect()
+                                .frame(width: 106, height: 121, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                      
+                        }
+                    
+                    
+                   
                  }.padding(.horizontal)
             }
         }
@@ -160,11 +211,12 @@ struct CrushDetailView: View {
         HStack{
             Button(action: {
                print("crush")
+                self.alertButtonCrush.toggle()
             }, label: {
                 Text("Crush")
             })
             
-            .buttonStyle(crushButtonDefault())
+            .buttonStyle(crushButtonDefaultDetail())
           
         }
     }
