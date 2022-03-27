@@ -15,10 +15,54 @@ class ViewModelCrushDetail:ObservableObject{
     @Published var AccionesCrush:[GeneralResponseActionsRes] = []
     @State var load:Bool = false;
     @Published var arrayActionActive:[Int] = []
-
-    init(id:Int) {
+    @Published var rating:Int = 7;
+    @Published var ratingOriginal:Int = 7;
+    @Published  var users:GeneralUsuario;
+    
+    
+    init(id:Int,user:GeneralUsuario) {
         self.id = id;
+        self.users = user;
       
+    }
+    
+    func setRating(){
+        if(self.users.image != nil){
+            UserCaseDetailCrush().SettRatinDetail(id_photo:self.users.image!.id,value: self.rating){response in
+             print(response)
+                
+                self.getRating()
+            } onDefault: { response in
+               
+                print(response)
+                
+            } onError: { error in
+                print("Error set")
+                print(error)
+                
+            }
+        }
+    }
+    
+    func getRating(){
+        if(self.users.image != nil){
+            UserCaseDetailCrush().getRatinDetail(id_photo:self.users.image!.id){response in
+             print(response)
+                
+                self.rating = response.data;
+                self.ratingOriginal = response.data;
+                
+            } onDefault: { response in
+                print("Error get on def")
+                print(response)
+                
+            } onError: { error in
+                print("Error get")
+                print(error)
+                
+            }
+        }
+     
     }
     
     func existAction(idAction:Int) -> Bool {
@@ -58,6 +102,7 @@ class ViewModelCrushDetail:ObservableObject{
             })
             //self.arrayActionActive.append(response.data.data.sended_match)
             self.getActions()
+            self.getRating()
             print(response)
         } onDefault: { response in
             print(response)
@@ -102,6 +147,25 @@ class ViewModelCrushDetail:ObservableObject{
           }
     }
     
+    
+    
+    func RemoveActionM(action:Int) {
+        UserCaseDetailCrush().removeUnmacht(id_user:self.id,id_action: action){response in
+            self.removeItem(idaction: action)
+           // self.arrayActionActive.remove(at: <#T##Int#>)
+            //self.arrayActionActive.append(action)
+            self.getActions()
+            
+          } onDefault: { response in
+             
+              print(response)
+              
+          } onError: { error in
+       
+              print(error)
+              
+          }
+    }
     
     
     

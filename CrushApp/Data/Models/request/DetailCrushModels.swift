@@ -57,3 +57,32 @@ struct GeneralResponseActionsRes:Codable, Hashable {
     }
 
 }
+
+
+struct GeneralMachRemove:Codable, Hashable {
+     var success:Bool;
+     var message,data:String ;
+    enum CodingKeys: String, CodingKey {
+        case success,data,message
+    }
+}
+
+
+struct GeneralRating:Codable, Hashable {
+     var success:Bool;
+     var message:String ;
+    var data:Int;
+    enum CodingKeys: String, CodingKey {
+        case success,data,message
+    }
+}
+
+
+struct SetGeneralRating:Codable, Hashable {
+     var success:Bool;
+     var message:String ;
+    var data:[Int];
+    enum CodingKeys: String, CodingKey {
+        case success,data,message
+    }
+}

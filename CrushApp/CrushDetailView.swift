@@ -24,7 +24,7 @@ struct CrushDetailView: View {
     
     init(user:GeneralUsuario) {
         self.users = user;
-        self.viewModel = ViewModelCrushDetail(id:users.id)
+        self.viewModel = ViewModelCrushDetail(id:users.id,user:users)
         
         self.idss = String(self.users.id);
         self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name)";
@@ -46,7 +46,8 @@ struct CrushDetailView: View {
                     }
                 }
                 .customDialog(isShowing: self.$alertRating){
-                    DialogCalificate
+                    DialogCalificate.background(Color(.white))
+                        .cornerRadius(30)
                  }
                 .CustomDialogNofondo(isShowing: self.$alertButtonCrush){
                     DialogAcction
@@ -76,6 +77,7 @@ struct CrushDetailView: View {
                         if(self.viewModel.existAction(idAction: action.id)){
                             Button(action: {
                                print("crush")
+                                self.viewModel.RemoveActionM(action: action.id)
                             }, label: {
                                 Text(action.name)
                             })
@@ -111,10 +113,14 @@ struct CrushDetailView: View {
         VStack {
             Text("Califica foto de perfil de \(self.users.contact?.name ?? "no name")")
                   .padding(.bottom, 10)
+            
+                ratingBar
+            
             Divider()
             HStack{
                 Button(action: {
                     self.alertRating = false
+                    self.viewModel.rating = self.viewModel.ratingOriginal
                 }) {
                   Text("Close dialog")
                     .autocapitalization(.allCharacters)
@@ -124,14 +130,48 @@ struct CrushDetailView: View {
                 
                 Button(action: {
                     self.alertRating = false
+                    self.viewModel.ratingOriginal = self.viewModel.rating
+                    self.viewModel.setRating()
                 }) {
                   Text("Acept")
+                    .foregroundColor(Color(.blue))
                     .autocapitalization(.allCharacters)
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .padding()
                 }
             }
               }.padding()
+    }
+    
+    
+    var ratingBar:some View{
+        HStack{
+            
+            Image(systemName: "star.fill").resizable()
+                .foregroundColor(self.viewModel.rating >= 7 ? Color.yellow : Color.gray)
+                .frame(width: 32, height: 30)
+                .padding(.horizontal,5)
+                .onTapGesture {
+                    self.viewModel.rating = 7
+                }
+            
+            Image(systemName: "star.fill").resizable()
+                .foregroundColor(self.viewModel.rating >= 8 ? Color.yellow : Color.gray)
+                .frame(width: 32, height: 30)
+                .padding(.horizontal,5)
+                .onTapGesture {
+                    self.viewModel.rating = 8
+                }
+            
+            Image(systemName: "star.fill").resizable()
+                .foregroundColor(self.viewModel.rating == 9 ? Color.yellow : Color.gray)
+                .frame(width: 32, height: 30)
+                .padding(.horizontal,5)
+                .onTapGesture {
+                    self.viewModel.rating = 9
+                }
+            
+        }.padding()
     }
     
     
