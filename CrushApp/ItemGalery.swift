@@ -8,29 +8,87 @@
 import SwiftUI
 
 struct ItemGalery: View {
-     var photo:UserImage
+     //var photo:UserImage
+    @ObservedObject var viewModel:ViewModelItemGalery;
+    @State var eliminate:Bool = false;
     
-    init(photo:UserImage) {
-        self.photo = photo
+    init(photo:ItemPhotoOption) {
+         self.viewModel = ViewModelItemGalery(photo: photo)
     }
     var body: some View {
         VStack{
+            if(!self.eliminate ){
+                ImageWeb(url: self.viewModel.urlImage, placeHolder: "defaultBoy")
+                    .scaleEffect()
+                    .cornerRadius(10)
+                    .frame(width: 160, height: CGFloat.random(in: 192...240), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(.top,8)
+                    .overlay(
+                        VStack{
+                            calification
+                            Spacer()
+                        }
+                    )
+            }
             
-            Image(self.photo.imagen)
-                .resizable()
-                .cornerRadius(10)
-                .frame(width: 160, height: CGFloat.random(in: 192...240), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .padding(.top,8)
+           
           
             
         }
+    }
+    
+    var calification:some View{
+        HStack{
+            Image("trash-can")
+                .resizable()
+                .padding(.vertical,3)
+                .padding(.horizontal,9)
+                .frame(width: 30, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .onTapGesture {
+                    self.viewModel.eliminar()
+                    self.eliminate.toggle();
+                }
+            
+            Spacer()
+            Rectangle()
+                .overlay(
+                    HStack{
+                        estrellas
+                    }
+                )
+                .cornerRadius(20, corners: [.bottomLeft,.topRight])
+                .frame(width: 62, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .foregroundColor(Color("Degradado"))
+            
+        }.padding(.vertical,3)
+    }
+    
+    var estrellas:some View{
+        HStack{
+            
+            Image(systemName: "star.fill").resizable()
+                .foregroundColor(self.viewModel.rating >= 7 ? Color.yellow : Color.gray)
+                .frame(width: 13, height: 12)
+               
+               
+            
+            Image(systemName: "star.fill").resizable()
+                .foregroundColor(self.viewModel.rating >= 8 ? Color.yellow : Color.gray)
+                .frame(width: 13, height: 12)
+                
+            
+            Image(systemName: "star.fill").resizable()
+                .foregroundColor(self.viewModel.rating == 9 ? Color.yellow : Color.gray)
+                .frame(width: 13, height: 12)
+            
+        }.padding()
     }
 }
 
 struct ItemGalery_Previews: PreviewProvider {
  
     static var previews: some View {
-        let user:UserImage = UserImage(starst: 3, imagen: "defaultGirl", index: 1, id: 1);
+        let user:ItemPhotoOption = ItemPhotoOption(id_user: 2696, id: 75, status_profile: 0, name: "1648418579.jpg", updated_at: "", created_at: "", calification: "8.00000")
         
         ItemGalery(photo: user)
     }

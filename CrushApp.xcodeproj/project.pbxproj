@@ -62,6 +62,15 @@
 		797A59B027E904B500B04E1C /* CrushDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59AF27E904B500B04E1C /* CrushDetailService.swift */; };
 		797A59B527E904D600B04E1C /* UserCaseDetailCrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59B427E904D600B04E1C /* UserCaseDetailCrush.swift */; };
 		797A59BA27EA546B00B04E1C /* DetailCrushModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59B927EA546B00B04E1C /* DetailCrushModels.swift */; };
+		797A59C227F0E94200B04E1C /* CameraHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59C127F0E94200B04E1C /* CameraHelper.swift */; };
+		797A59C827F1009700B04E1C /* PhotoCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59C727F1009700B04E1C /* PhotoCase.swift */; };
+		797A59D027F100A600B04E1C /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59CF27F100A600B04E1C /* PhotoService.swift */; };
+		797A59D527F101C900B04E1C /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59D427F101C900B04E1C /* PhotosResponse.swift */; };
+		797A59DB27F1456800B04E1C /* ItemCrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59DA27F1456800B04E1C /* ItemCrush.swift */; };
+		797A59E327F2125200B04E1C /* CrushResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59E227F2125200B04E1C /* CrushResponse.swift */; };
+		797A59E827F2220D00B04E1C /* CrushICase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59E727F2220D00B04E1C /* CrushICase.swift */; };
+		797A59ED27F2222700B04E1C /* CrushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59EC27F2222700B04E1C /* CrushService.swift */; };
+		797A59F527F2331D00B04E1C /* ListNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59F427F2331D00B04E1C /* ListNotificationView.swift */; };
 		A3739DEF5B44D1AA384AAB6F /* Pods_CrushApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1567911B7C2BC1C8E4987E19 /* Pods_CrushApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +155,15 @@
 		797A59AF27E904B500B04E1C /* CrushDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrushDetailService.swift; sourceTree = "<group>"; };
 		797A59B427E904D600B04E1C /* UserCaseDetailCrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCaseDetailCrush.swift; sourceTree = "<group>"; };
 		797A59B927EA546B00B04E1C /* DetailCrushModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCrushModels.swift; sourceTree = "<group>"; };
+		797A59C127F0E94200B04E1C /* CameraHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHelper.swift; sourceTree = "<group>"; };
+		797A59C727F1009700B04E1C /* PhotoCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCase.swift; sourceTree = "<group>"; };
+		797A59CF27F100A600B04E1C /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		797A59D427F101C900B04E1C /* PhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResponse.swift; sourceTree = "<group>"; };
+		797A59DA27F1456800B04E1C /* ItemCrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCrush.swift; sourceTree = "<group>"; };
+		797A59E227F2125200B04E1C /* CrushResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrushResponse.swift; sourceTree = "<group>"; };
+		797A59E727F2220D00B04E1C /* CrushICase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrushICase.swift; sourceTree = "<group>"; };
+		797A59EC27F2222700B04E1C /* CrushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrushService.swift; sourceTree = "<group>"; };
+		797A59F427F2331D00B04E1C /* ListNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationView.swift; sourceTree = "<group>"; };
 		7CAF01F39EF242C46F445CC2 /* Pods_CrushAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrushAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C08177F959BC87C3985BFE /* Pods_CrushApp_CrushAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrushApp_CrushAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881E412C65AB934469BD0228 /* Pods-CrushAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrushAppTests.debug.xcconfig"; path = "Target Support Files/Pods-CrushAppTests/Pods-CrushAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -379,6 +397,7 @@
 				793E150327D45AEA0024C0C3 /* ModalManager.swift */,
 				793E150827D45B350024C0C3 /* Modal.swift */,
 				796A859F27E2C9460002E23C /* ContactLocalService.swift */,
+				797A59C127F0E94200B04E1C /* CameraHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -436,6 +455,7 @@
 		793E152B27D65D6F0024C0C3 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				797A59F127F2323600B04E1C /* Notification */,
 				793E159E27D852CC0024C0C3 /* DetailCrush */,
 				793E153027D666560024C0C3 /* Settings */,
 				793E152F27D6663A0024C0C3 /* Crush */,
@@ -539,6 +559,8 @@
 		793E155027D66C450024C0C3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				797A59C727F1009700B04E1C /* PhotoCase.swift */,
+				797A59CF27F100A600B04E1C /* PhotoService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -546,6 +568,7 @@
 		793E155E27D670380024C0C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				797A59D927F1454300B04E1C /* Item */,
 				793E156B27D670820024C0C3 /* CrushView.swift */,
 				793E157027D671190024C0C3 /* CurshViewModel.swift */,
 			);
@@ -555,6 +578,8 @@
 		793E155F27D670450024C0C3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				797A59E727F2220D00B04E1C /* CrushICase.swift */,
+				797A59EC27F2222700B04E1C /* CrushService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -592,6 +617,8 @@
 				796A857E27DFEF750002E23C /* IndicativeModel.swift */,
 				796A85A427E2CE5D0002E23C /* ContactModel.swift */,
 				796A85BC27E54AEF0002E23C /* HomeViewModules.swift */,
+				797A59D427F101C900B04E1C /* PhotosResponse.swift */,
+				797A59E227F2125200B04E1C /* CrushResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -639,6 +666,38 @@
 				797A59B927EA546B00B04E1C /* DetailCrushModels.swift */,
 			);
 			path = request;
+			sourceTree = "<group>";
+		};
+		797A59D927F1454300B04E1C /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				797A59DA27F1456800B04E1C /* ItemCrush.swift */,
+			);
+			name = Item;
+			sourceTree = "<group>";
+		};
+		797A59F127F2323600B04E1C /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				797A59F327F2329A00B04E1C /* Views */,
+				797A59F227F2324A00B04E1C /* Services */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
+		797A59F227F2324A00B04E1C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		797A59F327F2329A00B04E1C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				797A59F427F2331D00B04E1C /* ListNotificationView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -880,11 +939,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797A59D527F101C900B04E1C /* PhotosResponse.swift in Sources */,
 				793E158E27D840910024C0C3 /* ItemPersonaHome.swift in Sources */,
 				796A857F27DFEF750002E23C /* IndicativeModel.swift in Sources */,
 				793E14FF27D45A730024C0C3 /* SplashScreenView.swift in Sources */,
 				797A59B527E904D600B04E1C /* UserCaseDetailCrush.swift in Sources */,
+				797A59E327F2125200B04E1C /* CrushResponse.swift in Sources */,
 				793E15B527DAC8990024C0C3 /* ItemGalery.swift in Sources */,
+				797A59DB27F1456800B04E1C /* ItemCrush.swift in Sources */,
 				797A59B027E904B500B04E1C /* CrushDetailService.swift in Sources */,
 				793E149227D445B20024C0C3 /* ContentView.swift in Sources */,
 				796A85A527E2CE5D0002E23C /* ContactModel.swift in Sources */,
@@ -897,11 +959,14 @@
 				797A59BA27EA546B00B04E1C /* DetailCrushModels.swift in Sources */,
 				793E15AF27D853770024C0C3 /* ItemPersonHomeViewModel.swift in Sources */,
 				793E157127D671190024C0C3 /* CurshViewModel.swift in Sources */,
+				797A59C827F1009700B04E1C /* PhotoCase.swift in Sources */,
 				793E156C27D670820024C0C3 /* CrushView.swift in Sources */,
 				793E149027D445B20024C0C3 /* CrushAppApp.swift in Sources */,
+				797A59E827F2220D00B04E1C /* CrushICase.swift in Sources */,
 				793E150427D45AEA0024C0C3 /* ModalManager.swift in Sources */,
 				793E151927D46F2F0024C0C3 /* TerminosViewModel.swift in Sources */,
 				793E158027D671F80024C0C3 /* ViewModelSetting.swift in Sources */,
+				797A59F527F2331D00B04E1C /* ListNotificationView.swift in Sources */,
 				796A85A027E2C9460002E23C /* ContactLocalService.swift in Sources */,
 				796A85AB27E52D380002E23C /* UserList.swift in Sources */,
 				796A858427E190160002E23C /* AppDelegate.swift in Sources */,
@@ -918,6 +983,9 @@
 				793E14D727D4551C0024C0C3 /* ViewManifests.swift in Sources */,
 				793E154327D66BA70024C0C3 /* HomeView.swift in Sources */,
 				796A85B327E543FD0002E23C /* ServiceHomeView.swift in Sources */,
+				797A59ED27F2222700B04E1C /* CrushService.swift in Sources */,
+				797A59C227F0E94200B04E1C /* CameraHelper.swift in Sources */,
+				797A59D027F100A600B04E1C /* PhotoService.swift in Sources */,
 				793E155227D66C5B0024C0C3 /* FotosView.swift in Sources */,
 				793E151127D46F160024C0C3 /* TerminosView.swift in Sources */,
 				796A855F27DFEDD60002E23C /* LoginService.swift in Sources */,

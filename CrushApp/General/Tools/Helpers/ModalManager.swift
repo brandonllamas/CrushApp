@@ -71,3 +71,23 @@ struct LoadingView<Content>: View where Content: View {
         }
     }
 }
+
+
+
+struct DotView: View {
+    @State var delay: Double = 0 // 1.
+    @State var scale: CGFloat = 0.5
+    var body: some View {
+        Circle()
+            .frame(width: 20, height: 20)
+            .scaleEffect(scale)
+            //.background(Color("SoftGradient1"))
+            .foregroundColor(Color("SoftGradient1"))
+            .animation(Animation.easeInOut(duration: 0.6).repeatForever().delay(delay)) // 2.
+            .onAppear {
+                withAnimation {
+                    self.scale = 1
+                }
+            }
+    }
+}

@@ -42,7 +42,9 @@ struct MainNavigationView: View {
                 .padding(.horizontal)
             Spacer()
             Image("VectornotificationSg")
-                .padding(.horizontal)
+                .padding(.horizontal).onTapGesture {
+                    self.viewmodel.indexSel = 4
+                }
           
             
         }
@@ -62,6 +64,8 @@ struct MainNavigationView: View {
                 CrushView()
             case 3 :
                 SettingsView()
+            case 4:
+                ListNotificationView()
             default:
             HomeView()
             

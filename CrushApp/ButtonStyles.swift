@@ -45,6 +45,18 @@ struct crushButtonDefault: ButtonStyle {
 }
 
 
+struct crushButtonImagenAcept: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label
+            .frame(width: 130, height: 25)
+           // .foregroundColor(.black)
+            .padding()
+            .background(Color.white)
+            .cornerRadius(30)
+    }
+}
+
+
 struct crushButtonDefaultDetail: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View{
         configuration.label

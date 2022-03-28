@@ -8,8 +8,45 @@
 import SwiftUI
 
 struct CrushView: View {
+    
+    @ObservedObject var viewModel:CrushViewModel
+        = CrushViewModel();
+    
+    
+    let columns = [
+        
+        GridItem(.flexible(),spacing: 5),
+        GridItem(.flexible() ,spacing: 10),
+    ]
+    
+    
     var body: some View {
-        Text("Crush view")
+        Rectangle()
+            .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .ignoresSafeArea()
+            .foregroundColor(Color("fondoCrush"))
+            .overlay(
+                VStack{
+                    ScrollView{
+                        VStack(spacing:20){
+                            list
+                        }
+                    }
+                }
+            )
+    }
+    
+    var list: some View {
+        HStack{
+            Spacer()
+            
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(self.viewModel.actions, id: \.self) { homePeople in 
+                    ItemCrush(detail: homePeople)
+                }
+             }.padding(.horizontal)
+            Spacer()
+        }
     }
 }
 

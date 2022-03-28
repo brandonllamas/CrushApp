@@ -9,21 +9,72 @@ import Foundation
 import SwiftUI
 
 class ViewModelFotos:ObservableObject{
-    @Published var option:[UserImage] ;
+    @Published var option:[ItemPhotoOption] = [] ;
+    @Published var dialogAction:Bool = false;
+    @Published var dialogAceptCamera:Bool = false;
+    
+    //para tomar foto
+    @Published var showCaptureImage:Bool = false;
+    @Published var showCaptureImageGalery:Bool = false;
+    @Published var image: Image? =   Image("defaultGirl");
+    
+    //Loadings
+    @Published var LoadSubirImage:Bool = false;
+    
+    
+    
+    
+    //TO send
+    @Published var stringImageTosend:String = ""
+
     
     init() {
-        self.option = [
-            UserImage(starst: 3, imagen: "defaultGirl", index: 1, id: 1),
-            UserImage(starst: 2, imagen: "defaultBoy", index: 2, id: 2),
-            UserImage(starst: 1, imagen: "defaultGirl", index: 3, id: 3),
-            UserImage(starst: 3, imagen: "defaultGirl", index: 4, id: 4),
-            UserImage(starst: 3, imagen: "defaultGirl", index: 5, id: 5),
-            UserImage(starst: 1, imagen: "defaultBoy", index: 6, id: 6),
-            UserImage(starst: 2, imagen: "defaultBoy", index: 7, id: 7),
-            UserImage(starst: 3, imagen: "defaultGirl", index: 8, id: 8),
-            UserImage(starst: 2, imagen: "defaultBoy", index: 9, id: 9),
-            UserImage(starst: 3, imagen: "defaultGirl", index: 10, id: 10),
-        ];
+        self.getGalery()
+    }
+    
+    func getGalery(){
+        PhotoCase().getGalery(){ response in
+            self.option = response.data.data
+        } onDefault: { response in
+           
+            print(response)
+            
+        } onError: { error in
+     
+            print(error)
+            
+        }
+    }
+    
+    func openPhoto(){
+        self.dialogAction = false;
+        self.showCaptureImage.toggle()
+        self.dialogAceptCamera.toggle()
+    }
+    
+    func openPhotoGalery(){
+        self.dialogAction = false;
+        self.showCaptureImageGalery.toggle()
+        self.dialogAceptCamera.toggle()
+    }
+    
+    
+    func uploadPhoto(){
+        self.LoadSubirImage = true;
+        PhotoCase().UploadPhoto(image: self.stringImageTosend){ response in
+            print("res normi")
+           print(response)
+            self.dialogAceptCamera = false
+            self.LoadSubirImage = false;
+        } onDefault: { response in
+           
+            print(response)
+            
+        } onError: { error in
+     
+            print(error)
+            
+        }
     }
 
 }
