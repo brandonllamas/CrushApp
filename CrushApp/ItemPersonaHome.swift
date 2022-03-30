@@ -12,6 +12,7 @@ struct ItemPersonaHome: View {
     var users:GeneralUsuario;
     var urlImage:String = "";
     var idss:String = "";
+    @State var block:Bool = false;
     
     @ObservedObject var viewModel = ItemPersonHomeViewModel();
     
@@ -27,16 +28,32 @@ struct ItemPersonaHome: View {
     var body: some View {
         
         VStack{
-          
-            ImageWeb(url: self.urlImage, placeHolder: "defaultBoy")
-                .scaleEffect()
-                .cornerRadius(10)
-                .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .padding(.top,8)
-             
-            Text(self.users.contact?.name ?? "No name")
-                .bold()
-                .foregroundColor(.black)
+            if(!block){
+                ImageWeb(url: self.urlImage, placeHolder: "defaultBoy")
+                    .scaleEffect()
+                    .cornerRadius(10)
+                    .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(.top,8)
+                 
+                HStack{
+                    Text(self.users.contact?.name ?? "No name")
+                        .bold()
+                        .foregroundColor(.black)
+                    Button(action: {
+                        print("Bloquear")
+                        self.viewModel.block(id: self.users.id)
+                        self.block = true;
+                    }, label: {
+                        Image("md-eye-off")
+                            .resizable()
+                            .frame(width: 11, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    })
+                }
+                
+            }
+            
+           
+           
             
         }
     }

@@ -20,4 +20,20 @@ class ItemPersonHomeViewModel:ObservableObject{
       print("aqui toy")
         //nav.advance(AnyView(CrushDetailView(user: user)), tag: .CrushDetailView)
     }
+    
+    func block(id:Int){
+        HomeViewCase().blockUser(id_user:id){ response in
+            
+           print(response)
+            
+        } onDefault: { response in
+           
+            print(response)
+            
+        } onError: { error in
+     
+            print(error)
+            
+        }
+    }
 }

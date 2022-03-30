@@ -28,7 +28,9 @@ class LoginService : ObservableObject {
     }
     
     func saveCellphone(cellphone:String , indicative:String){
-        KeyChain.saveCredentials(cellphone: cellphone, indicative: indicative)
+        //KeyChain.saveCredentials(cellphone: cellphone, indicative: indicative)
+        LocalStorage.save(value: cellphone, key: "cellphone")
+        LocalStorage.save(value: indicative, key: "indicative")
     }
     
     

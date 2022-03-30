@@ -71,6 +71,10 @@
 		797A59E827F2220D00B04E1C /* CrushICase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59E727F2220D00B04E1C /* CrushICase.swift */; };
 		797A59ED27F2222700B04E1C /* CrushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59EC27F2222700B04E1C /* CrushService.swift */; };
 		797A59F527F2331D00B04E1C /* ListNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59F427F2331D00B04E1C /* ListNotificationView.swift */; };
+		797A59FA27F3F4F300B04E1C /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59F927F3F4F300B04E1C /* LocalStorage.swift */; };
+		797A59FF27F3FB6800B04E1C /* ListNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A59FE27F3FB6800B04E1C /* ListNotificationViewModel.swift */; };
+		797A5A2C27F4A70600B04E1C /* NotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A5A2B27F4A70600B04E1C /* NotificationResponse.swift */; };
+		797A5A3D27F4B51D00B04E1C /* ItemViewNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797A5A3C27F4B51D00B04E1C /* ItemViewNotification.swift */; };
 		A3739DEF5B44D1AA384AAB6F /* Pods_CrushApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1567911B7C2BC1C8E4987E19 /* Pods_CrushApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +168,10 @@
 		797A59E727F2220D00B04E1C /* CrushICase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrushICase.swift; sourceTree = "<group>"; };
 		797A59EC27F2222700B04E1C /* CrushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrushService.swift; sourceTree = "<group>"; };
 		797A59F427F2331D00B04E1C /* ListNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationView.swift; sourceTree = "<group>"; };
+		797A59F927F3F4F300B04E1C /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		797A59FE27F3FB6800B04E1C /* ListNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationViewModel.swift; sourceTree = "<group>"; };
+		797A5A2B27F4A70600B04E1C /* NotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponse.swift; sourceTree = "<group>"; };
+		797A5A3C27F4B51D00B04E1C /* ItemViewNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewNotification.swift; sourceTree = "<group>"; };
 		7CAF01F39EF242C46F445CC2 /* Pods_CrushAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrushAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C08177F959BC87C3985BFE /* Pods_CrushApp_CrushAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrushApp_CrushAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881E412C65AB934469BD0228 /* Pods-CrushAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrushAppTests.debug.xcconfig"; path = "Target Support Files/Pods-CrushAppTests/Pods-CrushAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -387,6 +395,7 @@
 				796A859527E259530002E23C /* KeynsChains.swift */,
 				796A859A27E292F00002E23C /* DataApp.swift */,
 				796A85C127E62B0E0002E23C /* ImageUrlLoad.swift */,
+				797A59F927F3F4F300B04E1C /* LocalStorage.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -619,6 +628,7 @@
 				796A85BC27E54AEF0002E23C /* HomeViewModules.swift */,
 				797A59D427F101C900B04E1C /* PhotosResponse.swift */,
 				797A59E227F2125200B04E1C /* CrushResponse.swift */,
+				797A5A2B27F4A70600B04E1C /* NotificationResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -695,9 +705,19 @@
 		797A59F327F2329A00B04E1C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				797A5A3027F4B4F100B04E1C /* Item */,
 				797A59F427F2331D00B04E1C /* ListNotificationView.swift */,
+				797A59FE27F3FB6800B04E1C /* ListNotificationViewModel.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		797A5A3027F4B4F100B04E1C /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				797A5A3C27F4B51D00B04E1C /* ItemViewNotification.swift */,
+			);
+			name = Item;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -945,6 +965,7 @@
 				793E14FF27D45A730024C0C3 /* SplashScreenView.swift in Sources */,
 				797A59B527E904D600B04E1C /* UserCaseDetailCrush.swift in Sources */,
 				797A59E327F2125200B04E1C /* CrushResponse.swift in Sources */,
+				797A5A2C27F4A70600B04E1C /* NotificationResponse.swift in Sources */,
 				793E15B527DAC8990024C0C3 /* ItemGalery.swift in Sources */,
 				797A59DB27F1456800B04E1C /* ItemCrush.swift in Sources */,
 				797A59B027E904B500B04E1C /* CrushDetailService.swift in Sources */,
@@ -957,6 +978,7 @@
 				793E15C227DF9F090024C0C3 /* GlobalStructs.swift in Sources */,
 				793E14EF27D459960024C0C3 /* ViewModelsLogin.swift in Sources */,
 				797A59BA27EA546B00B04E1C /* DetailCrushModels.swift in Sources */,
+				797A59FA27F3F4F300B04E1C /* LocalStorage.swift in Sources */,
 				793E15AF27D853770024C0C3 /* ItemPersonHomeViewModel.swift in Sources */,
 				793E157127D671190024C0C3 /* CurshViewModel.swift in Sources */,
 				797A59C827F1009700B04E1C /* PhotoCase.swift in Sources */,
@@ -969,7 +991,9 @@
 				797A59F527F2331D00B04E1C /* ListNotificationView.swift in Sources */,
 				796A85A027E2C9460002E23C /* ContactLocalService.swift in Sources */,
 				796A85AB27E52D380002E23C /* UserList.swift in Sources */,
+				797A59FF27F3FB6800B04E1C /* ListNotificationViewModel.swift in Sources */,
 				796A858427E190160002E23C /* AppDelegate.swift in Sources */,
+				797A5A3D27F4B51D00B04E1C /* ItemViewNotification.swift in Sources */,
 				793E152427D5B91A0024C0C3 /* ButtonStyles.swift in Sources */,
 				796A859627E259530002E23C /* KeynsChains.swift in Sources */,
 				793E14E227D457140024C0C3 /* LoginView.swift in Sources */,

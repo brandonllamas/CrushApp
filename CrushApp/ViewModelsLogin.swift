@@ -36,7 +36,7 @@ class ViewModelLogin:ObservableObject{
             
             DataApp.authUser = response.data
             DataApp.user = response.data.user
-            LoginService().saveCellphone(cellphone: indicative, indicative: cellphone)
+            LoginService().saveCellphone(cellphone: cellphone, indicative: indicative)
             nav.advance(AnyView(MainNavigationView()), tag: .MainNavigation)
             self.loading = false
            print(response)

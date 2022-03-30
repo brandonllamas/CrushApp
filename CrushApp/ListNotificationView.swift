@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct ListNotificationView: View {
-    var tabActive:Int = 0
+    @ObservedObject var viewModel:ListNotificationViewModel;
+     
+    init(){
+        self.viewModel = ListNotificationViewModel()
+    }
+   @State var tabActive:Int = 0
     
     var body: some View {
         ZStack{
@@ -22,16 +27,67 @@ struct ListNotificationView: View {
     
     var vista:some View{
         VStack{
+            tabs.padding(.top,10)
             
+            ScrollView{
+                VStack{
+                    if(tabActive == 0){
+                        ForEach(self.viewModel.notificationsCrush, id: \.self){ action in
+                            ItemViewNotification(title: "Tienes un match!", msg: action.value.message, date: action.value.date)
+                                .padding(14)
+                           }
+                     
+                    }else{
+                        ForEach(self.viewModel.notifications, id: \.self){ action in
+                            ItemViewNotification(title: "Tienes un crush!", msg: action.value.message, date: action.value.date)
+                                .padding(14)
+                           }
+                    }
+                }.frame(height:.infinity)
+            }
+            Spacer()
         }
+    }
+    
+    var tabs:some View{
+        HStack{
+            Spacer()
+            Button(action: {
+                self.tabActive = 0
+            }, label: {
+                VStack{
+                    Text("Mis Matches").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    if(self.tabActive == 0){
+                        Rectangle().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    }
+                 
+                }
+                
+            }).foregroundColor( self.tabActive == 0 ? Color("SoftGradient1") : Color.gray)
+            
+            Spacer()
+            Button(action: {
+                self.tabActive = 1
+            }, label: {
+                VStack{
+                    Text("Mis Matches").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    if(self.tabActive == 1){
+                        Rectangle().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    }
+                 
+                }
+                
+            }).foregroundColor( self.tabActive == 1 ? Color("SoftGradient1") : Color.gray)
+            Spacer()
+        }.padding(.top,5)
     }
     
     
     var degradado: some View{
         LinearGradient(gradient: Gradient(colors: [
-            Color("Cian"),
-            Color("AzulDegradado"),
-            Color("Magneta")
+            Color("Cian").opacity(30),
+            Color("AzulDegradado").opacity(30),
+            Color("Magneta").opacity(30)
            
         ]), startPoint: .topLeading, endPoint: .bottomTrailing)
         .ignoresSafeArea(.all)

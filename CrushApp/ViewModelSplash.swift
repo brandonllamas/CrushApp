@@ -19,16 +19,17 @@ class ViewModelSplashScreen:ObservableObject{
     
     func login(nav:NavigationStack) {
         self.navigation = nav
-        var Cellphone:String = KeyChain.load(key: "cellphone") ?? ""
-        var pwsd:String = KeyChain.load(key: "indicative") ?? ""
+        var Cellphone:String = LocalStorage.load(key: "cellphone") 
+        var pwsd:String = LocalStorage.load(key: "indicative")
         
-        if(Cellphone != "" && pwsd != ""){
+         if(Cellphone != "" && pwsd != ""){
+    //if(false){
             LoginService().login(cellphone: Cellphone, indicative: pwsd)
             { response in
                 
                 DataApp.authUser = response.data
                 DataApp.user = response.data.user
-                LoginService().saveCellphone(cellphone: pwsd, indicative: Cellphone)
+                LoginService().saveCellphone(cellphone: Cellphone, indicative: pwsd)
                 nav.advance(AnyView(MainNavigationView()), tag: .MainNavigation)
                  
                print(response)
@@ -36,14 +37,16 @@ class ViewModelSplashScreen:ObservableObject{
             } onDefault: { response in
             
                 print(response)
+                nav.advance(AnyView(LoginView()), tag: .TerminosView)
                 
             } onError: { error in
                  
                 print(error)
+                nav.advance(AnyView(LoginView()), tag: .TerminosView)
                 
             }
         }else{
-            print("Sin keyns")
+            print("Sin keys")
             nav.advance(AnyView(LoginView()), tag: .TerminosView)
         }
    

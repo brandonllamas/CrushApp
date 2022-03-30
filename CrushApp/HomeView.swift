@@ -48,6 +48,7 @@ struct HomeView: View {
                                     ){
                         ItemPersonaHome(user: homePeople)
                             .background(Color.white)
+                            
                     } .background(Color.white)
                     
                     

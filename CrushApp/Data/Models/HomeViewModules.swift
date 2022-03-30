@@ -16,6 +16,15 @@ struct GeneralResponseUserList:Codable, Hashable {
     }
 
 }
+struct GeneralResponseBlock:Codable, Hashable {
+     var success:Bool;
+    var message:String;
+     var data:[String] ;
+    enum CodingKeys: String, CodingKey {
+        case success,data,message
+    }
+
+}
 
 struct GeneralDetailCrushResponse:Codable, Hashable {
      var success:Bool;
