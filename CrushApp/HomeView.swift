@@ -22,18 +22,51 @@ struct HomeView: View {
         NavigationView{
             VStack{
                 textBuscar
+                
                 ScrollView {
                     VStack(spacing: 20) {
-                        grid
+                            grid
                     }
                 }
+                
                 Spacer()
             }.navigationBarTitle("")
                 .navigationBarHidden(true)
             .background(Color(.white))
+            .customDialog(isShowing: self.$viewModel.noContacts){
+                DialogNoContent.background(Color(.white))
+                    .cornerRadius(30)
+             }
         }
      
         
+    }
+    
+    
+    var DialogNoContent:some View{
+        VStack {
+            Text("Acceso contactos Denegado")
+                  .padding(.bottom, 10)
+             
+            Divider()
+            Text("Permisos de acceso a \n contactos denegados")
+                .font(.system(size: 20))
+              .minimumScaleFactor(0.01)
+            
+            Divider()
+            HStack{
+                
+                Button(action: {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                }) {
+                  Text("Ir a ajustes")
+                    .foregroundColor(Color(.blue))
+                    .autocapitalization(.allCharacters)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding()
+                }
+            }
+      }.padding()
     }
     
     var grid:some View{

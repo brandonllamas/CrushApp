@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>943904744845-4to6bts60fduo11asb7kn5efndbugsmu.apps.googleusercontent.com</string>
+	<string>943904744845-56gfgmp0p7318bt8qthcffidjns6jrem.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.943904744845-4to6bts60fduo11asb7kn5efndbugsmu</string>
+	<string>com.googleusercontent.apps.943904744845-56gfgmp0p7318bt8qthcffidjns6jrem</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>943904744845-qeafoikjn9utp88qupfkcpiqm7sq51fr.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,23 +15,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.virtualtecapps.crushappios</string>
+	<string>com.virtualtec.CrushApp</string>
 	<key>PROJECT_ID</key>
 	<string>crush-app-proyect</string>
 	<key>STORAGE_BUCKET</key>
 	<string>crush-app-proyect.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:943904744845:ios:c07d170963ee55037209c4</string>
+	<string>1:943904744845:ios:1f7a2ab93b1f25667209c4</string>
 	<key>DATABASE_URL</key>
 	<string>https://crush-app-proyect-default-rtdb.firebaseio.com</string>
 </dict>

@@ -18,9 +18,9 @@ struct NotificationResponseGeneral:Codable, Hashable {
 
 struct NotificationResponse:Codable, Hashable {
      var viewed:Bool;
-     var message,date:String ;
+     var message,date,ref:String ;
     enum CodingKeys: String, CodingKey {
-        case message,date,viewed 
+        case message,date,viewed ,ref
     }
 
 }
@@ -37,9 +37,9 @@ struct CrushesNotResponseGeneral:Codable, Hashable {
 
 struct CrushesNotResponse:Codable, Hashable {
      //var viewed:Bool;
-     var message,date:String ;
+     var message,date,ref:String ;
     enum CodingKeys: String, CodingKey {
-        case message,date//,viewed
+        case message,date,ref//,viewed
     }
 
 }

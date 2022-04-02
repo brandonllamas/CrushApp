@@ -10,10 +10,8 @@ import Firebase
 
 @main
 struct CrushAppApp: App {
-    //@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    init(){
-        FirebaseApp.configure()
-    }
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+   
     var body: some Scene {
         WindowGroup {
             ContentView()

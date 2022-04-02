@@ -33,13 +33,13 @@ struct ListNotificationView: View {
                 VStack{
                     if(tabActive == 0){
                         ForEach(self.viewModel.notificationsCrush, id: \.self){ action in
-                            ItemViewNotification(title: "Tienes un match!", msg: action.value.message, date: action.value.date)
+                            ItemViewNotification(title: "Tienes un match!", msg: action.value.message, date: action.value.date,ref: action.value.ref)
                                 .padding(14)
                            }
                      
                     }else{
                         ForEach(self.viewModel.notifications, id: \.self){ action in
-                            ItemViewNotification(title: "Tienes un crush!", msg: action.value.message, date: action.value.date)
+                            ItemViewNotification(title: "Tienes un crush!", msg: action.value.message, date: action.value.date,ref: action.value.ref)
                                 .padding(14)
                            }
                     }
@@ -54,6 +54,7 @@ struct ListNotificationView: View {
             Spacer()
             Button(action: {
                 self.tabActive = 0
+                self.viewModel.getCrushes()
             }, label: {
                 VStack{
                     Text("Mis Matches").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -68,6 +69,8 @@ struct ListNotificationView: View {
             Spacer()
             Button(action: {
                 self.tabActive = 1
+                
+                self.viewModel.getNotification()
             }, label: {
                 VStack{
                     Text("Mis Matches").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)

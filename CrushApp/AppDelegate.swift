@@ -1,14 +1,13 @@
 //
 //  AppDelegate.swift
-//  CrushApp
+//  NovuEats_Cliente
 //
-//  Created by WebAuxiliar on 15/03/22.
+//  Created by Brandon llamas on 26/10/21.
 //
 
-import Foundation
 import UIKit
 import Firebase
-//import FirebaseMessaging
+import FirebaseMessaging
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -36,7 +35,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         FirebaseApp.configure()
         //ConnectionFirebase.setConnectionsFirebase()
-        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        //FirebaseConfiguration.shared.setLoggerLevel(.min)
 
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -45,14 +44,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         options: authOptions) { _, _ in }
 
         application.registerForRemoteNotifications()
-       // Messaging.messaging().delegate = self
+        Messaging.messaging().delegate = self
        // GMSPlacesClient.provideAPIKey("AIzaSyAfRS4i-hSSOvdYC7qn2ctViGx36U0osYE")
 
         return true
     }
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
+extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler:
@@ -66,10 +65,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        //let token = deviceToken.map{ String(format: "%02x", $0) }.joined()
+        let token = deviceToken.map{ String(format: "%02x", $0) }.joined()
         print("Registration succeeded!")
-       // print("Token: \(token)")
-        //Messaging.messaging().apnsToken = deviceToken
+        print("Token: \(token)")
+        Messaging.messaging().apnsToken = deviceToken
         /*InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {
                 print("Error fetching remote instance ID: \(error)")
@@ -77,17 +76,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 print("Remote instance ID token: \(result.token)")
             }
         }*/
-       // Messaging.messaging().shouldGroupAccessibilityChildren = true
+        Messaging.messaging().shouldGroupAccessibilityChildren = true
     }
     
     func ​application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        //Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().apnsToken = deviceToken
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
             print("Registration failed!")
+        print(error)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -98,13 +98,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 }
 
 extension AppDelegate {
-     /* func messaging(_ messaging: Messaging,didReceiveRegistrationToken fcmToken: String?)
-      {
-        let tokenDict = ["token": fcmToken ?? ""]
-        print("Token: " + (fcmToken ?? "null"))
-        NotificationCenter.default.post(
-          name: Notification.Name("FCMToken"),
-          object: nil,
-          userInfo: tokenDict)
-      }*/
+  func messaging(_ messaging: Messaging,didReceiveRegistrationToken fcmToken: String?)
+  {
+    let tokenDict = ["token": fcmToken ?? ""]
+    print("Token: " + (fcmToken ?? "null"))
+    NotificationCenter.default.post(
+      name: Notification.Name("FCMToken"),
+      object: nil,
+      userInfo: tokenDict)
+  }
 }
+
+
+

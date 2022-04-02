@@ -26,26 +26,34 @@ class ListNotificationViewModel : ObservableObject {
     
     func getNotification(){
         //var refe =
+        //self.ref.child("USERS/\(DataApp.user!.phone)/NOTIFICATIONS").removeValue();
+        self.notifications = []
         self.ref.child("USERS/\(DataApp.user!.phone)/NOTIFICATIONS").observeSingleEvent(of: .value, with: { response in
-            
-            let noti = response.value as! NSDictionary
-            
-             
-            print("RESPONSE NOTIFICATION")
             print(response)
-    
-            noti.forEach({ re2 in
-                print(re2)
-                let valueRe2 = re2.value as! NSDictionary;
+            if(response.exists()){
+                let noti = response.value as! NSDictionary
                 
-                let notiData:NotificationResponse = NotificationResponse(viewed: valueRe2["viewed"] as! Bool, message: valueRe2["message"] as! String, date: valueRe2["date"] as! String)
-                
-                let noticonv:NotificationResponseGeneral =
-                    NotificationResponseGeneral(key: re2.key as! String, value: notiData)
+                 
+                print("RESPONSE NOTIFICATION")
                
-                
-                self.notifications.append(noticonv)
-            })
+        
+                noti.forEach({ re2 in
+                    print(re2)
+                    let valueRe2 = re2.value as! NSDictionary;
+                    
+                    let ref:String = "USERS/\(DataApp.user!.phone)/NOTIFICATIONS/\(re2.key)";
+                    
+                    let notiData:NotificationResponse = NotificationResponse(viewed: valueRe2["viewed"] as! Bool, message: valueRe2["message"] as! String, date: valueRe2["date"] as! String,ref:ref)
+                    
+                    let noticonv:NotificationResponseGeneral =
+                        NotificationResponseGeneral(key: re2.key as! String, value: notiData)
+                   
+                    
+                    self.notifications.append(noticonv)
+                })
+            }
+            
+          
            // print(noti.allKeys)
             print(self.notifications)
             
@@ -58,27 +66,31 @@ class ListNotificationViewModel : ObservableObject {
     
     func getCrushes(){
         //var refe =
+        self.notificationsCrush = [];
         self.ref.child("USERS/\(DataApp.user!.phone)/CRUSHES").observeSingleEvent(of: .value, with: { response in
             
-            let noti = response.value as! NSDictionary
-            
-             
-            print("RESPONSE NOTIFICATION")
-            print(response)
-    
-            noti.forEach({ re2 in
-                print(re2)
-                let valueRe2 = re2.value as! NSDictionary;
+            if(response.exists()){
+                let noti = response.value as! NSDictionary
                 
-                
-                let notiData:CrushesNotResponse = CrushesNotResponse(message: valueRe2["message"] as! String, date: valueRe2["date"] as! String)
-                
-                let noticonv:CrushesNotResponseGeneral =
-                    CrushesNotResponseGeneral(key: re2.key as! String, value: notiData)
-               
-                
-                self.notificationsCrush.append(noticonv)
-            })
+                 
+                print("RESPONSE NOTIFICATION")
+                print(response)
+        
+                noti.forEach({ re2 in
+                    print(re2)
+                    let valueRe2 = re2.value as! NSDictionary;
+                    
+                    let ref:String = "USERS/\(DataApp.user!.phone)/CRUSHES/\(re2.key)";
+                    let notiData:CrushesNotResponse = CrushesNotResponse(message: valueRe2["message"] as! String, date: valueRe2["date"] as! String,ref:ref)
+                    
+                    let noticonv:CrushesNotResponseGeneral =
+                        CrushesNotResponseGeneral(key: re2.key as! String, value: notiData)
+                   
+                    
+                    self.notificationsCrush.append(noticonv)
+                })
+            }
+           
            // print(noti.allKeys)
             print(self.notifications)
             

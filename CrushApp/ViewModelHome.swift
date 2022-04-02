@@ -15,6 +15,9 @@ class ViewModelHome:ObservableObject{
     @Published var ListContactPost:[GeneralUsuario] = []
     var contactsSend:[PhoneItemRequest] = [];
     
+    
+    @Published var noContacts:Bool = false;
+    
     init() {
         self.list = [
             UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultBoy", index: 3, id: 1),
@@ -32,8 +35,12 @@ class ViewModelHome:ObservableObject{
         DispatchQueue.main.async {
             self.Contactos.fetchContacts();
             
-            //print("Hola llego aca")
-           // print(self.Contactos.contacts);
+            print("Hola llego aca")
+            print(self.Contactos.contacts);
+            if(self.Contactos.contacts.isEmpty){
+                self.noContacts =  true;
+                return ;
+            }
             self.Contactos.contacts.forEach({contact in
                 let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: contact.phoneNumbers[0]) , name: contact.firstName);
                 self.contactsSend.append(contacto);

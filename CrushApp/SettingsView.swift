@@ -39,10 +39,12 @@ struct SettingsView: View {
         VStack(alignment:.leading){
             HStack{
                 Image("close").resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(.gray)
                     .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                Text("Cerrar Sesion")
+                Text("Cerrar Sesion").foregroundColor(.gray)
             }
-            Rectangle().frame(width: 357, height: 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal"))
+            Rectangle().frame(width: 357, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal"))
         }.onTapGesture {
             self.viewmodel.ExitSection(nav:self.navigation)
         }
@@ -70,7 +72,7 @@ struct SettingsView: View {
                 //self.viewmodel.getUserBlock()
             }
         
-            Rectangle().frame(width: 357, height: 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal"))
+            Rectangle().frame(width: 357, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal"))
                 .padding(.horizontal,27)
                
             if(self.viewmodel.InvitarAmigos  ){
@@ -111,7 +113,7 @@ struct SettingsView: View {
                 self.viewmodel.getUserBlock()
             }
         
-            Rectangle().frame(width: 357, height: 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal"))
+            Rectangle().frame(width: 357, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal"))
                 .padding(.horizontal,27)
                
             if(self.viewmodel.verUsuario  ){
