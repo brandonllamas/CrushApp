@@ -85,9 +85,9 @@ struct ListNotificationView: View {
     
     var degradado: some View{
         LinearGradient(gradient: Gradient(colors: [
-            Color("Cian").opacity(30),
-            Color("AzulDegradado").opacity(30),
-            Color("Magneta").opacity(30)
+            Color("Cian-1").opacity(0.9),
+            Color("AzulDegradado-1").opacity(0.9),
+            Color("Magneta-1").opacity(0.9)
            
         ]), startPoint: .topLeading, endPoint: .bottomTrailing)
         .ignoresSafeArea(.all)

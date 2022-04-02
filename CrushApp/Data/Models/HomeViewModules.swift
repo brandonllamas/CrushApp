@@ -71,6 +71,28 @@ struct DataUserList:Codable, Hashable {
 }
 
 
+struct DataUserListBlock:Codable, Hashable {
+    var data:[DataUsertBlock] ;
+    var success:Bool;
+    var message:String;
+    enum CodingKeys: String, CodingKey {
+        case success,data,message
+    }
+
+}
+
+
+struct DataUsertBlock:Codable, Hashable {
+    var id,state:Int;
+    var id_user,id_user_blocked,created_at,updated_at:String;
+    var user_blocked:GeneralUsuario;
+    enum CodingKeys: String, CodingKey {
+        case id_user,id_user_blocked,created_at,updated_at
+        case id,state
+        case user_blocked
+    }
+}
+
 struct GeneralUsuario:Codable, Hashable {
     var id,id_type_user,active,indicative,image_profile:Int;
     var name,username,password:String?;

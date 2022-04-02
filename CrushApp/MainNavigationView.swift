@@ -24,14 +24,11 @@ struct MainNavigationView: View {
             vistas
             Spacer()
             
-            bottomNavigation
+            bottomNavigation  .cornerRadius(50, corners: [.topLeft,.topRight])
          	
         }.frame(width: .infinity, height: .infinity)
         .background(Color(
                         .white))
-       
-      
-        
     }
     var toolBar:some View{
         HStack{
