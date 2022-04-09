@@ -11,12 +11,16 @@ import SwiftUI
 class ViewModelTerminos:ObservableObject{
     @Published var acept:Bool = false;
     var navigation: NavigationStack?
+    @Published var aceptado:Bool = false;
     
     init() {
         
     }
     
     func aceptarTerminos(nav:NavigationStack) {
+        if(!aceptado){
+            return
+        }
         self.navigation = nav
       print("aqui toy")
         nav.advance(AnyView(MainNavigationView()), tag: .MainNavigation)

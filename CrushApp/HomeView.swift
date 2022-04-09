@@ -102,7 +102,12 @@ struct HomeView: View {
             Spacer()
             HStack {
                 Image( "search")
-                TextField("Buscar por nombre", text: .constant("")).foregroundColor(Color.gray).font(Font.custom("", size: 16))
+                TextField("Buscar por nombre", text: self.$viewModel.textFiltrer).foregroundColor(Color.gray).font(Font.custom("", size: 16))
+                    .onChange(of: self.viewModel.textFiltrer) { newValue in
+                       print("Name changed to \(self.viewModel.textFiltrer)!")
+                        self.viewModel.filter(text: self.viewModel.textFiltrer)
+                     }
+                   
             }
             
             .padding()

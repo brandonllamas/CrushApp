@@ -12,7 +12,7 @@ class ViewModelSetting:ObservableObject{
    
     @Published var verUsuario:Bool = false;
     @Published var InvitarAmigos:Bool = false;
-    
+    @Published var politicst:Bool = false;
     
     
     @Published var userBlock:[DataUsertBlock] = [];

@@ -32,6 +32,7 @@ struct CrushDetailView: View {
         }else{
             self.urlImage = "\( Connections.url_photo)/\(idss)/\("nopho")";
         }
+        print(self.users.name)
         print(self.users.image)
     }
     

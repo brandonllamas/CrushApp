@@ -13,10 +13,14 @@ class ViewModelHome:ObservableObject{
     @Published var index = 0;
     @Published var Contactos:FetchedContacts = FetchedContacts();
     @Published var ListContactPost:[GeneralUsuario] = []
-    var contactsSend:[PhoneItemRequest] = [];
-    
+    @Published var ListContactPostCopia:[GeneralUsuario] = []
+    @Published var contactsSend:[PhoneItemRequest] = [];
+     
     
     @Published var noContacts:Bool = false;
+    @Published var textFiltrer:String = "";
+   
+    
     
     init() {
         self.list = [
@@ -28,6 +32,21 @@ class ViewModelHome:ObservableObject{
             UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultBoy", index: 1, id: 6),
         ]
         self.getAllContactLocal()
+    }
+    
+    func filter(text:String){
+        self.ListContactPost = self.ListContactPostCopia;
+        if(text == ""){return}
+       // self.contactsSend = self.ListContactPostCopia.filter {$0.name == text}
+        var cont = 0;
+        self.ListContactPost.forEach({contact in
+            var name =  contact.contact?.name ?? "";
+            if(  name != text  ){
+                self.ListContactPost.remove(at: cont == 0 ?cont: cont-1)
+            }
+            cont = cont+1;
+        })
+        
     }
     
     func getAllContactLocal()  {
@@ -50,6 +69,7 @@ class ViewModelHome:ObservableObject{
                     
                     let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: number) , name: name);
                     self.contactsSend.append(contacto);
+                   
                 }
                 
                 
@@ -59,6 +79,7 @@ class ViewModelHome:ObservableObject{
             
             HomeViewCase().ListApp(phones: self.contactsSend){ response in
                 self.ListContactPost = response.data.data;
+                self.ListContactPostCopia =  response.data.data;
                print(response)
                 
             } onDefault: { response in
