@@ -66,6 +66,7 @@ class ViewModelFotos:ObservableObject{
            print(response)
             self.dialogAceptCamera = false
             self.LoadSubirImage = false;
+            self.getGalery();
         } onDefault: { response in
            
             print(response)

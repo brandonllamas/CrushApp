@@ -42,12 +42,20 @@ class ViewModelHome:ObservableObject{
                 return ;
             }
             self.Contactos.contacts.forEach({contact in
-                let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: contact.phoneNumbers[0]) , name: contact.firstName);
-                self.contactsSend.append(contacto);
+                //let cont = nil
+                if(contact.phoneNumbers.count != 0 && !contact.firstName.isEmpty){
+                    let number = contact.phoneNumbers[0];
+                    let name = contact.firstName;
+                    
+                    
+                    let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: number) , name: name);
+                    self.contactsSend.append(contacto);
+                }
+                
                 
                 
             })
-            
+            print(self.contactsSend)
             
             HomeViewCase().ListApp(phones: self.contactsSend){ response in
                 self.ListContactPost = response.data.data;

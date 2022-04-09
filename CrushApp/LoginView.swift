@@ -33,14 +33,10 @@ struct LoginView: View {
                                 
                             }
                         }.padding(.vertical,100)
-                        
+                        Spacer()
                         HStack{
-                            LoadingView(isShowing: self.$viewModel.loading) {
-                                        vistaLogin
-                                    }
-                           
+                             vistaLogin
                         }
-                        
                     }
               )
                 .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -76,16 +72,25 @@ struct LoginView: View {
                 
                 HStack{
                     Spacer()
+                    if(self.viewModel.codeSend){
+                        sendCode
+                    }else{
+                        textBuscar
+                    }
                     
-                    textBuscar
           
                     Spacer()
                 }.padding(.top,30)
-                buttonSendCode
+                if(self.viewModel.loading){
+                    btnLoading
+                }else{
+                    buttonSendCode
+                }
+                
                 Text(self.viewModel.msgError).foregroundColor(.red)
                 Spacer()
             }.background(Color(.white))
-            .cornerRadius(50)
+            .cornerRadius(50, corners: [.topLeft,.topRight])
             .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .ignoresSafeArea()
             if(self.showDialog){
@@ -99,14 +104,35 @@ struct LoginView: View {
    
     }
     
+    var btnLoading: some View{
+        HStack{
+       DotView() // 1.
+       DotView(delay: 0.2) // 2.
+       DotView(delay: 0.4) // 3.
+             
+
+          
+        }
+    }
+    
     var buttonSendCode: some View{
         HStack{
             Button(action: {
                print("crush")
-                self.viewModel.login(indicative: self.indicativeSelected.value, cellphone: self.cellphone,nav:self.navigation)
-                
+               // self.viewModel.login(indicative: self.indicativeSelected.value, cellphone: self.cellphone,nav:self.navigation)
+                if(!self.viewModel.codeSend){
+                    self.viewModel.sendCode(indicative: self.indicativeSelected.value, cellphone: self.cellphone)
+                }else{
+                    self.viewModel.verificateCOde(code: self.viewModel.codeSending, nav: self.navigation)
+                }
+             
             }, label: {
-                Text("Enviar codigo")
+                if(!self.viewModel.codeSend){
+                    Text("Enviar codigo")
+                }else{
+                    Text("Verificar codigo")
+                }
+             
             })
             
             .buttonStyle(crushButtonDefault())
@@ -129,6 +155,32 @@ struct LoginView: View {
         .overlay(RoundedRectangle(cornerRadius: 20)
                     .stroke(lineWidth: 2).foregroundColor(Color("BackGroundVistas")))
      
+    }
+    
+    var sendCode:some View{
+        HStack{
+            Spacer()
+            //botonIndicativo
+            HStack {
+                Image( "celular")
+                TextField("Numero de telefono", text:self.$viewModel.codeSending).foregroundColor(Color.black).font(Font.custom("", size: 16)).keyboardType(.numberPad)
+            }
+            
+            .padding()
+            .background(Color("BackGroundVistas"))
+            .cornerRadius(20)
+            .overlay(RoundedRectangle(cornerRadius: 20)
+                        .stroke(lineWidth: 2).foregroundColor(Color("BackGroundVistas")))
+            
+            
+            
+            .padding(.bottom,2)
+            .frame(width: 300, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            Spacer()
+           
+            
+        }
+       
     }
     
     var textBuscar:some View{

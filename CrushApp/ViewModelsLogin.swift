@@ -20,6 +20,11 @@ class ViewModelLogin:ObservableObject{
     @Published var cellphone:String = "";
     @Published var msgError:String = "";
     
+    ///TODO: Datos para verificar
+    var tokenVerification:String = "";
+    var cellphonetoLogin:String = "";
+    var indicativetoLogin:String = "";
+    
     init() {
 
     }
@@ -71,16 +76,51 @@ class ViewModelLogin:ObservableObject{
         }
     }
     
+    func verificateCOde(code:String,nav:NavigationStack){
+        if(!code.isEmpty || !self.cellphonetoLogin.isEmpty || !self.indicativetoLogin.isEmpty){
+            self.loading = true
+            let loginFire = PhoneAuthProvider.provider().credential(withVerificationID: self.tokenVerification, verificationCode: code)
+            
+            Auth.auth().signIn(with:loginFire){ uthCompletion,error in
+                if let error = error {
+                    print("Error creating a new user \(error.localizedDescription)")
+                    self.msgError =  error.localizedDescription
+                    self.codeSend = false;
+                    self.loading = false;
+                    self.codeSending = "";
+                    return
+                }
+                
+                self.login(indicative:self.indicativetoLogin,cellphone:self.cellphonetoLogin,nav:nav)
+                
+            }
+        }else{
+            self.msgError = "Numero mal inresado"
+        }
+    }
+    
     func sendCode(indicative:String,cellphone:String){
+        self.loading = true;
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber("+573045703711", uiDelegate: nil) { verificationID, error in
+            .verifyPhoneNumber("\(indicative)\(cellphone)", uiDelegate: nil) { verificationID, error in
               if let error = error {
+                print("error phone number")
+                print(error)
+                print("\(indicative)\(cellphone)")
                // self.showMessagePrompt(error.localizedDescription)
+                self.msgError = error.localizedDescription
+                self.loading = false;
                 return
               }
+                self.cellphonetoLogin = cellphone
+                self.indicativetoLogin = indicative
+                
                 print("EL VERIFICATION ID ES")
                 print(verificationID)
-                self.msgError = verificationID ?? "no code"
+                self.tokenVerification = verificationID ?? ""
+                self.codeSend = true;
+                self.msgError = "";
+                self.loading = false;
               // Sign in using the verificationID and the code sent to the user
               // ...
           }

@@ -26,19 +26,22 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                             grid
-                    }
+                    }.frame(width: .infinity, height: .infinity, alignment: .center)
                 }
                 
                 Spacer()
             }.navigationBarTitle("")
                 .navigationBarHidden(true)
             .background(Color(.white))
+          
             .customDialog(isShowing: self.$viewModel.noContacts){
                 DialogNoContent.background(Color(.white))
                     .cornerRadius(30)
              }
-        }
-     
+            .frame(width: .infinity, height: .infinity, alignment: .center)
+            
+        } .frame(width: .infinity, height: .infinity, alignment: .center)
+        .navigationViewStyle(StackNavigationViewStyle())
         
     }
     
@@ -83,12 +86,13 @@ struct HomeView: View {
                             .background(Color.white)
                             
                     } .background(Color.white)
+                    .frame(width: .infinity, height: .infinity, alignment: .center)
                     
                     
                 }
              }.padding(.horizontal)
             Spacer()
-        }
+        }.frame(width: .infinity, height: .infinity, alignment: .center)
      
         
     }

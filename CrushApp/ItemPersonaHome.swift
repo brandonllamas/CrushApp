@@ -22,7 +22,12 @@ struct ItemPersonaHome: View {
     init(user:GeneralUsuario) {
         self.users = user;
         self.idss = String(self.users.id);
-        self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name)";
+     
+        if(self.users.image != nil){
+            self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name ?? "")";
+        }else{
+            self.urlImage = "\( Connections.url_photo)/\(idss)/\("")";
+        }
     }
     
     var body: some View {

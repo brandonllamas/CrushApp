@@ -27,7 +27,12 @@ struct CrushDetailView: View {
         self.viewModel = ViewModelCrushDetail(id:users.id,user:users)
         
         self.idss = String(self.users.id);
-        self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name)";
+        if(self.users.image != nil){
+            self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name )";
+        }else{
+            self.urlImage = "\( Connections.url_photo)/\(idss)/\("nopho")";
+        }
+        print(self.users.image)
     }
     
     var body: some View {
