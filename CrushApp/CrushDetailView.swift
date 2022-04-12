@@ -53,7 +53,7 @@ struct CrushDetailView: View {
                 }
                 .customDialog(isShowing: self.$alertRating){
                     DialogCalificate.background(Color(.white))
-                        .cornerRadius(30)
+                        .cornerRadius(40)
                  }
                 .CustomDialogNofondo(isShowing: self.$alertButtonCrush){
                     DialogAcction
@@ -128,7 +128,7 @@ struct CrushDetailView: View {
                     self.alertRating = false
                     self.viewModel.rating = self.viewModel.ratingOriginal
                 }) {
-                  Text("Close dialog")
+                  Text("Cerrar")
                     .autocapitalization(.allCharacters)
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .padding()
@@ -139,7 +139,7 @@ struct CrushDetailView: View {
                     self.viewModel.ratingOriginal = self.viewModel.rating
                     self.viewModel.setRating()
                 }) {
-                  Text("Acept")
+                  Text("Aceptar")
                     .foregroundColor(Color(.blue))
                     .autocapitalization(.allCharacters)
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -184,7 +184,7 @@ struct CrushDetailView: View {
     var imagenPeople:some View{
         HStack{
             ZStack{
-                ImageWeb(url: self.urlImage, placeHolder: "defaultBoy")
+                ImageWeb(url: self.urlImage, placeHolder: "Vectorplaceholder")
                     .scaleEffect()
                     .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .cornerRadius(16)
@@ -239,7 +239,7 @@ struct CrushDetailView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                      
                     ForEach(self.viewModel.images, id: \.self){ images in
-                            ImageWeb(url: "\( Connections.url_photo)/\(idss)/\(images.name)", placeHolder: "defaultBoy")
+                            ImageWeb(url: "\( Connections.url_photo)/\(idss)/\(images.name)", placeHolder: "Vectorplaceholder")
                                 .scaleEffect()
                                 .frame(width: 106, height: 121, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                       

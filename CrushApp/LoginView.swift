@@ -163,7 +163,7 @@ struct LoginView: View {
             //botonIndicativo
             HStack {
                 Image( "celular")
-                TextField("Numero de telefono", text:self.$viewModel.codeSending).foregroundColor(Color.black).font(Font.custom("", size: 16)).keyboardType(.numberPad)
+                TextField("Ingrese el codigo enviado", text:self.$viewModel.codeSending).foregroundColor(Color.black).font(Font.custom("", size: 16)).keyboardType(.numberPad)
             }
             
             .padding()

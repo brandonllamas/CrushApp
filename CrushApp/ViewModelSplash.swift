@@ -37,17 +37,17 @@ class ViewModelSplashScreen:ObservableObject{
             } onDefault: { response in
             
                 print(response)
-                nav.advance(AnyView(LoginView()), tag: .TerminosView)
+                nav.advance(AnyView(TerminosView()), tag: .TerminosView)
                 
             } onError: { error in
                  
                 print(error)
-                nav.advance(AnyView(LoginView()), tag: .TerminosView)
+                nav.advance(AnyView(TerminosView()), tag: .TerminosView)
                 
             }
         }else{
             print("Sin keys")
-            nav.advance(AnyView(LoginView()), tag: .TerminosView)
+            nav.advance(AnyView(TerminosView()), tag: .TerminosView)
         }
    
        

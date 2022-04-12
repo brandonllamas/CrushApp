@@ -43,20 +43,16 @@ struct TerminosView: View {
                 Image("line")
             }.padding(.top,10)
             HStack{
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec turpis erat, rhoncus consequat tellus nec, imperdiet elementum magna Mauris id lacus finibus, mattis justo sed, tempor magna. Aliquam varius tortor ac sagittis laoreet. Sed interdum nisi sed luctus cursus. Curabitur ac ipsum nec ex ultricies feugiat nec eu mi.Pellentesque ultricies eros vitae lacus egestas malesuada. Vivamus tempor ultricies consectetur. Cras bibendum nisl id tincidunt finibus. Sed gravida a urna vitae dignissim. Sed in purus sit amet leo gravida facilisis. Morbi a pharetra nisi. Sed velit arcu, iaculis ac enim suscipit, commodo congue velit. Duis ac orci lectus. Aliquam lobortis nulla elementum augue vestibulum, vel pharetra lacus ultrices. Mauris accumsan ultrices porttitor.").bold()
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    
+                Image("Group 35logowithe")
             }.padding(.horizontal,50)
             .padding(.top,20)
             
             HStack{
                 if(self.viewmodel.acept){
                     
-                    
                     Circle()
                         .strokeBorder(Color.white, lineWidth: 2)
-                        .background(Circle().fill(Color("Cian")))
+                        .background(Circle().fill( Color("Cian")) )
                         .onTapGesture {
                             self.viewmodel.acept = !self.viewmodel.acept;
                         }
@@ -65,7 +61,7 @@ struct TerminosView: View {
                     
                     Circle()
                         .strokeBorder(Color.white, lineWidth: 2)
-                        .background(Circle().fill(Color.white))
+                        .background(Circle().fill(Color.white)) 
                         .onTapGesture {
                             self.viewmodel.acept = !self.viewmodel.acept;
                         }
@@ -74,13 +70,35 @@ struct TerminosView: View {
             
                     
                 
-                Text("Acepto los Términos y Condiciones")
-                    .foregroundColor(.white)
-                    .bold()
+                VStack{
+                    Text("Acepto el tratamiento  de mis datos personales de a cuerdo a la")
+                        .foregroundColor(.white)
+                        .bold()
+                    Link( destination: URL(string: "https://crushbycrush.com/politica-de-tratamiento-de-datos-personales/")!){
+                        Text("Politica de privacidad y tratamiento de datos personales")
+                            .foregroundColor(.white)
+                            .bold()
+                            .underline()
+                }
+                    
+                    Text(" de crush App S.A.S aso como los")
+                        .foregroundColor(.white)
+                        .bold()
+                    
+                    Link( destination: URL(string: "https://crushbycrush.com/terminos-os-y-condiciones/")!){
+                        Text("Terminos y condiciones")
+                            .foregroundColor(.white)
+                            .bold()
+                            .underline()
+                            
+                }
+                   
+                }
             }.padding(.top,50)
             
             HStack{
                 Button(action: {
+                    if(!self.viewmodel.acept){return}
                     self.viewmodel.aceptarTerminos(nav: navigation)
                 }, label: {
                     Text("Continuar")

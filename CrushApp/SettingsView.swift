@@ -65,7 +65,7 @@ struct SettingsView: View {
                         .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding(.horizontal,4)
                     Text("Ayuda").foregroundColor(.gray)
                     Spacer()
-                    Image("closeSet").resizable().frame(width: 16, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }.padding(.horizontal,27)
                 Rectangle().frame(width: .infinity, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal")).padding(.horizontal,20)
             }

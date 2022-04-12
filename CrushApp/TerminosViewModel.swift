@@ -18,12 +18,10 @@ class ViewModelTerminos:ObservableObject{
     }
     
     func aceptarTerminos(nav:NavigationStack) {
-        if(!aceptado){
-            return
-        }
+       
         self.navigation = nav
       print("aqui toy")
-        nav.advance(AnyView(MainNavigationView()), tag: .MainNavigation)
+        nav.advance(AnyView(PresentationView()), tag: .PortadaView)
 
     }
 }

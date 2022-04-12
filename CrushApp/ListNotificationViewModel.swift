@@ -100,4 +100,18 @@ class ListNotificationViewModel : ObservableObject {
         }
     }
     
+    
+    func delete(ref:String) -> Void{
+        //self.refs.
+        print(ref)
+        var refs: DatabaseReference!;
+        refs = Database.database().reference()
+        refs.child(ref).removeValue(completionBlock: {_,_ in
+            print("error")
+        });
+        //self.verlo = false
+        getNotification()
+        getCrushes()
+    }
+    
 }

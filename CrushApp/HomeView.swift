@@ -53,8 +53,8 @@ struct HomeView: View {
              
             Divider()
             Text("Permisos de acceso a \n contactos denegados")
-                .font(.system(size: 20))
-              .minimumScaleFactor(0.01)
+                //.font(.system(size: 20))
+              //.minimumScaleFactor(0.01)
             
             Divider()
             HStack{

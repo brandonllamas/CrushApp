@@ -33,13 +33,13 @@ struct ListNotificationView: View {
                 VStack{
                     if(tabActive == 0){
                         ForEach(self.viewModel.notificationsCrush, id: \.self){ action in
-                            ItemViewNotification(title: "Tienes un match!", msg: action.value.message, date: action.value.date,ref: action.value.ref)
+                            ItemViewNotification(title: "Tienes un match!", msg: action.value.message, date: action.value.date,ref: action.value.ref, funcs: {self.viewModel.delete(ref: action.value.ref )})
                                 .padding(14)
                            }
                      
                     }else{
                         ForEach(self.viewModel.notifications, id: \.self){ action in
-                            ItemViewNotification(title: "Tienes un crush!", msg: action.value.message, date: action.value.date,ref: action.value.ref)
+                            ItemViewNotification(title: "Tienes un crush!", msg: action.value.message, date: action.value.date,ref: action.value.ref,funcs:{ self.viewModel.delete(ref: action.value.ref )})
                                 .padding(14)
                            }
                     }
@@ -73,7 +73,7 @@ struct ListNotificationView: View {
                 self.viewModel.getNotification()
             }, label: {
                 VStack{
-                    Text("Mis Matches").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    Text("Mis Notificaciones").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     if(self.tabActive == 1){
                         Rectangle().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     }

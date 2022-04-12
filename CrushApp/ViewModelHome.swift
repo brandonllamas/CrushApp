@@ -38,14 +38,16 @@ class ViewModelHome:ObservableObject{
         self.ListContactPost = self.ListContactPostCopia;
         if(text == ""){return}
        // self.contactsSend = self.ListContactPostCopia.filter {$0.name == text}
-        var cont = 0;
-        self.ListContactPost.forEach({contact in
-            var name =  contact.contact?.name ?? "";
-            if(  name != text  ){
-                self.ListContactPost.remove(at: cont == 0 ?cont: cont-1)
+        self.ListContactPost = [];
+        self.ListContactPostCopia.forEach({contact in
+            var name:String =  contact.contact?.name ?? "";
+  
+            if(  name.lowercased().range(of: text.lowercased()) != nil  ){
+                self.ListContactPost.append(contact)
             }
-            cont = cont+1;
+            
         })
+     
         
     }
     
@@ -80,6 +82,7 @@ class ViewModelHome:ObservableObject{
             HomeViewCase().ListApp(phones: self.contactsSend){ response in
                 self.ListContactPost = response.data.data;
                 self.ListContactPostCopia =  response.data.data;
+                self.noContacts =  false;
                print(response)
                 
             } onDefault: { response in

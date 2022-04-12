@@ -34,7 +34,7 @@ struct ItemPersonaHome: View {
         
         VStack{
             if(!block){
-                ImageWeb(url: self.urlImage, placeHolder: "defaultBoy")
+                ImageWeb(url: self.urlImage, placeHolder: "Vectorplaceholder")
                     .scaleEffect()
                     .cornerRadius(10)
                     .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

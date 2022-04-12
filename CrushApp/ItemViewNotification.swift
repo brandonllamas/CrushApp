@@ -18,18 +18,26 @@ struct ItemViewNotification: View {
     //var notifications:NotificationResponseGeneral;
     var title:String = "";
     var msg:String = "";
-    var date:String = "";
+    var date:String = ""  ;
     var ref:String = "";
     
     @ObservedObject var viewModel:ItemViewModelNotification;
     
-    init(title:String,msg:String,date:String,ref:String){
+    var function: () -> Void
+    
+    init(title:String,msg:String,date:String,ref:String,funcs: @escaping () -> Void){
        // self.notifications = not
         self.title =  title
         self.msg = msg
-        self.date = date
+        //self.date = date
         self.ref = ref
         self.viewModel = ItemViewModelNotification()
+        self.function = funcs
+      
+        
+        var datesplit = date.split(separator: "T")
+        var fech = datesplit[0].split(separator: "-")
+        self.date = "\(fech[0])/\(fech[1])/\(fech[2])"
     }
     var body: some View {
         VStack{
@@ -76,7 +84,8 @@ struct ItemViewNotification: View {
                                 .padding(.horizontal,9)
                                 .frame(width: 30, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                 .onTapGesture {
-                                    self.viewModel.delete(ref: self.ref)
+                                    //self.viewModel.delete(ref: self.ref)
+                                    self.function()
                                 }
                             Spacer()
                         }.padding(3)

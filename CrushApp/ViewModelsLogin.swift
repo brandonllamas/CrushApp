@@ -14,16 +14,16 @@ class ViewModelLogin:ObservableObject{
     @Published var indicativos:[Indicative]  = [];
     @Published var indicativoSel:Indicative? = nil;
     
-     var loading:Bool = false;
+    @Published var loading:Bool = false;
     @Published var codeSend:Bool = false;
     @Published var codeSending:String = "";
     @Published var cellphone:String = "";
     @Published var msgError:String = "";
     
     ///TODO: Datos para verificar
-    var tokenVerification:String = "";
-    var cellphonetoLogin:String = "";
-    var indicativetoLogin:String = "";
+    @Published var tokenVerification:String = "";
+    @Published var cellphonetoLogin:String = "";
+    @Published var indicativetoLogin:String = "";
     
     init() {
 
