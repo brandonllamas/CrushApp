@@ -17,9 +17,9 @@ struct ItemPersonaHome: View {
     @ObservedObject var viewModel = ItemPersonHomeViewModel();
     
     @EnvironmentObject var navigation:NavigationStack
+     var nume:Int;
     
-    
-    init(user:GeneralUsuario) {
+    init(user:GeneralUsuario ,num:Int) {
         self.users = user;
         self.idss = String(self.users.id);
      
@@ -28,6 +28,7 @@ struct ItemPersonaHome: View {
         }else{
             self.urlImage = "\( Connections.url_photo)/\(idss)/\("")";
         }
+        self.nume = num;
     }
     
     var body: some View {
@@ -41,6 +42,7 @@ struct ItemPersonaHome: View {
                     .padding(.top,8)
                  
                 HStack{
+                    //Text("\(self.nume)")
                     Text(self.users.contact?.name ?? "No name")
                         .bold()
                         .foregroundColor(.black)
@@ -56,11 +58,7 @@ struct ItemPersonaHome: View {
                 }
                 
             }
-            
-           
-           
-            
-        }
+        }.padding(.top,(self.nume % 2 != 0 ? 100 :0))
     }
     
 }

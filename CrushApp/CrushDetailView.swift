@@ -105,7 +105,7 @@ struct CrushDetailView: View {
                     Button(action: {
                         self.alertButtonCrush = false;
                     }, label: {
-                        Text("Cancelar")
+                        Text("Cerrar")
                     })
                     .buttonStyle(btnDialogDetail())
                 }

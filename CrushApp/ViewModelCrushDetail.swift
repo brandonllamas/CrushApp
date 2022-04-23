@@ -89,6 +89,8 @@ class ViewModelCrushDetail:ObservableObject{
     
     
     func detail() {
+        self.getActions()
+        self.getRating()
       print("aqui toy")
 //        nav.advance(AnyView(CrushDetailView()), tag: .CrushDetailView)
         UserCaseDetailCrush().GetDetailUser(ids: self.id){response in
@@ -101,8 +103,7 @@ class ViewModelCrushDetail:ObservableObject{
                 
             })
             //self.arrayActionActive.append(response.data.data.sended_match)
-            self.getActions()
-            self.getRating()
+         
             print(response)
         } onDefault: { response in
             print(response)

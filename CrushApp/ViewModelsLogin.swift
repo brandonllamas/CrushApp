@@ -25,6 +25,7 @@ class ViewModelLogin:ObservableObject{
     @Published var cellphonetoLogin:String = "";
     @Published var indicativetoLogin:String = "";
     
+    
     init() {
 
     }

@@ -19,7 +19,7 @@ struct ItemCrush: View {
     
     var body: some View {
         VStack(spacing:1){
-            ImageWeb(url: self.urlCrush, placeHolder: "defaultBoy")
+            ImageWeb(url: self.urlCrush, placeHolder: "Vectorplaceholder")
             .scaleEffect()
             .cornerRadius(20, corners: [.topRight,.topLeft])
             //.cornerRadius(0, corners: [.bottomLeft,.bottomLeft])
@@ -30,7 +30,7 @@ struct ItemCrush: View {
                 Spacer()
                 VStack{
                     Text(self.crushAction.user_receive.contact?.name ?? "No contact")
-                    Text(self.crushAction.action.name).foregroundColor(Color("SoftGradient1"))
+                    Text("Esperando \(self.crushAction.action.name)").foregroundColor(Color("SoftGradient1"))
                         .multilineTextAlignment(.center)
                 }
                 Spacer()

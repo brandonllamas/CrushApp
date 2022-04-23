@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct LoginView: View {
+    
     
     @ObservedObject var viewModel:ViewModelLogin = ViewModelLogin()
     @State private var indicativeSelected:Indicative   = Indicative(id: 1, name: "co", value: "+57");
@@ -119,12 +121,12 @@ struct LoginView: View {
         HStack{
             Button(action: {
                print("crush")
-               // self.viewModel.login(indicative: self.indicativeSelected.value, cellphone: self.cellphone,nav:self.navigation)
-                if(!self.viewModel.codeSend){
+                self.viewModel.login(indicative: self.indicativeSelected.value, cellphone: self.cellphone,nav:self.navigation)
+                 /*if(!self.viewModel.codeSend){
                     self.viewModel.sendCode(indicative: self.indicativeSelected.value, cellphone: self.cellphone)
                 }else{
                     self.viewModel.verificateCOde(code: self.viewModel.codeSending, nav: self.navigation)
-                }
+                }*/
              
             }, label: {
                 if(!self.viewModel.codeSend){
@@ -164,6 +166,9 @@ struct LoginView: View {
             HStack {
                 Image( "celular")
                 TextField("Ingrese el codigo enviado", text:self.$viewModel.codeSending).foregroundColor(Color.black).font(Font.custom("", size: 16)).keyboardType(.numberPad)
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
             }
             
             .padding()
@@ -190,6 +195,9 @@ struct LoginView: View {
             HStack {
                 Image( "celular")
                 TextField("Numero de telefono", text:self.$cellphone).foregroundColor(Color.black).font(Font.custom("", size: 16)).keyboardType(.numberPad)
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
             }
             
             .padding()
@@ -216,5 +224,12 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+    }
+}
+
+extension View {
+    func hideKeyboard() {
+        let resign = #selector(UIResponder.resignFirstResponder)
+        UIApplication.shared.sendAction(resign, to: nil, from: nil, for: nil)
     }
 }

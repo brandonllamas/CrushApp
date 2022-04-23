@@ -11,7 +11,7 @@ import UIKit
 struct MainNavigationView: View {
     @ObservedObject var viewmodel:ViewModelNavigation
     @EnvironmentObject var navigation:NavigationStack
-    
+
     init(){
         self.viewmodel = ViewModelNavigation()
     }
@@ -24,12 +24,16 @@ struct MainNavigationView: View {
             vistas
             Spacer()
             
+            
             bottomNavigation  .cornerRadius(50, corners: [.topLeft,.topRight])
          	
         }.frame(width: .infinity, height: .infinity)
         .background(Color(
                         .white))
     }
+    
+
+    
     var toolBar:some View{
         HStack{
             

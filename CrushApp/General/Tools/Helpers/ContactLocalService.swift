@@ -14,15 +14,19 @@ class FetchedContacts: ObservableObject, Identifiable {
 
     @Published var contacts = [Contact]()
 
-    func fetchContacts() {
+    func fetchContacts( ) {
         contacts.removeAll()
         let store = CNContactStore()
+        var bos:String = "1";
+        
         store.requestAccess(for: .contacts) { (granted, error) in
             if let error = error {
                 print("failed to request access", error)
+                bos = "2";
                 return
             }
             if granted {
+                print("si acepto")
                 let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
                 let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
                 do {
@@ -33,16 +37,20 @@ class FetchedContacts: ObservableObject, Identifiable {
                             ))
 
                             self.contacts.sort(by: { $0.firstName < $1.firstName })
+                       
                    //     }
                     })
 
                 } catch let error {
                     print("Failed to enumerate contact", error)
+                    bos = "3"
                 }
-
+                
             } else {
                 print("access denied")
+              bos = "4"
             }
         }
+        
     }
 }

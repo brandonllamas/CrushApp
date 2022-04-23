@@ -15,6 +15,9 @@ class ListNotificationViewModel : ObservableObject {
     @Published var notifications:[NotificationResponseGeneral] = [];
     @Published var notificationsCrush:[CrushesNotResponseGeneral] = [];
     
+    @Published var loading:Bool = false;
+    
+    
     init(){
         self.ref = Database.database().reference()
         getNotification()
@@ -27,6 +30,7 @@ class ListNotificationViewModel : ObservableObject {
     func getNotification(){
         //var refe =
         //self.ref.child("USERS/\(DataApp.user!.phone)/NOTIFICATIONS").removeValue();
+        self.loading = true;
         self.notifications = []
         self.ref.child("USERS/\(DataApp.user!.phone)/NOTIFICATIONS").observeSingleEvent(of: .value, with: { response in
             print(response)
@@ -53,19 +57,21 @@ class ListNotificationViewModel : ObservableObject {
                 })
             }
             
-          
+            self.loading = false;
            // print(noti.allKeys)
             print(self.notifications)
             
         }){ error in
             print("Error en firebase ")
             print(error)
+            self.loading = false;
         }
     }
     
     
     func getCrushes(){
         //var refe =
+        self.loading = true;
         self.notificationsCrush = [];
         self.ref.child("USERS/\(DataApp.user!.phone)/CRUSHES").observeSingleEvent(of: .value, with: { response in
             
@@ -93,10 +99,11 @@ class ListNotificationViewModel : ObservableObject {
            
            // print(noti.allKeys)
             print(self.notifications)
-            
+            self.loading = false;
         }){ error in
             print("Error en firebase ")
             print(error)
+            self.loading = false;
         }
     }
     

@@ -7,20 +7,27 @@
 
 import Foundation
 import SwiftUI
+import Contacts
+
 
 class ViewModelHome:ObservableObject{
     @Published var list:[UserHome];
     @Published var index = 0;
     @Published var Contactos:FetchedContacts = FetchedContacts();
     @Published var ListContactPost:[GeneralUsuario] = []
+    @Published var ListContactPostZ:[SendGeneralGrud] = []
+    @Published var ListContactPostZCopia:[SendGeneralGrud] = []
     @Published var ListContactPostCopia:[GeneralUsuario] = []
     @Published var contactsSend:[PhoneItemRequest] = [];
      
     
     @Published var noContacts:Bool = false;
     @Published var textFiltrer:String = "";
-   
     
+    @Published var loading:Bool = false;
+    @Published var denegado = 0;
+    
+    @Published var contacts = [Contact]()
     
     init() {
         self.list = [
@@ -31,19 +38,23 @@ class ViewModelHome:ObservableObject{
             UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultGirl", index: 3, id: 5),
             UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultBoy", index: 1, id: 6),
         ]
-        self.getAllContactLocal()
+        self.getAllContactLocalv2()
     }
     
     func filter(text:String){
-        self.ListContactPost = self.ListContactPostCopia;
+        //ListContactPostZ
+        self.ListContactPostZ = self.ListContactPostZCopia;
         if(text == ""){return}
        // self.contactsSend = self.ListContactPostCopia.filter {$0.name == text}
-        self.ListContactPost = [];
-        self.ListContactPostCopia.forEach({contact in
-            var name:String =  contact.contact?.name ?? "";
+        self.ListContactPostZ = [];
+        var cont = 0;
+        self.ListContactPostZCopia.forEach({contact in
+            var name:String =  contact.usua.contact?.name ?? "";
   
             if(  name.lowercased().range(of: text.lowercased()) != nil  ){
-                self.ListContactPost.append(contact)
+                var f : SendGeneralGrud = SendGeneralGrud(num: cont, usua: contact.usua)
+                self.ListContactPostZ.append(f)
+                cont = cont + 1;
             }
             
         })
@@ -51,26 +62,87 @@ class ViewModelHome:ObservableObject{
         
     }
     
-    func getAllContactLocal()  {
-      
+    
+    func fetchContacts( ) {
+        contacts.removeAll()
+        let store = CNContactStore()
+        
+        
+        store.requestAccess(for: .contacts) { (granted, error) in
+            if let error = error {
+                print("failed to request access", error)
+                self.noContacts =  true;
+                return
+            }
+            if granted {
+                print("si acepto")
+                self.noContacts =  false;
+                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
+                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                do {
+                    try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
+
+                 //       DispatchQueue.main.async {
+                            self.contacts.append(Contact(firstName: contact.givenName, lastName: contact.familyName, phoneNumbers: contact.phoneNumbers.map { $0.value.stringValue }, emailAddresses: contact.emailAddresses.map { $0.value as String }
+                            ))
+
+                            self.contacts.sort(by: { $0.firstName < $1.firstName })
+                       
+                   //     }
+                    })
+                    self.getAllContactLocal();
+                } catch let error {
+                    print("Failed to enumerate contact", error)
+                    self.noContacts =  true;
+                }
+                
+            } else {
+                print("access denied")
+                self.noContacts =  true;
+            }
+        }
+        
+    }
+    
+    func getAllContactLocalv2() {
         DispatchQueue.main.async {
-            self.Contactos.fetchContacts();
             
+            self.fetchContacts()
+        }
+    }
+    
+    func formatContact(number:String) -> String{
+        var num:String = number;
+        //num = num.replacingCharacters(in: " ", with: "")
+        if(!num.contains("+")){
+            num = "+\(num)";
+        }
+        return num;
+        
+    }
+    
+    func getAllContactLocal()  {
+        self.loading = true;
+        DispatchQueue.main.async {
+          
             print("Hola llego aca")
             print(self.Contactos.contacts);
-            if(self.Contactos.contacts.isEmpty){
+            if(self.contacts.isEmpty){
                 self.noContacts =  true;
                 return ;
             }
-            self.Contactos.contacts.forEach({contact in
+            self.contacts.forEach({contact in
                 //let cont = nil
                 if(contact.phoneNumbers.count != 0 && !contact.firstName.isEmpty){
-                    let number = contact.phoneNumbers[0];
-                    let name = contact.firstName;
-                    
-                    
-                    let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: number) , name: name);
-                    self.contactsSend.append(contacto);
+                    contact.phoneNumbers.forEach({con in
+                        let number = self.formatContact(number:con) ;
+                        let name = contact.firstName;
+                        
+                        
+                        let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: number) , name: name);
+                        self.contactsSend.append(contacto);
+                    })
+                  
                    
                 }
                 
@@ -83,8 +155,18 @@ class ViewModelHome:ObservableObject{
                 self.ListContactPost = response.data.data;
                 self.ListContactPostCopia =  response.data.data;
                 self.noContacts =  false;
-               print(response)
                 
+                var count = 0;
+                self.ListContactPostCopia.forEach({lits in
+                    var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
+                    self.ListContactPostZ.append(f);
+                    count = count+1;
+                })
+                
+                
+                self.ListContactPostZCopia = self.ListContactPostZ;
+               print(response)
+                self.loading = false;
             } onDefault: { response in
                
                 print(response)

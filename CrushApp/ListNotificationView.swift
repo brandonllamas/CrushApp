@@ -32,16 +32,39 @@ struct ListNotificationView: View {
             ScrollView{
                 VStack{
                     if(tabActive == 0){
-                        ForEach(self.viewModel.notificationsCrush, id: \.self){ action in
-                            ItemViewNotification(title: "Tienes un match!", msg: action.value.message, date: action.value.date,ref: action.value.ref, funcs: {self.viewModel.delete(ref: action.value.ref )})
-                                .padding(14)
-                           }
+                        if(self.viewModel.notificationsCrush.count == 0 && !self.viewModel.loading ){
+                            HStack{
+                                Spacer()
+                                Text("Aún no tienes ningún match. Puede ser que tus contactos no hayan descargado la app.¡Invítalos a descargar Crush!")
+                                    .foregroundColor(.black)
+                                    .multilineTextAlignment(.center)
+                                
+                                Spacer()
+                            }
+                        }else{
+                            ForEach(self.viewModel.notificationsCrush, id: \.self){ action in
+                                ItemViewNotification(title: "Tienes un match!", msg: action.value.message, date: action.value.date,ref: action.value.ref, funcs: {self.viewModel.delete(ref: action.value.ref )})
+                                    .padding(14)
+                               }
+                        }
+                       
                      
                     }else{
+                        
+                        if(self.viewModel.notifications.count == 0 && !self.viewModel.loading){
+                            HStack{
+                                Spacer()
+                                Text("Aún no tienes ninguna notificación. Puede ser que tus contactos no hayan descargado la app. ¡Invítalos a descargar Crush!")
+                                    .foregroundColor(.black)
+                                    .multilineTextAlignment(.center)
+                                Spacer()
+                            }
+                        }else{
                         ForEach(self.viewModel.notifications, id: \.self){ action in
                             ItemViewNotification(title: "Tienes un crush!", msg: action.value.message, date: action.value.date,ref: action.value.ref,funcs:{ self.viewModel.delete(ref: action.value.ref )})
                                 .padding(14)
                            }
+                        }
                     }
                 }.frame(height:.infinity)
             }

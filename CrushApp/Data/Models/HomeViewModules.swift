@@ -110,6 +110,15 @@ struct GeneralUsuario:Codable, Hashable {
     }
 }
 
+struct SendGeneralGrud:Codable, Hashable {
+    var num:Int;
+    var usua:GeneralUsuario
+    enum CodingKeys: String, CodingKey {
+        case num
+        case usua
+    }
+}
+
 
 struct MachSended:Codable, Hashable {
     var id,id_user_send,id_user_recibe,id_action:Int;

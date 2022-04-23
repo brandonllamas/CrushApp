@@ -85,7 +85,7 @@ struct SettingsView: View {
                     .foregroundColor(self.viewmodel.politicst ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.politicst){
-                    Image("openSet").resizable().frame(width: 16, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
                     Image("closeSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
@@ -143,7 +143,7 @@ struct SettingsView: View {
                     .foregroundColor(self.viewmodel.InvitarAmigos ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.InvitarAmigos){
-                    Image("openSet").resizable().frame(width: 16, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
                     Image("closeSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
@@ -171,7 +171,7 @@ struct SettingsView: View {
                            
                         }
                     }).buttonStyle(btnSmsConf())
-                    .padding(.horizontal,37)
+                    //.padding(.horizontal,37)
                     Spacer()
                 }
                  
@@ -215,7 +215,7 @@ struct SettingsView: View {
                     ForEach(self.viewmodel.userBlock, id: \.self) { homePeople in
                      
                         
-                        ItemPersonaHome(user: homePeople.user_blocked)
+                        ItemPersonaHome(user: homePeople.user_blocked, num: 0)
                     }
                 }
             }

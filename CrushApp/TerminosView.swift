@@ -74,22 +74,30 @@ struct TerminosView: View {
                     Text("Acepto el tratamiento  de mis datos personales de a cuerdo a la")
                         .foregroundColor(.white)
                         .bold()
+                        .frame(width: .infinity, height: .infinity, alignment: .center)
+                        .multilineTextAlignment(.center)
                     Link( destination: URL(string: "https://crushbycrush.com/politica-de-tratamiento-de-datos-personales/")!){
                         Text("Politica de privacidad y tratamiento de datos personales")
                             .foregroundColor(.white)
                             .bold()
                             .underline()
+                            .frame(width: .infinity, height: .infinity, alignment: .center)
+                            .multilineTextAlignment(.center)
                 }
                     
                     Text(" de crush App S.A.S aso como los")
                         .foregroundColor(.white)
                         .bold()
+                        .frame(width: .infinity, height: .infinity, alignment: .center)
+                        .multilineTextAlignment(.center)
                     
                     Link( destination: URL(string: "https://crushbycrush.com/terminos-os-y-condiciones/")!){
                         Text("Terminos y condiciones")
                             .foregroundColor(.white)
                             .bold()
                             .underline()
+                            .frame(width: .infinity, height: .infinity, alignment: .center)
+                            .multilineTextAlignment(.center)
                             
                 }
                    

@@ -12,8 +12,11 @@ struct HomeView: View {
     @ObservedObject var viewModel:ViewModelHome
         = ViewModelHome();
     
+    @State var dialogs:Bool = true;
+    
+    
     let columns = [
-        
+       
         GridItem(.flexible(),spacing: 5),
         GridItem(.flexible() ,spacing: 10),
     ]
@@ -25,11 +28,18 @@ struct HomeView: View {
                 
                 ScrollView {
                     VStack(spacing: 20) {
+                        if(self.viewModel.loading){
+                            loading
+                        }else{
                             grid
+                        }
                     }.frame(width: .infinity, height: .infinity, alignment: .center)
                 }
                 
                 Spacer()
+                if(self.dialogs){
+                    dialog
+                }
             }.navigationBarTitle("")
                 .navigationBarHidden(true)
             .background(Color(.white))
@@ -43,6 +53,41 @@ struct HomeView: View {
         } .frame(width: .infinity, height: .infinity, alignment: .center)
         .navigationViewStyle(StackNavigationViewStyle())
         
+    }
+    
+    var dialog:some View{
+        VStack{
+            HStack{
+             Spacer()
+                Text("X").onTapGesture {
+                    self.dialogs = false
+                }
+            }.padding(.horizontal,10)
+            .padding(.bottom,10)
+            HStack{
+                HStack{
+                    Text("Parece que varios de tus contactos aún no han descargando Crush. Prueba a hacer Match con ellos ( será nuestro secreto por supuesto ) y nosotros les invitaremos a descargar la app. También puedes invitarles desde el menú configuración -> invitar a amigos").foregroundColor(.white)
+                        .font(.custom("", fixedSize: 15))
+                        .multilineTextAlignment(.center)
+                }.padding(.horizontal,10)
+            }
+        }
+        
+       
+        .frame(width: .infinity, height: 170, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .background(Color("ColorConfAzul"))
+        .cornerRadius(20, corners: [.topLeft,.topRight])
+       
+    }
+    
+    var loading:some View{
+        VStack{
+            HStack{
+                DotView() // 1.
+                DotView(delay: 0.2) // 2.
+                DotView(delay: 0.4) // 3.
+            }
+        }
     }
     
     
@@ -77,17 +122,20 @@ struct HomeView: View {
             Spacer()
             
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(self.viewModel.ListContactPost, id: \.self) { homePeople in
+                //var num = 0;
+                ForEach(self.viewModel.ListContactPostZ, id: \.self) { homePeople in
                  
                     NavigationLink(destination:
-                    CrushDetailView(user: homePeople)
+                                    CrushDetailView(user: homePeople.usua)
                                     ){
-                        ItemPersonaHome(user: homePeople)
+                        
+                        ItemPersonaHome(user: homePeople.usua,num: homePeople.num)
+                           
                             .background(Color.white)
-                            
+                       
                     } .background(Color.white)
                     .frame(width: .infinity, height: .infinity, alignment: .center)
-                    
+                     
                     
                 }
              }.padding(.horizontal)
