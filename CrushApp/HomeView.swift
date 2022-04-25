@@ -50,7 +50,9 @@ struct HomeView: View {
              }
             .frame(width: .infinity, height: .infinity, alignment: .center)
             
-        } .frame(width: .infinity, height: .infinity, alignment: .center)
+        }.onAppear{
+            self.viewModel.getAllContactLocalv2()
+        }.frame(width: .infinity, height: .infinity, alignment: .center)
         .navigationViewStyle(StackNavigationViewStyle())
         
     }

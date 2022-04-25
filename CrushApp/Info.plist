@@ -27,18 +27,18 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseAppDelegateProxvEnabled</key>
 	<false/>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>NO</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSCameraUsageDescription</key>
-	<string>take photo for crush</string>
+	<string>Hello !! We need permissions from your camera so you can take photos and upload them to our app, and show them to your crushes</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Usage because find your friends</string>
+	<string>Hello!! we need to use your contacts to find the users who use our app so we can connect with them</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

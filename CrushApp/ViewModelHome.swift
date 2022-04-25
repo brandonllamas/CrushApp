@@ -11,7 +11,7 @@ import Contacts
 
 
 class ViewModelHome:ObservableObject{
-    @Published var list:[UserHome];
+   // @Published var list:[UserHome];
     @Published var index = 0;
     @Published var Contactos:FetchedContacts = FetchedContacts();
     @Published var ListContactPost:[GeneralUsuario] = []
@@ -30,15 +30,8 @@ class ViewModelHome:ObservableObject{
     @Published var contacts = [Contact]()
     
     init() {
-        self.list = [
-            UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultBoy", index: 3, id: 1),
-            UserHome(name: "Evaristo ", iconImagenActivate: "defaultGirl", index: 1, id: 2),
-            UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultGirl", index: 3, id: 3),
-            UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultBoy", index: 1, id: 4),
-            UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultGirl", index: 3, id: 5),
-            UserHome(name: "Camila Gonzáles", iconImagenActivate: "defaultBoy", index: 1, id: 6),
-        ]
-        self.getAllContactLocalv2()
+    
+        //self.getAllContactLocalv2()
     }
     
     func filter(text:String){
@@ -134,22 +127,16 @@ class ViewModelHome:ObservableObject{
             self.contacts.forEach({contact in
                 //let cont = nil
                 if(contact.phoneNumbers.count != 0 && !contact.firstName.isEmpty){
-                    contact.phoneNumbers.forEach({con in
-                        let number = self.formatContact(number:con) ;
-                        let name = contact.firstName;
-                        
-                        
-                        let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: number) , name: name);
-                        self.contactsSend.append(contacto);
-                    })
-                  
-                   
+                    let number = self.formatContact(number:contact.phoneNumbers[0]) ;
+                    let name = contact.firstName;
+                    
+                    
+                    let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: number) , name: name);
+                    self.contactsSend.append(contacto);
                 }
-                
-                
-                
+          
             })
-            print(self.contactsSend)
+           // print(self.contactsSend)
             
             HomeViewCase().ListApp(phones: self.contactsSend){ response in
                 self.ListContactPost = response.data.data;

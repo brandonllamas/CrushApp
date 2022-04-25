@@ -9,8 +9,9 @@ import SwiftUI
 
 struct CrushDetailView: View {
     var users:GeneralUsuario;
-    var urlImage:String = "";
-    var idss:String = "";
+   @State var urlImage:String = "";
+   @State var idss:String = "";
+    
    @ObservedObject var viewModel:ViewModelCrushDetail;
     
    @State var alertRating:Bool = false;
@@ -26,14 +27,8 @@ struct CrushDetailView: View {
         self.users = user;
         self.viewModel = ViewModelCrushDetail(id:users.id,user:users)
         
-        self.idss = String(self.users.id);
-        if(self.users.image != nil){
-            self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name )";
-        }else{
-            self.urlImage = "\( Connections.url_photo)/\(idss)/\("nopho")";
-        }
-        print(self.users.name)
-        print(self.users.image)
+      
+       
     }
     
     var body: some View {
@@ -49,20 +44,43 @@ struct CrushDetailView: View {
                         Spacer()
                     }.onAppear(){
                         self.viewModel.detail()
+                        self.viewModel.getActions()
+                        self.viewModel.getRating()
+                        self.idss = String(self.users.id)
+                        if(self.users.image != nil){
+                            self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name )";
+                        }else{
+                            self.urlImage = "\( Connections.url_photo)/\(idss)/\("nopho")";
+                        }
+                       
+                       
                     }
                 }
-                .customDialog(isShowing: self.$alertRating){
-                    DialogCalificate.background(Color(.white))
-                        .cornerRadius(40)
-                 }
-                .CustomDialogNofondo(isShowing: self.$alertButtonCrush){
-                    DialogAcction
-                }
+                
           )
             .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
- 
+            .customDialog(isShowing: self.$alertRating){
+                DialogCalificate.background(Color(.white))
+                    .cornerRadius(40)
+             }
+            .CustomDialogNofondo(isShowing: self.$alertButtonCrush){
+                DialogAcction
+            }
+            .CustomDialogFondoWite(isShowing: self.$viewModel.load){
+                loading
+            }
         
+    }
+    
+    var loading:some View{
+        VStack{
+            HStack{
+                DotView() // 1.
+                DotView(delay: 0.2) // 2.
+                DotView(delay: 0.4) // 3.
+            }
+        }
     }
     
     
@@ -78,7 +96,7 @@ struct CrushDetailView: View {
             HStack{
                 Spacer()
                 VStack{
-                    
+                  
                     ForEach(self.viewModel.AccionesCrush, id: \.self){ action in
                         if(self.viewModel.existAction(idAction: action.id)){
                             Button(action: {
@@ -232,7 +250,7 @@ struct CrushDetailView: View {
             HStack{
                 Text("Galeria")
                 Spacer()
-            }.padding()
+            }.padding(.horizontal,40)
            
                
             HStack{
@@ -247,7 +265,7 @@ struct CrushDetailView: View {
                     
                     
                    
-                 }.padding(.horizontal)
+                 }.padding(.horizontal,40)
             }
         }
     }

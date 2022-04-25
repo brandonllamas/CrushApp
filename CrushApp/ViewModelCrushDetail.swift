@@ -12,8 +12,8 @@ class ViewModelCrushDetail:ObservableObject{
     
     var id:Int = 0;
     @Published var images:[ImageUserListApp] = [] ;
-    @Published var AccionesCrush:[GeneralResponseActionsRes] = []
-    @State var load:Bool = false;
+     var AccionesCrush:[GeneralResponseActionsRes] = []
+    @Published var load:Bool = false;
     @Published var arrayActionActive:[Int] = []
     @Published var rating:Int = 7;
     @Published var ratingOriginal:Int = 7;
@@ -89,13 +89,13 @@ class ViewModelCrushDetail:ObservableObject{
     
     
     func detail() {
-        self.getActions()
-        self.getRating()
+     
       print("aqui toy")
+        self.load.toggle();
 //        nav.advance(AnyView(CrushDetailView()), tag: .CrushDetailView)
         UserCaseDetailCrush().GetDetailUser(ids: self.id){response in
             self.images = response.data.data.gallery ?? []
-            self.load.toggle();
+            
             var arrayActionActivelocal = response.data.data.sended_match ?? []
             
             arrayActionActivelocal.forEach({response in
@@ -105,6 +105,7 @@ class ViewModelCrushDetail:ObservableObject{
             //self.arrayActionActive.append(response.data.data.sended_match)
          
             print(response)
+            self.load = false;
         } onDefault: { response in
             print(response)
         } onError: { error in
@@ -114,12 +115,14 @@ class ViewModelCrushDetail:ObservableObject{
     
     
     func getActions(){
+        self.load.toggle();
         //self.AccionesCrush = []
   //        nav.advance(AnyView(CrushDetailView()), tag: .CrushDetailView)
           UserCaseDetailCrush().GetActionsList(){response in
             self.AccionesCrush = response.data.data
              // self.load.toggle();
               print(response)
+            self.load = false;
           } onDefault: { response in
              
               print(response)
@@ -133,9 +136,12 @@ class ViewModelCrushDetail:ObservableObject{
     
     
     func addActionM(action:Int) {
+        self.load.toggle();
         UserCaseDetailCrush().addAction(id_user:self.id,id_action: action){response in
             self.arrayActionActive.append(action)
+            self.load = false;
             self.getActions()
+            
             
           } onDefault: { response in
              
@@ -151,6 +157,7 @@ class ViewModelCrushDetail:ObservableObject{
     
     
     func RemoveActionM(action:Int) {
+        self.load.toggle();
         UserCaseDetailCrush().removeUnmacht(id_user:self.id,id_action: action){response in
             self.removeItem(idaction: action)
            // self.arrayActionActive.remove(at: <#T##Int#>)
