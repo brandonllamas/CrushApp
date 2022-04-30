@@ -120,13 +120,12 @@ struct LoginView: View {
     var buttonSendCode: some View{
         HStack{
             Button(action: {
-               print("crush")
-                self.viewModel.login(indicative: self.indicativeSelected.value, cellphone: self.cellphone,nav:self.navigation)
-                 /*if(!self.viewModel.codeSend){
+              
+                 if(!self.viewModel.codeSend){
                     self.viewModel.sendCode(indicative: self.indicativeSelected.value, cellphone: self.cellphone)
                 }else{
                     self.viewModel.verificateCOde(code: self.viewModel.codeSending, nav: self.navigation)
-                }*/
+                }
              
             }, label: {
                 if(!self.viewModel.codeSend){
