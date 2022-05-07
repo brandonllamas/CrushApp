@@ -45,7 +45,7 @@ struct TerminosView: View {
             HStack{
                 Image("Group 35logowithe")
             }.padding(.horizontal,50)
-            .padding(.top,20)
+            .padding(.top,90)
             
             HStack{
                 if(self.viewmodel.acept){
@@ -71,7 +71,7 @@ struct TerminosView: View {
                     
                 
                 VStack{
-                    Text("Acepto el tratamiento  de mis datos personales de a cuerdo a la")
+                    Text("Acepto el tratamiento  de mis datos personales de acuerdo a la")
                         .foregroundColor(.white)
                         .bold()
                         .frame(width: .infinity, height: .infinity, alignment: .center)
@@ -102,7 +102,8 @@ struct TerminosView: View {
                 }
                    
                 }
-            }.padding(.top,50)
+            }.padding(.top,80)
+                .padding(.horizontal, 20)
             
             HStack{
                 Button(action: {
@@ -114,9 +115,9 @@ struct TerminosView: View {
                 
                 .buttonStyle(greenButtonDefault())
               
-            }.padding(.top,20)
+            }.padding(.top,30)
                 Spacer()
-        }
+        }.padding(.top,50)
     }
     
     

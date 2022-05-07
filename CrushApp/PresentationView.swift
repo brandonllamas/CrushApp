@@ -43,17 +43,17 @@ struct PresentationView: View {
                 Text("Haz match con tu CRUSH")
                     .bold().foregroundColor(.white)
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-            }.padding(.top,50)
+            }.padding(.top,60)
             HStack(spacing:80){
                 Image("line")
-            }.padding(.top,10)
+            }.padding(.top,5)
             HStack{
                 Text("Descubre a cuál de tus contactos le gustas, y quien quisiera salir contigo. Invita a tu crush, o dile que le gustas.No seas tímido, él o ella no lo sabrán, a menos que sientan lo mismo por tí.").bold()
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     
-            }.padding(.horizontal,50)
-            .padding(.top,20)
+            }.padding(.horizontal,40)
+            .padding(.top,60)
             
            
             HStack{
@@ -66,9 +66,9 @@ struct PresentationView: View {
                 
                 .buttonStyle(greenButtonDefault())
               
-            }.padding(.top,20)
+            }.padding(.top,45)
                 Spacer()
-        }
+        }.padding(.top, 140)
     }
 
 }

@@ -58,25 +58,25 @@ struct HomeView: View {
     }
     
     var dialog:some View{
-        VStack{
-            HStack{
-             Spacer()
-                Text("X").onTapGesture {
-                    self.dialogs = false
-                }
-            }.padding(.horizontal,10)
-            .padding(.bottom,10)
+        HStack{
             HStack{
                 HStack{
                     Text("Parece que varios de tus contactos aún no han descargando Crush. Prueba a hacer Match con ellos ( será nuestro secreto por supuesto ) y nosotros les invitaremos a descargar la app. También puedes invitarles desde el menú configuración -> invitar a amigos").foregroundColor(.white)
                         .font(.custom("", fixedSize: 15))
                         .multilineTextAlignment(.center)
-                }.padding(.horizontal,10)
+                }.padding(.leading,10)
             }
+            VStack{
+                Text("X").onTapGesture {
+                    self.dialogs = false
+                }
+                Spacer()
+            }.padding(.trailing,10)
+            .padding(.top, 10)
         }
         
        
-        .frame(width: .infinity, height: 170, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .frame(width: .infinity, height: 130, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .background(Color("ColorConfAzul"))
         .cornerRadius(20, corners: [.topLeft,.topRight])
        

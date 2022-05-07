@@ -24,7 +24,7 @@ struct redRoundedButton: ButtonStyle {
 struct greenButtonDefault: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View{
         configuration.label
-            .frame(width: 300, height: 0)
+            .frame(width: 300, height: 15)
             .foregroundColor(.black)
             .padding()
             .background(Color("Cian"))
