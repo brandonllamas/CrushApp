@@ -21,6 +21,9 @@ class ViewModelHome:ObservableObject{
     @Published var contactsSend:[PhoneItemRequest] = [];
      
     
+    var loadingInser:Bool = false;
+    
+    
     @Published var noContacts:Bool = false;
     @Published var textFiltrer:String = "";
     
@@ -53,6 +56,42 @@ class ViewModelHome:ObservableObject{
         })
      
         
+    }
+    
+    func getUser() {
+        //Cargar contactos
+        self.loading = true;
+        HomeViewCase().ListApp(phones: self.contactsSend){ response in
+            self.ListContactPost = response.data.data;
+            self.ListContactPostCopia =  response.data.data;
+            self.noContacts =  false;
+            
+            var count = 0;
+            self.ListContactPostCopia.forEach({lits in
+                var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
+                self.ListContactPostZ.append(f);
+                count = count+1;
+            })
+            
+            if(count == 0 && self.ListContactPostCopia.count == 0){
+                // Delay of 7.5 seconds
+                 DispatchQueue.main.asyncAfter(deadline: .now() + 30.5) {
+                    self.getUser()
+                   }
+            }
+            
+            self.ListContactPostZCopia = self.ListContactPostZ;
+           print(response)
+            self.loading = false;
+        } onDefault: { response in
+           
+            print(response)
+            
+        } onError: { error in
+     
+            print(error)
+            
+        }
     }
     
     
@@ -137,23 +176,12 @@ class ViewModelHome:ObservableObject{
           
             })
            // print(self.contactsSend)
-            
-            HomeViewCase().ListApp(phones: self.contactsSend){ response in
-                self.ListContactPost = response.data.data;
-                self.ListContactPostCopia =  response.data.data;
-                self.noContacts =  false;
+            //INSERT CONTACOTS
+            self.loadingInser = true;
+            HomeViewCase().InsertListApp(phones: self.contactsSend){ response in
                 
-                var count = 0;
-                self.ListContactPostCopia.forEach({lits in
-                    var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
-                    self.ListContactPostZ.append(f);
-                    count = count+1;
-                })
-                
-                
-                self.ListContactPostZCopia = self.ListContactPostZ;
-               print(response)
-                self.loading = false;
+              
+                self.loadingInser = false;
             } onDefault: { response in
                
                 print(response)
@@ -163,6 +191,8 @@ class ViewModelHome:ObservableObject{
                 print(error)
                 
             }
+            
+            self.getUser()
         }
     }
 

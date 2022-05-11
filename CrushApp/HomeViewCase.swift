@@ -36,6 +36,16 @@ class HomeViewCase : ObservableObject {
     }
     
     
+    func InsertListApp(phones:[PhoneItemRequest] ,
+               onSuccess200: @escaping(_ resData:GeneralResponseUserList)->Void,
+               onDefault: @escaping(_ resData:GeneralResponseUserList)->Void,
+               onError: @escaping(_ error:String)->Void)  {
+        
+        ServiceHomeView().InsertUserListApp(phones: phones, onSuccess200: onSuccess200, onSuccessDefault: onDefault, onError: onError)
+ 
+    }
+    
+    
     func saveCellphone(cellphone:String , indicative:String){
         KeyChain.saveCredentials(cellphone: cellphone, indicative: indicative)
     }
