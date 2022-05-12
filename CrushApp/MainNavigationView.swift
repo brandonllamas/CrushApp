@@ -17,19 +17,17 @@ struct MainNavigationView: View {
     }
    
     var body: some View {
-        VStack{
+        VStack(spacing:0){
             toolBar
             Divider()
             Spacer()
             vistas
-            Spacer()
             
             
-            bottomNavigation  .cornerRadius(50, corners: [.topLeft,.topRight])
+            bottomNavigation  .cornerRadius(35, corners: [.topLeft,.topRight])
          	
         }.frame(width: .infinity, height: .infinity)
-        .background(Color(
-                        .white))
+        .background(Color("BackGroundVistas"))
     }
     
 
@@ -92,7 +90,7 @@ struct MainNavigationView: View {
                 
             }
         }.background(Color(.white))
-        .cornerRadius(50, corners: [.topLeft,.topRight])
+        .cornerRadius(35, corners: [.topLeft,.topRight])
         
     }
     

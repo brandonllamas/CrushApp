@@ -56,7 +56,7 @@ struct FotosView: View {
                     })
                 }
       
-            }
+            }.background(Color("BackGroundVistas"))
     }
     
     var listImages: some View{

@@ -32,7 +32,7 @@ struct SettingsView: View {
                 optionCerrarSeccion.padding()
                 Spacer()
             }
-        }
+        }.background(Color("BackGroundVistas"))
     }
     
     
@@ -44,7 +44,7 @@ struct SettingsView: View {
                     .renderingMode(.template)
                     .foregroundColor(.gray)
                     .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .padding(.horizontal,4)
+                    .padding(.leading, 6)
                 Text("Cerrar Sesion").foregroundColor(.gray)
             }
             .padding(.horizontal,27)
@@ -62,7 +62,7 @@ struct SettingsView: View {
                     Image("Helphelp").resizable()
                         .renderingMode(.template)
                         .foregroundColor(.gray)
-                        .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding(.horizontal,4)
+                        .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding(.horizontal,1)
                     Text("Ayuda").foregroundColor(.gray)
                     Spacer()
                     Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -80,14 +80,14 @@ struct SettingsView: View {
                 Image("politic").resizable()
                     .renderingMode(.template)
                     .foregroundColor(self.viewmodel.politicst ? Color("SoftGradient1") : .gray)
-                    .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding(.leading, 4)
                 Text("Politica de privacidad y tratamiento de datos personales")
                     .foregroundColor(self.viewmodel.politicst ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.politicst){
                     Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
-                    Image("closeSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
             }
             .padding(.horizontal,27)
@@ -138,14 +138,15 @@ struct SettingsView: View {
                 Image("Vectorinvitarfriend").resizable()
                     .renderingMode(.template)
                     .foregroundColor(self.viewmodel.InvitarAmigos ? Color("SoftGradient1") : .gray)
-                    .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding(.leading, 4)
+                    .padding(.trailing, 4)
                 Text("Invitar Amigos")
                     .foregroundColor(self.viewmodel.InvitarAmigos ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.InvitarAmigos){
                     Image("openSet").resizable().frame(width: 16, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
-                    Image("closeSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
             }
             .padding(.horizontal,27)
@@ -190,14 +191,14 @@ struct SettingsView: View {
                 Image("Vectoruserblock").resizable()
                     .renderingMode(.template)
                     .foregroundColor(self.viewmodel.verUsuario ? Color("SoftGradient1") : .gray)
-                    .frame(width: 34, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 40, height: 32, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding(.leading, 6)
                 Text("Usuario Bloqueado")
                     .foregroundColor(self.viewmodel.verUsuario ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.verUsuario){
                     Image("openSet").resizable().frame(width: 16, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
-                    Image("closeSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
             }
             .padding(.horizontal,27)
