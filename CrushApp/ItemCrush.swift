@@ -30,8 +30,9 @@ struct ItemCrush: View {
                 Spacer()
                 VStack{
                     Text(self.crushAction.user_receive.contact?.name ?? "No contact")
-                    Text("Esperando \(self.crushAction.action.name)").foregroundColor(Color("SoftGradient1"))
+                    Text("Esperando \(self.crushAction.action.name)").font(.caption).foregroundColor(Color("SoftGradient1"))
                         .multilineTextAlignment(.center)
+                        
                 }
                 Spacer()
             }

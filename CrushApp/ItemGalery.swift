@@ -56,9 +56,9 @@ struct ItemGalery: View {
                         estrellas
                     }
                 )
-                .cornerRadius(20, corners: [.bottomLeft,.topRight])
-                .frame(width: 62, height: 34, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .foregroundColor(Color("Degradado"))
+                .cornerRadius(10, corners: [.bottomLeft,.topRight])
+                .frame(width: 62, height: 28, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .foregroundColor(Color("Degradado")).padding(.top,4)
             
         }.padding(.vertical,3)
     }

@@ -76,7 +76,7 @@ struct HomeView: View {
         }
         
        
-        .frame(width: 320, height: 130, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .frame(width: 360, height: 130, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .background(Color("ColorConfAzul"))
         .cornerRadius(20, corners: [.topLeft,.topRight])
        

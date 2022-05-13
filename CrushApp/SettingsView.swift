@@ -85,7 +85,7 @@ struct SettingsView: View {
                     .foregroundColor(self.viewmodel.politicst ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.politicst){
-                    Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("openSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
                     Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
@@ -144,7 +144,7 @@ struct SettingsView: View {
                     .foregroundColor(self.viewmodel.InvitarAmigos ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.InvitarAmigos){
-                    Image("openSet").resizable().frame(width: 16, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("openSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
                     Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
@@ -196,7 +196,7 @@ struct SettingsView: View {
                     .foregroundColor(self.viewmodel.verUsuario ? Color("SoftGradient1") : .gray)
                 Spacer()
                 if(self.viewmodel.verUsuario){
-                    Image("openSet").resizable().frame(width: 16, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image("openSet").resizable().frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }else{
                     Image("closeSet").resizable().frame(width: 16, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
