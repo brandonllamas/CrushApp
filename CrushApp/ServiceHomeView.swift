@@ -74,6 +74,7 @@ class ServiceHomeView : ObservableObject {
             }
     
     func getUserListApp(phones:[PhoneItemRequest],
+                        currentIndex: Int,
                        onSuccess200: @escaping  (_ resData: GeneralResponseUserList)->Void,
                        onSuccessDefault: @escaping  (_ resData: GeneralResponseUserList)->Void,
                        onError: @escaping  (_ resData: String)->Void)
@@ -81,6 +82,8 @@ class ServiceHomeView : ObservableObject {
         let data:UserListRequest = UserListRequest(data: phones);
         let json:Any?;
         do {
+           
+
             let jsonEncoder = JSONEncoder()
             let jsonData = try jsonEncoder.encode(phones)
             json = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)
@@ -94,7 +97,7 @@ class ServiceHomeView : ObservableObject {
         var params:[String:Any] = ToolsRequestList.ConvertLisRequestToDic(phones: phones)
    
         print(params.debugDescription)
-        Alamofire.request(constans.api+"app/user/getlist",
+        Alamofire.request(constans.api+"app/user/getlist?page=\(currentIndex)",
                    method: HTTPMethod.post,
                    parameters:params,
                    encoding: JSONEncoding.default,

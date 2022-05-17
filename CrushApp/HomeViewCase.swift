@@ -25,12 +25,13 @@ class HomeViewCase : ObservableObject {
         ServiceHomeView().blockUser(id_user: id_user, onSuccess200: onSuccess200, onSuccessDefault: onDefault, onError: onError)
     }
     
-    func ListApp(phones:[PhoneItemRequest] ,
+    func ListApp(phones:[PhoneItemRequest],
+                 currentIndex: Int,
                onSuccess200: @escaping(_ resData:GeneralResponseUserList)->Void,
                onDefault: @escaping(_ resData:GeneralResponseUserList)->Void,
                onError: @escaping(_ error:String)->Void)  {
         
-        ServiceHomeView().getUserListApp(phones: phones, onSuccess200: onSuccess200, onSuccessDefault: onDefault, onError: onError)
+        ServiceHomeView().getUserListApp(phones: phones,currentIndex: currentIndex ,onSuccess200: onSuccess200, onSuccessDefault: onDefault, onError: onError)
        
        
     }

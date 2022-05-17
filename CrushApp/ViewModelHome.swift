@@ -19,6 +19,7 @@ class ViewModelHome:ObservableObject{
     @Published var ListContactPostZCopia:[SendGeneralGrud] = []
     @Published var ListContactPostCopia:[GeneralUsuario] = []
     @Published var contactsSend:[PhoneItemRequest] = [];
+    @Published var currentIndex = 0;
      
     
     var loadingInser:Bool = false;
@@ -58,15 +59,52 @@ class ViewModelHome:ObservableObject{
         
     }
     
+    func refreshLoad() {
+        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: currentIndex){ response in
+            self.ListContactPost.append(contentsOf :response.data.data);
+            self.ListContactPostCopia.append(contentsOf: response.data.data)
+            self.noContacts =  false;
+            
+            var count = 0;
+            print("PAGINA \(self.currentIndex)")
+            self.ListContactPostCopia.forEach({lits in
+                var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
+                self.ListContactPostZ.append(f);
+                count = count+1;
+            })
+            
+            if(count == 0 && self.ListContactPostCopia.count == 0){
+                // Delay of 7.5 seconds
+                 DispatchQueue.main.asyncAfter(deadline: .now() + 30.5) {
+                    self.getUser()
+                   }
+            }
+            
+            self.ListContactPostZCopia = self.ListContactPostZ;
+           print(response)
+            self.loading = false;
+        } onDefault: { response in
+           
+            print(response)
+            
+        } onError: { error in
+     
+            print(error)
+            
+        }
+    }
+    
+    
     func getUser() {
         //Cargar contactos
         self.loading = true;
-        HomeViewCase().ListApp(phones: self.contactsSend){ response in
+        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: currentIndex){ response in
             self.ListContactPost = response.data.data;
             self.ListContactPostCopia =  response.data.data;
             self.noContacts =  false;
             
             var count = 0;
+            print("PAGINA \(self.currentIndex)")
             self.ListContactPostCopia.forEach({lits in
                 var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
                 self.ListContactPostZ.append(f);
@@ -180,7 +218,6 @@ class ViewModelHome:ObservableObject{
             self.loadingInser = true;
             HomeViewCase().InsertListApp(phones: self.contactsSend){ response in
                 
-              
                 self.loadingInser = false;
             } onDefault: { response in
                

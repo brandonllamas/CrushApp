@@ -13,6 +13,7 @@ struct HomeView: View {
         = ViewModelHome();
     
     @State var dialogs:Bool = true;
+    @State var currentIndex = 0
     
     
     let columns = [
@@ -121,22 +122,29 @@ struct HomeView: View {
     
     var grid:some View{
         HStack{
-            Spacer()
             
+            Spacer()
             LazyVGrid(columns: columns, spacing: 20) {
                 //var num = 0;
-                ForEach(self.viewModel.ListContactPostZ, id: \.self) { homePeople in
-                 
+                ForEach(self.viewModel.ListContactPostZ.indices, id: \.self) { homePeopleIndex in
+                    let homePeople = self.viewModel.ListContactPostZ[homePeopleIndex]
                     NavigationLink(destination:
                                     CrushDetailView(user: homePeople.usua)
                                     ){
-                        
                         ItemPersonaHome(user: homePeople.usua,num: homePeople.num)
                            
                             .background(Color.white)
+                            .onAppear{
+                                if homePeopleIndex == self.viewModel.ListContactPostZ.count - 1 {
+                                    viewModel.currentIndex += 1
+                                    viewModel.refreshLoad()
+                                }
+                            }
                        
                     } .background(Color.white)
                     .frame(width: .infinity, height: .infinity, alignment: .center)
+                    
+                 
                      
                     
                 }
@@ -172,6 +180,13 @@ struct HomeView: View {
             .padding(.top,15)
             Spacer()
         }
+    }
+}
+
+extension View {
+    func Print(_ vars: Any...) -> some View {
+        for v in vars { print(v) }
+        return EmptyView()
     }
 }
 

@@ -8,40 +8,44 @@
 import Foundation
 
 struct GeneralResponseUserList:Codable, Hashable {
-     var success:Bool;
+    var success:Bool;
     var message:String;
-     var data:DataUserList ;
+    var data:DataUserList ;
     enum CodingKeys: String, CodingKey {
         case success,data,message
     }
+    
+}
 
+struct DataClass: Codable {
+    let data:[GeneralUsuario]
 }
 struct GeneralResponseBlock:Codable, Hashable {
-     var success:Bool;
+    var success:Bool;
     var message:String;
-     var data:[String] ;
+    var data:[String] ;
     enum CodingKeys: String, CodingKey {
         case success,data,message
     }
-
+    
 }
 
 struct GeneralDetailCrushResponse:Codable, Hashable {
-     var success:Bool;
+    var success:Bool;
     //var message:String;
-     var data:DataDetailCrushResponse ;
+    var data:DataDetailCrushResponse ;
     enum CodingKeys: String, CodingKey {
         case success,data
     }
-
+    
 }
 
 struct DataDetailCrushResponse:Codable, Hashable {
-     var data:GeneralUsuario ;
+    var data:GeneralUsuario ;
     enum CodingKeys: String, CodingKey {
         case data
     }
-
+    
 }
 
 
@@ -61,13 +65,13 @@ struct GeneralUsuarioDetai:Codable, Hashable {
 }
 
 struct DataUserList:Codable, Hashable {
-   
+    
     var data:[GeneralUsuario] ;
-    var count_phone:Int;
+    var count_phone:Int?;
     enum CodingKeys: String, CodingKey {
         case data,count_phone
     }
-
+    
 }
 
 
@@ -78,7 +82,7 @@ struct DataUserListBlock:Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case success,data,message
     }
-
+    
 }
 
 
@@ -124,26 +128,26 @@ struct MachSended:Codable, Hashable {
     var id,id_user_send,id_user_recibe,id_action:Int;
     var created_at,updated_at:String ;
     var action:GeneralResponseActionsRes;
-       enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id,id_user_send,id_user_recibe,id_action
         case created_at,updated_at
         case action
-       }
+    }
 }
 
 
 struct ImageUserListApp:Codable, Hashable {
     var id,id_user,status_profile:Int;
     var name,created_at,updated_at:String ;
-       enum CodingKeys: String, CodingKey {
-           case id,id_user,created_at,updated_at,name,status_profile
-       }
+    enum CodingKeys: String, CodingKey {
+        case id,id_user,created_at,updated_at,name,status_profile
+    }
 }
 
 struct ContactUserListApp:Codable, Hashable {
     var id,state:Int;
     var name,id_user,id_user_contact,created_at,updated_at:String ;
-       enum CodingKeys: String, CodingKey {
-           case id,id_user,created_at,updated_at,name,state,id_user_contact
-       }
+    enum CodingKeys: String, CodingKey {
+        case id,id_user,created_at,updated_at,name,state,id_user_contact
+    }
 }
