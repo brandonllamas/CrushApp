@@ -21,6 +21,7 @@ struct ItemPersonaHome: View {
     
     init(user:GeneralUsuario ,num:Int) {
         self.users = user;
+        print(user)
         self.idss = String(self.users.id);
      
         if(self.users.image != nil){
@@ -33,19 +34,31 @@ struct ItemPersonaHome: View {
     
     var body: some View {
         
-        VStack{
+        VStack(alignment: .center, spacing: 6){
             if(!block){
-                ImageWeb(url: self.urlImage, placeHolder: "Vectorplaceholder")
-                    .scaleEffect()
-                    .cornerRadius(10)
-                    .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .padding(.top,8)
-                 
+                ZStack{
+                    if #available(iOS 15.0, *) {
+                        AsyncImage(url: URL(string: self.urlImage)) { image in
+                            image.resizable()
+                                .frame(width: 158, height: 224)
+                        } placeholder: {
+                            Image("Vectorplaceholder")
+                                .frame(width: 158, height: 224)
+                        }
+                    } else {
+                        ImageWeb(url: self.urlImage, placeHolder: "Vectorplaceholder")
+                            .scaleEffect()
+                            .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    }
+                
+                }//: ZSTACK
+                .cornerRadius(12)
+                //NAME
                 HStack{
-                    //Text("\(self.nume)")
                     Text(self.users.contact?.name ?? "No name")
                         .bold()
                         .foregroundColor(.black)
+                
                     Button(action: {
                         print("Bloquear")
                         self.viewModel.block(id: self.users.id)
@@ -56,7 +69,6 @@ struct ItemPersonaHome: View {
                             .frame(width: 11, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     })
                 }
-                
             }
         }.padding(.top,(self.nume % 2 != 0 ? 100 :0))
     }

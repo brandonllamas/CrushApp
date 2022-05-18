@@ -132,21 +132,14 @@ struct HomeView: View {
                                     CrushDetailView(user: homePeople.usua)
                                     ){
                         ItemPersonaHome(user: homePeople.usua,num: homePeople.num)
-                           
-                            .background(Color.white)
                             .onAppear{
-                                if homePeopleIndex == self.viewModel.ListContactPostZ.count - 1 {
+                                if homePeopleIndex == self.viewModel.ListContactPostZ.count - 3 {
                                     viewModel.currentIndex += 1
                                     viewModel.refreshLoad()
                                 }
                             }
                        
-                    } .background(Color.white)
-                    .frame(width: .infinity, height: .infinity, alignment: .center)
-                    
-                 
-                     
-                    
+                    }
                 }
              }.padding(.horizontal)
             Spacer()
