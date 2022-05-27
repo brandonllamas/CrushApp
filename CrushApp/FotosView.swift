@@ -80,7 +80,7 @@ struct FotosView: View {
                print("crush")
                 self.viewModel.dialogAction.toggle()
             }, label: {
-                Text("Nueva Fotos")
+                Text("Nueva Foto")
             })
             
             .buttonStyle(crushButtonDefault())

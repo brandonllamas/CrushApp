@@ -82,6 +82,7 @@ final class NavigationStack: ObservableObject {
     
 
     
+    @available(iOS 15.0, *)
     func home(){
         currentView = NavigationItem(view: AnyView(LoginView()), tag: .Login)
         viewStack.removeAll()

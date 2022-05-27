@@ -38,7 +38,9 @@ struct MainNavigationView: View {
             Image("Toolbarmenu")
                 .resizable()
                 .frame(width: 35, height: 31, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .padding(.horizontal)
+                .padding(.horizontal).onTapGesture {
+                    self.viewmodel.indexSel = 0
+                }
             Spacer()
             Image("VectornotificationSg")
                 .padding(.horizontal).onTapGesture {

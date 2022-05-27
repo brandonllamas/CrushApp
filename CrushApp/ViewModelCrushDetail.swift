@@ -12,18 +12,22 @@ class ViewModelCrushDetail:ObservableObject{
     
     var id:Int = 0;
     @Published var images:[ImageUserListApp] = [] ;
-     var AccionesCrush:[GeneralResponseActionsRes] = []
+    var AccionesCrush:[GeneralResponseActionsRes] = []
     @Published var load:Bool = false;
     @Published var arrayActionActive:[Int] = []
     @Published var rating:Int = 7;
     @Published var ratingOriginal:Int = 7;
-    @Published  var users:GeneralUsuario;
+    @Published var users:GeneralUsuario;
+    @Published var name:String;
+    @Published var phone:String;
+    var contact:[PhoneItemRequest];
     
-    
-    init(id:Int,user:GeneralUsuario) {
+    init(id:Int,user:GeneralUsuario, contact:[PhoneItemRequest]) {
         self.id = id;
         self.users = user;
-      
+        self.name = contact[user.i ?? 0].name;
+        self.phone = contact[user.i ?? 0].phone;
+        self.contact = contact
     }
     
     func setRating(){
@@ -95,7 +99,7 @@ class ViewModelCrushDetail:ObservableObject{
 //        nav.advance(AnyView(CrushDetailView()), tag: .CrushDetailView)
         UserCaseDetailCrush().GetDetailUser(ids: self.id){response in
             self.images = response.data.data.gallery ?? []
-            
+            self.id = response.data.data.id;
             var arrayActionActivelocal = response.data.data.sended_match ?? []
             
             arrayActionActivelocal.forEach({response in
@@ -137,7 +141,7 @@ class ViewModelCrushDetail:ObservableObject{
     
     func addActionM(action:Int) {
         self.load.toggle();
-        UserCaseDetailCrush().addAction(id_user:self.id,id_action: action){response in
+        UserCaseDetailCrush().addAction(id_action: action, name:self.name, phone: self.phone){response in
             self.arrayActionActive.append(action)
             self.load = false;
             self.getActions()

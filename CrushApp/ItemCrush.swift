@@ -23,13 +23,14 @@ struct ItemCrush: View {
             .scaleEffect()
             .cornerRadius(20, corners: [.topRight,.topLeft])
             //.cornerRadius(0, corners: [.bottomLeft,.bottomLeft])
-            .frame(width: 158, height: 160, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .padding(.top,8)
            
             HStack{
                 Spacer()
                 VStack{
-                    Text(self.crushAction.user_receive.contact?.name ?? "No contact")
+                    Text(self.crushAction.user_receive.contact?.name ?? "No contact").font(.caption)           .foregroundColor(Color("textoNormal"))
+                        .multilineTextAlignment(.center)
                     Text("Esperando \(self.crushAction.action.name)").font(.caption).foregroundColor(Color("SoftGradient1"))
                         .multilineTextAlignment(.center)
                         

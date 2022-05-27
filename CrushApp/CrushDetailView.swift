@@ -11,7 +11,7 @@ struct CrushDetailView: View {
     var users:GeneralUsuario;
    @State var urlImage:String = "";
    @State var idss:String = "";
-    
+   @State var name:String;
    @ObservedObject var viewModel:ViewModelCrushDetail;
     
    @State var alertRating:Bool = false;
@@ -23,12 +23,11 @@ struct CrushDetailView: View {
         GridItem(.flexible()),
     ]
     
-    init(user:GeneralUsuario) {
+    init(user:GeneralUsuario, contact:[PhoneItemRequest]) {
         self.users = user;
-        self.viewModel = ViewModelCrushDetail(id:users.id,user:users)
-        
-      
-       
+        self.viewModel = ViewModelCrushDetail(id:users.id, user:users,contact:contact)
+        self.name = contact[user.i ?? 0].name
+        self.idss = String(self.viewModel.id)
     }
     
     var body: some View {
@@ -37,7 +36,7 @@ struct CrushDetailView: View {
                 ScrollView{
                     VStack{
                         imagenPeople
-                        Text(self.users.contact?.name ?? "no name").padding()
+                        Text(self.users.contact?.name ?? self.name).padding()
                             .font(.system(size: 20, weight: .bold, design: .default))
                         botomCrush
                         galeria
@@ -46,13 +45,13 @@ struct CrushDetailView: View {
                         self.viewModel.detail()
                         self.viewModel.getActions()
                         self.viewModel.getRating()
-                        self.idss = String(self.users.id)
+                        //self.idss = String(self.users.id)
                         if(self.users.image != nil){
-                            self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name )";
+                            self.urlImage = "\( Connections.url_photo)/\(self.users.id)/\(self.users.image!.name )";
                         }else{
-                            self.urlImage = "\( Connections.url_photo)/\(idss)/\("nopho")";
+                            self.urlImage = "\( Connections.url_photo)/\(self.users.id)/\("nopho")";
                         }
-                       
+                        print(self.urlImage + "FOTO DETALLE GG")
                        
                     }
                 }
@@ -87,7 +86,7 @@ struct CrushDetailView: View {
     var DialogAcction:some View{
         VStack{
             Spacer()
-            Text(self.users.contact?.name ?? "No name")
+            Text(self.users.contact?.name ?? self.name)
                 .font(.title)
                 .bold()
                 .foregroundColor(Color(.white))
@@ -135,7 +134,7 @@ struct CrushDetailView: View {
     
     var DialogCalificate:some View{
         VStack {
-            Text("Califica foto de perfil de \(self.users.contact?.name ?? "no name")")
+            Text("Califica foto de perfil de \(self.users.contact?.name ?? self.name)")
                   .padding(.bottom, 10)
             
                 ratingBar

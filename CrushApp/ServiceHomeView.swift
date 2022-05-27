@@ -33,12 +33,13 @@ class ServiceHomeView : ObservableObject {
             print("Error : \(error.localizedDescription)")
             json  = phones
         }
-        print("CELLPHONE SEND")
+        print("CELLPHONE SEND ios")
         
         var params:[String:Any] = ToolsRequestList.ConvertLisRequestToDic(phones: phones)
    
-        print(params.debugDescription)
-        Alamofire.request(constans.api+"app/user/list",
+        //print(params.debugDescription) <- see params from contacts in debug
+        //Alamofire.request(constans.api+"app/user/list/ios",
+        Alamofire.request(constans.api+"app/user/list/ios",
                    method: HTTPMethod.post,
                    parameters:params,
                    encoding: JSONEncoding.default,
@@ -52,6 +53,8 @@ class ServiceHomeView : ObservableObject {
                                 do {
                                     let resData:GeneralResponseUserList =  try JSONDecoder().decode(GeneralResponseUserList.self ,from: response.data!)
                                     onSuccess200(resData)
+                                    print("200 exitoso")
+                                    
                                 } catch let error {
                                     print(error)
                                 }

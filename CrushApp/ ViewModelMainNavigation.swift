@@ -17,7 +17,7 @@ class ViewModelNavigation:ObservableObject{
             OptionItem(name: "Inicio", iconImagen: "VectorHomeNormal", iconImagenActivate: "VectorHomeActive", index: 0),
             OptionItem(name: "Fotos", iconImagen: "VectorFotosNormal", iconImagenActivate: "VectorFotosActve", index: 1),
             OptionItem(name: "Crush", iconImagen: "curshIconMenu", iconImagenActivate: "curshIconMenuActive", index: 2),
-            OptionItem(name: "Configuracion", iconImagen: "ConfigurationInactive", iconImagenActivate: "ConfigurationActive", index: 3),
+            OptionItem(name: "Ajustes", iconImagen: "ConfigurationInactive", iconImagenActivate: "ConfigurationActive", index: 3),
         ];
     }
 

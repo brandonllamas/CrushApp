@@ -18,11 +18,11 @@ class UserCaseDetailCrush : ObservableObject {
     }
     
     
-    func addAction(id_user:Int ,id_action:Int,
+    func addAction(id_action:Int,name:String,phone:String,
                    onSuccess200: @escaping(_ resData:GeneralResponseActionsAsign)->Void,
                    onDefault: @escaping(_ resData:GeneralResponseActionsAsign)->Void,
                    onError: @escaping(_ error:String)->Void)  {
-        CrushDetailService().AsignAction(id_user: id_user,id_action:id_action, onSuccess200: onSuccess200, onSuccessDefault: onDefault, onError: onError)
+        CrushDetailService().AsignAction(id_action:id_action,name:name, phone:phone,onSuccess200: onSuccess200, onSuccessDefault: onDefault, onError: onError)
         }
     
     func removeUnmacht(id_user:Int ,id_action:Int,

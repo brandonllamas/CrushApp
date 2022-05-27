@@ -70,34 +70,36 @@ struct TerminosView: View {
             
                     
                 
-                VStack{
+                VStack(alignment: .leading){
+                    
                     Text("Acepto el tratamiento  de mis datos personales de acuerdo a la")
                         .foregroundColor(.white)
                         .bold()
-                        .frame(width: .infinity, height: .infinity, alignment: .center)
-                        .multilineTextAlignment(.center)
+                        .frame(width: .infinity, height: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        
                     Link( destination: URL(string: "https://crushbycrush.com/politica-de-tratamiento-de-datos-personales/")!){
                         Text("Politica de privacidad y tratamiento de datos personales")
                             .foregroundColor(.white)
                             .bold()
                             .underline()
-                            .frame(width: .infinity, height: .infinity, alignment: .center)
-                            .multilineTextAlignment(.center)
+                            .frame(width: .infinity, height: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.leading)
                 }
                     
-                    Text(" de crush App S.A.S aso como los")
+                    Text("de crush App S.A.S así como los")
                         .foregroundColor(.white)
                         .bold()
-                        .frame(width: .infinity, height: .infinity, alignment: .center)
-                        .multilineTextAlignment(.center)
+                        .frame(width: .infinity, height: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
                     
                     Link( destination: URL(string: "https://crushbycrush.com/terminos-os-y-condiciones/")!){
                         Text("Terminos y condiciones")
                             .foregroundColor(.white)
                             .bold()
                             .underline()
-                            .frame(width: .infinity, height: .infinity, alignment: .center)
-                            .multilineTextAlignment(.center)
+                            .frame(width: .infinity, height: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.leading)
                             
                 }
                    

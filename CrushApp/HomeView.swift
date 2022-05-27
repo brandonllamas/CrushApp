@@ -14,6 +14,7 @@ struct HomeView: View {
     
     @State var dialogs:Bool = true;
     @State var currentIndex = 0
+    @State var contador = 0;
     
     
     let columns = [
@@ -32,9 +33,11 @@ struct HomeView: View {
                         if(self.viewModel.loading){
                             loading
                         }else{
-                            grid
-                        }
+                            grid.onTapGesture {
+                                hideKeyboard()
+                            }                        }
                     }.frame(width: .infinity, height: .infinity, alignment: .center)
+                        
                 }
                 
                 Spacer()
@@ -52,6 +55,7 @@ struct HomeView: View {
             .frame(width: .infinity, height: .infinity, alignment: .center)
             
         }.onAppear{
+            //v2 era la anterior q se consumia del viewmodel
             self.viewModel.getAllContactLocalv2()
         }.frame(width: .infinity, height: .infinity, alignment: .center)
         .navigationViewStyle(StackNavigationViewStyle())
@@ -62,7 +66,7 @@ struct HomeView: View {
         HStack{
             HStack{
                 HStack{
-                    Text("Parece que varios de tus contactos aún no han descargando Crush. Prueba a hacer Match con ellos ( será nuestro secreto por supuesto ) y nosotros les invitaremos a descargar la app. También puedes invitarles desde el menú configuración -> invitar a amigos").foregroundColor(.white)
+                    Text("Parece que varios de tus contactos aún no han descargado Crush. Prueba a hacer Match con ellos ( será nuestro secreto por supuesto ) y nosotros les invitaremos a descargar la app. También puedes invitarles desde el menú configuración -> invitar a amigos").foregroundColor(.white)
                         .font(.custom("", fixedSize: 15))
                         .multilineTextAlignment(.center)
                 }.padding(.leading,10)
@@ -129,17 +133,19 @@ struct HomeView: View {
                 ForEach(self.viewModel.ListContactPostZ.indices, id: \.self) { homePeopleIndex in
                     let homePeople = self.viewModel.ListContactPostZ[homePeopleIndex]
                     NavigationLink(destination:
-                                    CrushDetailView(user: homePeople.usua)
+                                    CrushDetailView(user: homePeople.usua, contact: self.viewModel.contactsSend)
                                     ){
-                        ItemPersonaHome(user: homePeople.usua,num: homePeople.num)
-                            .onAppear{
-                                if homePeopleIndex == self.viewModel.ListContactPostZ.count - 3 {
-                                    viewModel.currentIndex += 1
-                                    viewModel.refreshLoad()
-                                }
-                            }
-                       
+                        
+                        ItemPersonaHome(user: homePeople.usua,num: homePeople.num, contacts: self.viewModel.contactsSend)
+//                            .onAppear{
+//                                if homePeopleIndex == self.viewModel.ListContactPostZ.count - 3 {
+//                                    viewModel.currentIndex += 1
+//                                    viewModel.refreshLoad()
+//                                }
+//                            }
+                        
                     }
+                    
                 }
              }.padding(.horizontal)
             Spacer()

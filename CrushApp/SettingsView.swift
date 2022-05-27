@@ -216,7 +216,7 @@ struct SettingsView: View {
                     ForEach(self.viewmodel.userBlock, id: \.self) { homePeople in
                      
                         
-                        ItemPersonaHome(user: homePeople.user_blocked, num: 0)
+                        ItemPersonaHome(user: homePeople.user_blocked, num: 0, contacts: [] )
                     }
                 }
             }

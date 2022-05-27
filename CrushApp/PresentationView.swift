@@ -48,7 +48,7 @@ struct PresentationView: View {
                 Image("line")
             }.padding(.top,5)
             HStack{
-                Text("Descubre a cuál de tus contactos le gustas, y quien quisiera salir contigo. Invita a tu crush, o dile que le gustas.No seas tímido, él o ella no lo sabrán, a menos que sientan lo mismo por tí.").bold()
+                Text("Descubre a cuál de tus contactos le gustas, y quien quisiera salir contigo. Invita a tu crush, o dile que le gustas.No seas tímido, él o ella no lo sabrá, a menos que sienta lo mismo por tí.").bold()
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     

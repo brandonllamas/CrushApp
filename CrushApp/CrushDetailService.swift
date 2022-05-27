@@ -59,15 +59,15 @@ class CrushDetailService : ObservableObject {
                    }
             }
     
-    func AsignAction(id_user:Int ,id_action:Int,
+    func AsignAction(id_action:Int,name:String,phone:String,
                        onSuccess200: @escaping  (_ resData: GeneralResponseActionsAsign)->Void,
                        onSuccessDefault: @escaping  (_ resData: GeneralResponseActionsAsign)->Void,
                        onError: @escaping  (_ resData: String)->Void)
                        {
          
-        Alamofire.request(constans.api+"app/match/create",
+        Alamofire.request(constans.api+"app/match/create/ios",
                    method: HTTPMethod.post,
-                   parameters:["id_user_recibe":id_user,"id_action":id_action],
+                          parameters:["phone":phone,"id_action":id_action, "name":name],
                    encoding: JSONEncoding.default,
                    headers: ["Authorization": self.token])
                 .responseString { response in
@@ -79,6 +79,7 @@ class CrushDetailService : ObservableObject {
                                 do {
                                     let resData:GeneralResponseActionsAsign =  try JSONDecoder().decode(GeneralResponseActionsAsign.self ,from: response.data!)
                                     onSuccess200(resData)
+                                    print("SII SE HIZO EL MATCH CONGRATULATIONS")
                                 } catch let error {
                                     print(error)
                                 }

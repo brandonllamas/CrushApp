@@ -1207,9 +1207,9 @@
 				CODE_SIGN_ENTITLEMENTS = CrushApp/CrushApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.4;
+				CURRENT_PROJECT_VERSION = 1.8.0;
 				DEVELOPMENT_ASSET_PATHS = "\"CrushApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3YJ9LA6E4G;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CrushApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1217,9 +1217,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.4;
+				MARKETING_VERSION = 1.8.0;
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.CrushApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.virtualtec.CrushApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1236,9 +1236,9 @@
 				CODE_SIGN_ENTITLEMENTS = CrushApp/CrushApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.4;
+				CURRENT_PROJECT_VERSION = 1.8.0;
 				DEVELOPMENT_ASSET_PATHS = "\"CrushApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3YJ9LA6E4G;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CrushApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1246,9 +1246,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.4;
+				MARKETING_VERSION = 1.8.0;
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.CrushApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.virtualtec.CrushApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

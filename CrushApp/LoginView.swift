@@ -24,7 +24,7 @@ struct LoginView: View {
     }
     
     var body: some View {
-        Color("moradologin")
+        degradado
             .ignoresSafeArea()
                 .overlay(
                     VStack{
@@ -38,11 +38,27 @@ struct LoginView: View {
                         Spacer()
                         HStack{
                              vistaLogin
+                            
                         }
-                    }
+                        }
               )
                 .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-               }
+                .onTapGesture {
+                    hideKeyboard()
+                }
+        
+    }
+    
+    var degradado:some View{
+        LinearGradient(gradient: Gradient(colors: [
+            Color("SoftGradient2"),
+            Color("SoftGradient3"),
+            Color("SoftGradient2"),
+            Color("SoftGradient3")
+        ]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        .ignoresSafeArea(.all)
+    }
+    
     var Dialogo: some View{
         VStack{
             Spacer()

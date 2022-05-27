@@ -36,6 +36,7 @@ class CrushService : ObservableObject {
                                 do {
                                     let resData:GeneralResponseMachList =  try JSONDecoder().decode(GeneralResponseMachList.self ,from: response.data!)
                                     onSuccess200(resData)
+                                    print("CONGRATULATIONS se han cargado tus matchs pendientes")
                                 } catch let error {
                                     print(error)
                                 }
