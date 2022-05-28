@@ -14,6 +14,7 @@ struct MainNavigationView: View {
 
     init(){
         self.viewmodel = ViewModelNavigation()
+        self.viewmodel.getNotification();
     }
    
     var body: some View {
@@ -43,9 +44,28 @@ struct MainNavigationView: View {
                 }
             Spacer()
             Image("VectornotificationSg")
+                
                 .padding(.horizontal).onTapGesture {
                     self.viewmodel.indexSel = 4
+                    self.viewmodel.setNotification()
                 }
+                .overlay(
+                    VStack{
+                        HStack{
+                            Spacer()
+                            if(self.viewmodel.viewNotification){
+                                Circle().foregroundColor(Color.red)
+                                    .frame(width: 10, height: 10)
+                                    
+                            }
+                          
+                            Spacer()
+
+                        }.frame(width:60)
+                       
+                        Spacer()
+                    }.padding(.horizontal,10)
+                )
           
             
         }
@@ -57,7 +77,9 @@ struct MainNavigationView: View {
         ZStack{
             switch self.viewmodel.indexSel{
             case 0 :
+                
                 HomeView()
+              
             case 1:
              
                 FotosView()
