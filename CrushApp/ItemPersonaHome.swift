@@ -12,6 +12,8 @@ struct ItemPersonaHome: View {
     var users:GeneralUsuario;
     var urlImage:String = "";
     var idss:String = "";
+    var contacts:[PhoneItemRequest]?;
+    var name:String = ""
     @State var block:Bool = false;
     
     @ObservedObject var viewModel = ItemPersonHomeViewModel();
@@ -19,15 +21,22 @@ struct ItemPersonaHome: View {
     @EnvironmentObject var navigation:NavigationStack
      var nume:Int;
     
-    init(user:GeneralUsuario ,num:Int) {
+    init(user:GeneralUsuario ,num:Int, contacts:[PhoneItemRequest]?) {
+        self.contacts = contacts;
         self.users = user;
         print(user)
-        self.idss = String(self.users.id);
-     
-        if(self.users.image != nil){
-            self.urlImage = "\( Connections.url_photo)/\(idss)/\(self.users.image!.name ?? "")";
+        //self.idss = String(self.users.id);
+        
+        if(self.contacts == nil) {
+            self.name = ""
         }else{
-            self.urlImage = "\( Connections.url_photo)/\(idss)/\("")";
+            self.name = self.contacts?[self.users.i ?? 0].name ?? "prueba";
+        }
+        
+        if(self.users.image != nil){
+            self.urlImage = "\( Connections.url_photo)/\(user.id)/\(self.users.image!.name ?? "")";
+        }else{
+            self.urlImage = "\( Connections.url_photo)/\(user.id)/\("")";
         }
         self.nume = num;
     }
@@ -55,9 +64,18 @@ struct ItemPersonaHome: View {
                 .cornerRadius(12)
                 //NAME
                 HStack{
-                    Text(self.users.contact?.name ?? "No name")
+                    if(self.name.elementsEqual("")){
+                        Text(self.users.contact?.name ?? "No name")
                         .bold()
                         .foregroundColor(.black)
+                    } else {
+                        Text(self.name)
+                        .bold()
+                        .foregroundColor(.black)
+                    }
+                    //Text(self.users.contact?.name ?? "No name")
+                        //.bold()
+                    //.foregroundColor(.black)
                 
                     Button(action: {
                         print("Bloquear")

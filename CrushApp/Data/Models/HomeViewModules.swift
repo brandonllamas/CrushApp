@@ -10,7 +10,7 @@ import Foundation
 struct GeneralResponseUserList:Codable, Hashable {
     var success:Bool;
     var message:String;
-    var data:DataUserList ;
+    var data:[GeneralUsuario];
     enum CodingKeys: String, CodingKey {
         case success,data,message
     }
@@ -98,19 +98,25 @@ struct DataUsertBlock:Codable, Hashable {
 }
 
 struct GeneralUsuario:Codable, Hashable {
-    var id,id_type_user,active,indicative,image_profile:Int;
+    var id:Int;
+    var i:Int?;
+    var id_type_user,active,indicative:Int?;
+    var image_profile:Int?;
     var name,username,password:String?;
     var email,phone_completed:String? ;
+    var phone:String;
+    var register:Bool?;
     var image:ImageUserListApp?;
     var gallery:[ImageUserListApp]?;
     var contact:ContactUserListApp?;
     var sended_match:[MachSended]?;
+    var created_at,updated_at:String? ;
     
-    var phone,created_at,updated_at:String ;
     enum CodingKeys: String, CodingKey {
         case name,phone,image_profile,created_at,updated_at,phone_completed
         case id,id_type_user,active,indicative,image,contact,password,gallery
         case sended_match
+        case register, i
     }
 }
 

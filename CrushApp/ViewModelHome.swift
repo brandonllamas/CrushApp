@@ -20,6 +20,7 @@ class ViewModelHome:ObservableObject{
     @Published var ListContactPostCopia:[GeneralUsuario] = []
     @Published var contactsSend:[PhoneItemRequest] = [];
     @Published var currentIndex = 0;
+    @Published var contador = -1;
      
     
     var loadingInser:Bool = false;
@@ -46,7 +47,7 @@ class ViewModelHome:ObservableObject{
         self.ListContactPostZ = [];
         var cont = 0;
         self.ListContactPostZCopia.forEach({contact in
-            var name:String =  contact.usua.contact?.name ?? "";
+        var name:String =  contact.usua.contact?.name ?? self.contactsSend[contact.usua.i ?? 0].name;
   
             if(  name.lowercased().range(of: text.lowercased()) != nil  ){
                 var f : SendGeneralGrud = SendGeneralGrud(num: cont, usua: contact.usua)
@@ -59,48 +60,63 @@ class ViewModelHome:ObservableObject{
         
     }
     
-    func refreshLoad() {
-        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: currentIndex){ response in
-            self.ListContactPost.append(contentsOf :response.data.data);
-            self.ListContactPostCopia.append(contentsOf: response.data.data)
-            self.noContacts =  false;
-            
-            var count = 0;
-            print("PAGINA \(self.currentIndex)")
-            self.ListContactPostCopia.forEach({lits in
-                var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
-                self.ListContactPostZ.append(f);
-                count = count+1;
-            })
-            
-            if(count == 0 && self.ListContactPostCopia.count == 0){
-                // Delay of 7.5 seconds
-                 DispatchQueue.main.asyncAfter(deadline: .now() + 30.5) {
-                    self.getUser()
-                   }
-            }
-            
-            self.ListContactPostZCopia = self.ListContactPostZ;
-           print(response)
-            self.loading = false;
-        } onDefault: { response in
-           
-            print(response)
-            
-        } onError: { error in
-     
-            print(error)
-            
-        }
+    func seeNameContact()->String{
+        var name:String = "prueba";
+        
+        //if(self.contador =)
+        //self.contador = self.contador + 1;
+        //name = self.contactsSend[self.contador].name
+        
+        return name;
     }
+//    func refreshLoad() {
+//        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: currentIndex){ response in
+//            self.ListContactPost.append(contentsOf :response.data.data);
+//            self.ListContactPostCopia.append(contentsOf: response.data.data)
+//            self.noContacts =  false;
+//
+//            var count = 0;
+//            print("PAGINA \(self.currentIndex)")
+//            self.ListContactPostCopia.forEach({lits in
+//                var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
+//                self.ListContactPostZ.append(f);
+//                count = count+1;
+//            })
+//
+//            if(count == 0 && self.ListContactPostCopia.count == 0){
+//                // Delay of 7.5 seconds
+//                 DispatchQueue.main.asyncAfter(deadline: .now() + 30.5) {
+//                    self.getUser()
+//                   }
+//            }
+//
+//            self.ListContactPostZCopia = self.ListContactPostZ;
+//           print(response)
+//            self.loading = false;
+//        } onDefault: { response in
+//
+//            print(response)
+//
+//        } onError: { error in
+//
+//            print(error)
+//
+//        }
+//    }
     
     
     func getUser() {
         //Cargar contactos
         self.loading = true;
-        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: currentIndex){ response in
-            self.ListContactPost = response.data.data;
-            self.ListContactPostCopia =  response.data.data;
+//<<<<<<< Updated upstream
+//        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: currentIndex){ response in
+//            self.ListContactPost = response.data.data;
+//            self.ListContactPostCopia =  response.data.data;
+//=======
+        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: 0){ response in
+            self.ListContactPost = response.data;
+            self.ListContactPostCopia =  response.data;
+//Stashed changes
             self.noContacts =  false;
             
             var count = 0;
@@ -192,6 +208,7 @@ class ViewModelHome:ObservableObject{
     }
     
     func getAllContactLocal()  {
+        self.contador = -1;
         self.loading = true;
         DispatchQueue.main.async {
           
@@ -215,21 +232,41 @@ class ViewModelHome:ObservableObject{
             })
            // print(self.contactsSend)
             //INSERT CONTACOTS
-            self.loadingInser = true;
+            print("antes de consulta")
+            
             HomeViewCase().InsertListApp(phones: self.contactsSend){ response in
+                self.contador = 0
+                print("respuesta de la consulta")
+                self.ListContactPost = response.data;
+                self.ListContactPostCopia =  response.data;
                 
-                self.loadingInser = false;
+                self.noContacts =  false;
+                
+                var count = 0;
+                self.ListContactPostCopia.forEach({lits in
+                    var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
+                    self.ListContactPostZ.append(f);
+                    self.ListContactPostZCopia.append(f)
+                    count = count+1;
+                })
+                print("final del recorrido de la consulta")
+                print(count)
+
+                self.loadingInser = true;
+                self.loading = false;
             } onDefault: { response in
                
                 print(response)
+                print("dafault desconocido")
                 
             } onError: { error in
          
                 print(error)
+                print("error desconocido")
                 
             }
             
-            self.getUser()
+            //self.getUser()
         }
     }
 
