@@ -18,37 +18,41 @@ class ViewModelSplashScreen:ObservableObject{
     
     
     func login(nav:NavigationStack) {
-        self.navigation = nav
-        var Cellphone:String = LocalStorage.load(key: "cellphone") 
-        var pwsd:String = LocalStorage.load(key: "indicative")
-        
-         if(Cellphone != "" && pwsd != ""){
-    //if(false){
-            LoginService().login(cellphone: Cellphone, indicative: pwsd)
-            { response in
-                
-                DataApp.authUser = response.data
-                DataApp.user = response.data.user
-                LoginService().saveCellphone(cellphone: Cellphone, indicative: pwsd)
-                nav.advance(AnyView(MainNavigationView()), tag: .MainNavigation)
-                 
-               print(response)
-                
-            } onDefault: { response in
+        DispatchQueue.global().sync  {
+            self.navigation = nav
+            var Cellphone:String = LocalStorage.load(key: "cellphone")
+            var pwsd:String = LocalStorage.load(key: "indicative")
             
-                print(response)
-                nav.advance(AnyView(TerminosView()), tag: .TerminosView)
+             if(Cellphone != "" && pwsd != ""){
+        //if(false){
+                LoginService().login(cellphone: Cellphone, indicative: pwsd)
+                { response in
+                    
+                    DataApp.authUser = response.data
+                    DataApp.user = response.data.user
+                    LoginService().saveCellphone(cellphone: Cellphone, indicative: pwsd)
+                    nav.advance(AnyView(MainNavigationView()), tag: .MainNavigation)
+                     
+                   print(response)
+                    
+                } onDefault: { response in
                 
-            } onError: { error in
-                 
-                print(error)
+                    print(response)
+                    nav.advance(AnyView(TerminosView()), tag: .TerminosView)
+                    
+                } onError: { error in
+                     
+                    print(error)
+                    nav.advance(AnyView(TerminosView()), tag: .TerminosView)
+                    
+                }
+            }else{
+                print("Sin keys")
                 nav.advance(AnyView(TerminosView()), tag: .TerminosView)
-                
             }
-        }else{
-            print("Sin keys")
-            nav.advance(AnyView(TerminosView()), tag: .TerminosView)
         }
+        
+        
    
        
 

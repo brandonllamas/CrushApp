@@ -9,12 +9,11 @@ import SwiftUI
 import UIKit
 
 struct MainNavigationView: View {
-    @ObservedObject var viewmodel:ViewModelNavigation
+    @ObservedObject var viewmodel:ViewModelNavigation = ViewModelNavigation();
     @EnvironmentObject var navigation:NavigationStack
 
     init(){
-        self.viewmodel = ViewModelNavigation()
-        self.viewmodel.getNotification();
+   
     }
    
     var body: some View {
@@ -29,6 +28,8 @@ struct MainNavigationView: View {
          	
         }.frame(width: .infinity, height: .infinity)
         .background(Color("BackGroundVistas"))
+         
+        
     }
     
 
@@ -75,13 +76,10 @@ struct MainNavigationView: View {
     }
     var vistas:some View{
         ZStack{
-            switch self.viewmodel.indexSel{
+        switch self.viewmodel.indexSel{
             case 0 :
-                
                 HomeView()
-              
             case 1:
-             
                 FotosView()
             case 2 :
                 CrushView()
@@ -90,8 +88,7 @@ struct MainNavigationView: View {
             case 4:
                 ListNotificationView()
             default:
-            HomeView()
-            
+                HomeView()
             }
         }
     }
