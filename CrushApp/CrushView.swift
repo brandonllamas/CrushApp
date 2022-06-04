@@ -23,7 +23,6 @@ struct CrushView: View {
     var body: some View {
         NavigationView{
         Rectangle()
-            .background(Color("BackGroundVistas"))
             .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .ignoresSafeArea()
             //.foregroundColor(Color("fondoCrush"))
@@ -33,7 +32,9 @@ struct CrushView: View {
                         VStack(spacing:20){
                             list
                         }.frame(width: .infinity, height: .infinity, alignment: .center)                    }.background(Color("BackGroundVistas"))
-                }
+                }.navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .background(Color("BackGroundVistas"))
             )
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -52,7 +53,8 @@ struct CrushView: View {
                 }
              }.padding(.horizontal)
             Spacer()
-        }
+        }.frame(width: .infinity, height: .infinity, alignment: .center)
+
     }
 }
 
