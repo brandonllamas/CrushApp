@@ -10,6 +10,7 @@ import UIKit
 
 struct MainNavigationView: View {
     @ObservedObject var viewmodel:ViewModelNavigation = ViewModelNavigation();
+    @ObservedObject var vmHome:ViewModelHome = ViewModelHome();
     @EnvironmentObject var navigation:NavigationStack
 
     init(){
@@ -78,7 +79,7 @@ struct MainNavigationView: View {
         ZStack{
         switch self.viewmodel.indexSel{
             case 0 :
-                HomeView()
+                HomeView(vm: vmHome)
             case 1:
                 FotosView()
             case 2 :
@@ -88,7 +89,7 @@ struct MainNavigationView: View {
             case 4:
                 ListNotificationView()
             default:
-                HomeView()
+                HomeView(vm: vmHome)
             }
         }
     }

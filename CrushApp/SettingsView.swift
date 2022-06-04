@@ -210,7 +210,7 @@ struct SettingsView: View {
             Rectangle().frame(width: .infinity, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(Color("textoNormal")).padding(.horizontal,20)
                
             if(self.viewmodel.verUsuario  ){
-                Text("Usuarios Bloqueados").padding(.horizontal,27)
+                //Text("Usuarios Bloqueados").padding(.horizontal,27)
                 
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(self.viewmodel.userBlock, id: \.self) { homePeople in

@@ -25,8 +25,13 @@ class ViewModelCrushDetail:ObservableObject{
     init(id:Int,user:GeneralUsuario, contact:[PhoneItemRequest]) {
         self.id = id;
         self.users = user;
-        self.name = contact[user.i ?? 0].name;
-        self.phone = contact[user.i ?? 0].phone;
+        if(contact.count > 0){
+            self.name = contact[user.i ?? 0].name;
+            self.phone = contact[user.i ?? 0].phone;
+        } else {
+            self.name = user.name ?? ""
+            self.phone = user.phone
+        }
         self.contact = contact
     }
     

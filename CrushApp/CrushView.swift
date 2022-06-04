@@ -21,20 +21,21 @@ struct CrushView: View {
     
     
     var body: some View {
+        NavigationView{
         Rectangle()
             .background(Color("BackGroundVistas"))
             .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .ignoresSafeArea()
-            .foregroundColor(Color("fondoCrush"))
+            //.foregroundColor(Color("fondoCrush"))
             .overlay(
                 VStack{
                     ScrollView{
                         VStack(spacing:20){
                             list
-                        }
-                    }.background(Color("BackGroundVistas"))
+                        }.frame(width: .infinity, height: .infinity, alignment: .center)                    }.background(Color("BackGroundVistas"))
                 }
             )
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     var list: some View {
@@ -42,8 +43,12 @@ struct CrushView: View {
             Spacer()
             
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(self.viewModel.actions, id: \.self) { homePeople in 
-                    ItemCrush(detail: homePeople)
+                ForEach(self.viewModel.actions, id: \.self) { homePeople in
+                    NavigationLink(destination:
+                                    CrushDetailView(user: homePeople.user_receive, contact: [])
+                                    ){
+                        ItemCrush(detail: homePeople)
+                    }
                 }
              }.padding(.horizontal)
             Spacer()

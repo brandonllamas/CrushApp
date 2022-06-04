@@ -137,7 +137,7 @@ class ServiceHomeView : ObservableObject {
     
     
     
-    func blockUser(id_user:Int,
+    func blockUser(phone:String,name:String,
                        onSuccess200: @escaping  (_ resData: GeneralResponseBlock)->Void,
                        onSuccessDefault: @escaping  (_ resData: GeneralResponseBlock)->Void,
                        onError: @escaping  (_ resData: String)->Void)
@@ -145,7 +145,7 @@ class ServiceHomeView : ObservableObject {
          
         Alamofire.request(constans.api+"app/user/blocked",
                    method: HTTPMethod.post,
-                   parameters:["id_block":id_user],
+                          parameters:["phone":phone, "name":name],
                    encoding: JSONEncoding.default,
                    headers: ["Authorization": self.token])
                 .responseString { response in

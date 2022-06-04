@@ -11,6 +11,10 @@ import SwiftUI
 
 class ViewModelNavigation:ObservableObject{
     @Published var indexSel = 0
+    {
+        didSet{
+        getNotification()
+    }}
  
     @Published var noLeidas = 0
     @Published var option:[OptionItem] ;
@@ -33,7 +37,7 @@ class ViewModelNavigation:ObservableObject{
             OptionItem(name: "Ajustes", iconImagen: "ConfigurationInactive", iconImagenActivate: "ConfigurationActive", index: 3),
         ];
         self.ref = Database.database().reference()
-        self.getNotification( )
+        self.getNotification()
     }
     
     
@@ -54,24 +58,21 @@ class ViewModelNavigation:ObservableObject{
                     let valueRe2 = re2.value as! NSDictionary;
                     
                     let ref:String = "USERS/\(DataApp.user!.phone)/NOTIFICATIONS/\(re2.key)";
-                    
-                    let notiData:NotificationResponse = NotificationResponse(viewed: valueRe2["viewed"] as! Bool, message: valueRe2["message"] as! String, date: valueRe2["date"] as! String,ref:ref)
-                    
-                    let noticonv:NotificationResponseGeneral =
-                        NotificationResponseGeneral(key: re2.key as! String, value: notiData)
                    
-                    if(noticonv.value.viewed == false){
-                        self.noLeidas = self.noLeidas + 1;
-                        self.notifications.append(noticonv)
-                    }
+                    self.ref.child("USERS/\(DataApp.user!.phone)/NOTIFICATIONS").child(re2.key as! String).child("viewed").setValue(true)
                    
                 })
                 
-                if(self.noLeidas != 0){
-                    self.viewNotification = true;
-                }else{
-                    self.viewNotification = false;
-                }
+                self.viewNotification = false;
+//                if(self.noLeidas != 0){
+//                    self.viewNotification = true;
+//                    print(self.noLeidas)
+//                    print("ticoooooo")
+//                }else{
+//                    self.viewNotification = false;
+//                    print(self.noLeidas)
+//                    print("ticoooooo")
+//                }
             }
             
            
@@ -86,7 +87,7 @@ class ViewModelNavigation:ObservableObject{
     
     func getNotification() {
     
-        DispatchQueue.global().sync  {
+        DispatchQueue.global().sync {
             self.loading = true;
             self.notifications = []
             self.ref.child("USERS/\(DataApp.user!.phone)/NOTIFICATIONS").observeSingleEvent(of: .value, with: { response in

@@ -237,6 +237,9 @@ PODS:
   - Firebase/Firestore (6.34.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.19.0)
+  - Firebase/Messaging (6.34.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.7.1)
   - Firebase/Storage (6.34.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.9.1)
@@ -368,6 +371,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Firestore
+  - Firebase/Messaging
   - Firebase/Storage
   - FirebaseMessaging
 
@@ -426,6 +430,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 235750e4696ff59fb07d949a9dbbc92b3c0700fe
 
-PODFILE CHECKSUM: b533725a23b55b846efabf3df97f30706247d993
+PODFILE CHECKSUM: 73f70f6be1a403eb440995cf511fbc5cdea7f78c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

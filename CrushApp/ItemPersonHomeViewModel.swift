@@ -21,8 +21,8 @@ class ItemPersonHomeViewModel:ObservableObject{
         //nav.advance(AnyView(CrushDetailView(user: user)), tag: .CrushDetailView)
     }
     
-    func block(id:Int){
-        HomeViewCase().blockUser(id_user:id){ response in
+    func block(phone:String, name:String){
+        HomeViewCase().blockUser(phone:phone, name:name){ response in
             
            print(response)
             

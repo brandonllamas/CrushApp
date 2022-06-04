@@ -10,12 +10,14 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel:ViewModelHome
-        = ViewModelHome();
     
     @State var dialogs:Bool = true;
     @State var currentIndex = 0
     @State var contador = 0;
     
+    init(vm:ViewModelHome){
+        viewModel = vm;
+    }
     
     let columns = [
        
@@ -190,9 +192,3 @@ extension View {
 }
 
 
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}

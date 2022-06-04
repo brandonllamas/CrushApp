@@ -14,14 +14,14 @@ class ViewModelHome:ObservableObject{
    // @Published var list:[UserHome];
     @Published var index = 0;
     @Published var Contactos:FetchedContacts = FetchedContacts();
-    @Published var ListContactPost:[GeneralUsuario] = []
+    var ListContactPost:[GeneralUsuario] = []
     @Published var ListContactPostZ:[SendGeneralGrud] = []
-    @Published var ListContactPostZCopia:[SendGeneralGrud] = []
-    @Published var ListContactPostCopia:[GeneralUsuario] = []
+    var ListContactPostZCopia:[SendGeneralGrud] = []
+    var ListContactPostCopia:[GeneralUsuario] = []
     @Published var contactsSend:[PhoneItemRequest] = [];
-    @Published var currentIndex = 0;
-    @Published var contador = -1;
-     
+    var currentIndex = 0;
+    var contador = -1;
+    let extractedExpr: HomeViewCase = HomeViewCase()
     
     var loadingInser:Bool = false;
     
@@ -30,9 +30,9 @@ class ViewModelHome:ObservableObject{
     @Published var textFiltrer:String = "";
     
     @Published var loading:Bool = false;
-    @Published var denegado = 0;
+    var denegado = 0;
     
-    @Published var contacts = [Contact]()
+    var contacts = [Contact]()
     
     init() {
     
@@ -218,6 +218,8 @@ class ViewModelHome:ObservableObject{
                 self.noContacts =  true;
                 return ;
             }
+            var auxContacts:[PhoneItemRequest] = [];
+            
             self.contacts.forEach({contact in
                 //let cont = nil
                 if(contact.phoneNumbers.count != 0 && !contact.firstName.isEmpty){
@@ -226,32 +228,35 @@ class ViewModelHome:ObservableObject{
                     
                     
                     let contacto:PhoneItemRequest = PhoneItemRequest(phone: DataApp.formatNumberPhone(phone: number) , name: name);
-                    self.contactsSend.append(contacto);
+                    auxContacts.append(contacto);
                 }
           
             })
+            self.contactsSend = auxContacts;
            // print(self.contactsSend)
             //INSERT CONTACOTS
             print("antes de consulta")
+            self.ListContactPostZCopia = []
             
-            HomeViewCase().InsertListApp(phones: self.contactsSend){ response in
+            self.extractedExpr.InsertListApp(phones: self.contactsSend){ response in
                 self.contador = 0
                 print("respuesta de la consulta")
                 self.ListContactPost = response.data;
                 self.ListContactPostCopia =  response.data;
                 
                 self.noContacts =  false;
-                
+                var auxListContactApi:[SendGeneralGrud] = []
                 var count = 0;
                 self.ListContactPostCopia.forEach({lits in
                     var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
-                    self.ListContactPostZ.append(f);
+                    auxListContactApi.append(f);
+                    //self.ListContactPostZ.append(f);
                     self.ListContactPostZCopia.append(f)
                     count = count+1;
                 })
                 print("final del recorrido de la consulta")
                 print(count)
-
+                self.ListContactPostZ = auxListContactApi
                 self.loadingInser = true;
                 self.loading = false;
             } onDefault: { response in

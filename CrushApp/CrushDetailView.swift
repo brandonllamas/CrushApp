@@ -26,7 +26,11 @@ struct CrushDetailView: View {
     init(user:GeneralUsuario, contact:[PhoneItemRequest]) {
         self.users = user;
         self.viewModel = ViewModelCrushDetail(id:users.id, user:users,contact:contact)
-        self.name = contact[user.i ?? 0].name
+        if(contact.count > 0){
+            self.name = contact[user.i ?? 0].name
+        } else {
+            self.name = user.name ?? ""
+        }
         self.idss = String(self.viewModel.id)
     }
     

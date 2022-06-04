@@ -13,6 +13,7 @@ target 'CrushApp' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'FirebaseMessaging'
+  pod 'Firebase/Messaging'
   
   pod 'Alamofire'
   pod 'AlamofireImage' 

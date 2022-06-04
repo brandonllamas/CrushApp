@@ -14,6 +14,7 @@ struct ItemPersonaHome: View {
     var idss:String = "";
     var contacts:[PhoneItemRequest]?;
     var name:String = ""
+    var phone:String = ""
     @State var block:Bool = false;
     
     @ObservedObject var viewModel = ItemPersonHomeViewModel();
@@ -21,17 +22,18 @@ struct ItemPersonaHome: View {
     @EnvironmentObject var navigation:NavigationStack
      var nume:Int;
     
-    init(user:GeneralUsuario ,num:Int, contacts:[PhoneItemRequest]?) {
+    init(user:GeneralUsuario ,num:Int, contacts:[PhoneItemRequest]) {
         self.contacts = contacts;
         self.users = user;
+        if(contacts.count > 0){
+            self.name = self.contacts?[self.users.i ?? 0].name ?? "";
+            self.phone = self.contacts?[self.users.i ?? 0].phone ?? "";
+        } else {
+            self.name = user.contact?.name ?? ""
+            self.phone = user.phone
+        }
         print(user)
         //self.idss = String(self.users.id);
-        
-        if(self.contacts == nil) {
-            self.name = ""
-        }else{
-            self.name = self.contacts?[self.users.i ?? 0].name ?? "prueba";
-        }
         
         if(self.users.image != nil){
             self.urlImage = "\( Connections.url_photo)/\(user.id)/\(self.users.image!.name ?? "")";
@@ -79,7 +81,9 @@ struct ItemPersonaHome: View {
                 
                     Button(action: {
                         print("Bloquear")
-                        self.viewModel.block(id: self.users.id)
+                        
+                        self.viewModel.block(phone: self.phone, name: self.name)
+                        
                         self.block = true;
                     }, label: {
                         Image("md-eye-off")
