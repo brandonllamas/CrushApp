@@ -23,6 +23,25 @@ class ViewModelSetting:ObservableObject{
         getUserBlock();
     }
     
+    func inviteFriends(){
+        
+        let urlString = "Hola! Descargué esta app y esta genial. Te la recomiendo mucho. Me gustaría que la descargaras también.    https://www.instagram.com/mycrushbycrush/?hl=es-la"
+        let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        let url  = NSURL(string: "whatsapp://send?text=\(urlStringEncoded!)")
+
+   //Text which will be shared on WhatsApp is: "Hello Friends, Sharing some data here... !"
+
+        if UIApplication.shared.canOpenURL(url! as URL) {
+            UIApplication.shared.open(url! as URL, options: [:]) { (success) in
+                   if success {
+                       print("WhatsApp accessed successfully")
+                   } else {
+                       print("Error accessing WhatsApp")
+                   }
+               }
+       }
+}
+    
     func getUserBlock() {
         SettingUserCase().getUsersBlock(){ response in
             self.userBlock = response.data;

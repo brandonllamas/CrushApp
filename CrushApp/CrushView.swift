@@ -21,22 +21,27 @@ struct CrushView: View {
     
     
     var body: some View {
-        NavigationView{
+        //NavigationView{
         Rectangle()
-            .frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            //.frame(width: .infinity, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .ignoresSafeArea()
             //.foregroundColor(Color("fondoCrush"))
             .overlay(
                 VStack{
                     ScrollView{
                         VStack(spacing:20){
-                            list
+                            if self.viewModel.vacio {
+                                dialog.padding(.top, 40)
+                            } else {
+                                list
+                            }
                         }.frame(width: .infinity, height: .infinity, alignment: .center)                    }.background(Color("BackGroundVistas"))
                 }.navigationBarTitle("")
                     .navigationBarHidden(true)
                     .background(Color("BackGroundVistas"))
             )
-        }.navigationViewStyle(StackNavigationViewStyle())
+        //}//.background(Color("BackGroundVistas"))
+        
     }
     
     var list: some View {
@@ -55,6 +60,33 @@ struct CrushView: View {
             Spacer()
         }.frame(width: .infinity, height: .infinity, alignment: .center)
 
+    }
+    
+    var dialog:some View{
+        HStack{
+            Spacer()
+        HStack{
+            HStack{
+                HStack{
+                    Text("Aquí podrás ver tus contactos pendientes de hacer Match. Entre más contactos selecciones,  más posibilidades tendrás de hacer Match!").foregroundColor(.white)
+                        .font(.custom("", fixedSize: 15))
+                        .multilineTextAlignment(.center)
+                }.padding(.leading,10)
+            }
+            VStack{
+                Text("X")
+                Spacer()
+            }.padding(.trailing,10)
+            .padding(.top, 10)
+        }
+        
+       
+        .frame(width: 320, height: 120, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .background(Color("azul"))
+        .cornerRadius(16, corners: [.topLeft,.topRight, .bottomLeft, .bottomRight])
+        Spacer()
+        }.frame(width: .infinity, height: .infinity, alignment: .center)
+            .background(Color("BackGroundVistas"))
     }
 }
 

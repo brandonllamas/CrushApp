@@ -19,11 +19,17 @@ struct ItemCrush: View {
     
     var body: some View {
         VStack(spacing:1){
-            ImageWeb(url: self.urlCrush, placeHolder: "Vectorplaceholder")
-            .scaleEffect()
-            .cornerRadius(20, corners: [.topRight,.topLeft])
+            ImageWeb(url: self.urlCrush, placeHolder: "usernoimage")
+            .scaledToFit()
             //.cornerRadius(0, corners: [.bottomLeft,.bottomLeft])
             .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .background(
+                ImageWeb(url: self.urlCrush, placeHolder: "usernoimage")
+                    .scaledToFill()
+                    .blur(radius: 5)
+                    .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            )
+            .cornerRadius(20, corners: [.topRight,.topLeft])
             .padding(.top,8)
            
             HStack{

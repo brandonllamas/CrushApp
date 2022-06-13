@@ -48,19 +48,24 @@ struct ItemPersonaHome: View {
         VStack(alignment: .center, spacing: 6){
             if(!block){
                 ZStack{
-                    if #available(iOS 15.0, *) {
-                        AsyncImage(url: URL(string: self.urlImage)) { image in
-                            image.resizable()
-                                .frame(width: 158, height: 224)
-                        } placeholder: {
-                            Image("Vectorplaceholder")
-                                .frame(width: 158, height: 224)
-                        }
-                    } else {
-                        ImageWeb(url: self.urlImage, placeHolder: "Vectorplaceholder")
-                            .scaleEffect()
+//                    if #available(iOS 15.0, *) {
+//                        AsyncImage(url: URL(string: self.urlImage)) { image in
+//                            image.resizable()
+//                                .frame(width: 158, height: 224)
+//                        } placeholder: {
+//                            Image("Vectorplaceholder")
+//                                .frame(width: 158, height: 224)
+//                        }
+//                    } else {
+                        ImageWeb(url: self.urlImage, placeHolder: "usernoimage")
+                            .scaledToFit()
                             .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    }
+                            .background(
+                                ImageWeb(url: self.urlImage, placeHolder: "usernoimage")
+                                    .scaledToFill()
+                                    .blur(radius: 5)
+                                    .frame(width: 158, height: 224, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            )                    //}
                 
                 }//: ZSTACK
                 .cornerRadius(12)

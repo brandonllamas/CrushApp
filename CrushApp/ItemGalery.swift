@@ -18,11 +18,17 @@ struct ItemGalery: View {
     var body: some View {
         VStack{
             if(!self.eliminate ){
-                ImageWeb(url: self.viewModel.urlImage, placeHolder: "Vectorplaceholder")
-                    .scaleEffect()
+                ImageWeb(url: self.viewModel.urlImage, placeHolder: "usernoimage")
+                    .scaledToFit()
+                    .frame(width: 160, height: 240, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .background(
+                        ImageWeb(url: self.viewModel.urlImage, placeHolder: "usernoimage")
+                            .scaledToFill()
+                            .blur(radius: 5)
+                            .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    )
                     .cornerRadius(10)
-                    .frame(width: 160, height: CGFloat.random(in: 192...240), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .padding(.top,8)
+                    .padding(.top,8)                    
                     .overlay(
                         VStack{
                             calification

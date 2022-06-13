@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAnalytics
 
 class ViewModelCrushDetail:ObservableObject{
     
@@ -14,12 +15,12 @@ class ViewModelCrushDetail:ObservableObject{
     @Published var images:[ImageUserListApp] = [] ;
     var AccionesCrush:[GeneralResponseActionsRes] = []
     @Published var load:Bool = false;
-    @Published var arrayActionActive:[Int] = []
+    var arrayActionActive:[Int] = []
     @Published var rating:Int = 7;
     @Published var ratingOriginal:Int = 7;
-    @Published var users:GeneralUsuario;
-    @Published var name:String;
-    @Published var phone:String;
+    var users:GeneralUsuario;
+    var name:String;
+    var phone:String;
     var contact:[PhoneItemRequest];
     
     init(id:Int,user:GeneralUsuario, contact:[PhoneItemRequest]) {
@@ -143,6 +144,9 @@ class ViewModelCrushDetail:ObservableObject{
           }
     }
     
+    func fbAnalitycs(cadena:String){
+        Analytics.logEvent("SendAction", parameters: ["message" : cadena])
+    }
     
     func addActionM(action:Int) {
         self.load.toggle();

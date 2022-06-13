@@ -18,7 +18,7 @@ class ViewModelHome:ObservableObject{
     @Published var ListContactPostZ:[SendGeneralGrud] = []
     var ListContactPostZCopia:[SendGeneralGrud] = []
     var ListContactPostCopia:[GeneralUsuario] = []
-    @Published var contactsSend:[PhoneItemRequest] = [];
+    var contactsSend:[PhoneItemRequest] = [];
     var currentIndex = 0;
     var contador = -1;
     let extractedExpr: HomeViewCase = HomeViewCase()
@@ -69,43 +69,9 @@ class ViewModelHome:ObservableObject{
         
         return name;
     }
-//    func refreshLoad() {
-//        HomeViewCase().ListApp(phones: self.contactsSend, currentIndex: currentIndex){ response in
-//            self.ListContactPost.append(contentsOf :response.data.data);
-//            self.ListContactPostCopia.append(contentsOf: response.data.data)
-//            self.noContacts =  false;
-//
-//            var count = 0;
-//            print("PAGINA \(self.currentIndex)")
-//            self.ListContactPostCopia.forEach({lits in
-//                var f : SendGeneralGrud = SendGeneralGrud(num: count, usua: lits)
-//                self.ListContactPostZ.append(f);
-//                count = count+1;
-//            })
-//
-//            if(count == 0 && self.ListContactPostCopia.count == 0){
-//                // Delay of 7.5 seconds
-//                 DispatchQueue.main.asyncAfter(deadline: .now() + 30.5) {
-//                    self.getUser()
-//                   }
-//            }
-//
-//            self.ListContactPostZCopia = self.ListContactPostZ;
-//           print(response)
-//            self.loading = false;
-//        } onDefault: { response in
-//
-//            print(response)
-//
-//        } onError: { error in
-//
-//            print(error)
-//
-//        }
-//    }
     
     
-    func getUser() {
+    /*func getUser() {
         //Cargar contactos
         self.loading = true;
 //<<<<<<< Updated upstream
@@ -146,7 +112,7 @@ class ViewModelHome:ObservableObject{
             print(error)
             
         }
-    }
+    }*/
     
     
     func fetchContacts( ) {
@@ -192,7 +158,11 @@ class ViewModelHome:ObservableObject{
     
     func getAllContactLocalv2() {
         DispatchQueue.main.async {
-            
+            if(self.contactsSend.count > 0){
+                self.loading = false
+            } else {
+                self.loading = true
+            }
             self.fetchContacts()
         }
     }
@@ -209,7 +179,7 @@ class ViewModelHome:ObservableObject{
     
     func getAllContactLocal()  {
         self.contador = -1;
-        self.loading = true;
+        //self.loading = false;
         DispatchQueue.main.async {
           
             print("Hola llego aca")

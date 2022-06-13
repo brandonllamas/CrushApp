@@ -83,11 +83,14 @@ class ImageFromUrl: ObservableObject {
             return
             
         }
-        
+        if let imageCached = GlobalData.cacheImages[stringUrl]{
+            self.dataimg = imageCached
+        }
         Alamofire.request(url).responseImage { response in
                 if case .success(let image) = response.result {
                     DispatchQueue.main.async {
                         self.dataimg = image
+                        GlobalData.cacheImages[stringUrl] = image
                     }
                     
                 }else{

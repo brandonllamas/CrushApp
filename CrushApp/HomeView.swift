@@ -26,7 +26,7 @@ struct HomeView: View {
     ]
     
     var body: some View {
-        NavigationView{
+        //NavigationView{
             VStack{
                 textBuscar
                 
@@ -56,7 +56,8 @@ struct HomeView: View {
              }
             .frame(width: .infinity, height: .infinity, alignment: .center)
             
-        }.onAppear{
+        //}
+        .onAppear{
             //v2 era la anterior q se consumia del viewmodel
             self.viewModel.getAllContactLocalv2()
         }.frame(width: .infinity, height: .infinity, alignment: .center)
@@ -103,11 +104,10 @@ struct HomeView: View {
     var DialogNoContent:some View{
         VStack {
             Text("Acceso contactos Denegado")
-                  .padding(.bottom, 10)
+                .foregroundColor(Color(.blue))                 .padding(.bottom, 10)
              
             Divider()
-            Text("Permisos de acceso a \n contactos denegados")
-                //.font(.system(size: 20))
+            Text("La aplicación necesita acceso a tus contactos para funcionar, de esta manera podrás hacerle saber a esa persona especial que es tu Crush").foregroundColor(Color(.black))                //.font(.system(size: 20))
               //.minimumScaleFactor(0.01)
             
             Divider()

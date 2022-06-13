@@ -10,7 +10,7 @@ import SwiftUI
 
 class CrushViewModel:ObservableObject{
     @Published var actions:[ItemCrushMet] = []
-    
+    @Published var vacio = true
     init() {
         self.getMachList()
     }
@@ -18,14 +18,20 @@ class CrushViewModel:ObservableObject{
     func getMachList(){
         CrushICase().getMachList(){ response in
             self.actions = response.data.data
+            if(self.actions.count > 0){
+                self.vacio = false} else {
+                    self.vacio = true
+                }
            print(response)
             
         } onDefault: { response in
            
+            self.vacio = true
             print(response)
             
         } onError: { error in
      
+            self.vacio = true
             print(error)
             
         }

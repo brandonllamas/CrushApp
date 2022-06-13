@@ -10,7 +10,7 @@ import SwiftUI
 struct CrushDetailView: View {
     var users:GeneralUsuario;
    @State var urlImage:String = "";
-   @State var idss:String = "";
+   var idss:String = "";
    @State var name:String;
    @ObservedObject var viewModel:ViewModelCrushDetail;
     
@@ -31,7 +31,7 @@ struct CrushDetailView: View {
         } else {
             self.name = user.name ?? ""
         }
-        self.idss = String(self.viewModel.id)
+        self.idss = String(user.id)
     }
     
     var body: some View {
@@ -108,11 +108,12 @@ struct CrushDetailView: View {
                             }, label: {
                                 Text(action.name)
                             })
-                            .buttonStyle(btnDialogDetailAcept())
+                            .buttonStyle(btnDialogDetailGradient())
                         }else{
                             Button(action: {
                                print("crush")
                                 self.viewModel.addActionM(action: action.id)
+                                self.viewModel.fbAnalitycs(cadena: action.name)
                             }, label: {
                                 Text(action.name)
                             })
@@ -128,7 +129,8 @@ struct CrushDetailView: View {
                     }, label: {
                         Text("Cerrar")
                     })
-                    .buttonStyle(btnDialogDetail())
+                    .buttonStyle(btnDialogDetailClose())
+                    .padding(.top, 12)
                 }
                 Spacer()
             }
@@ -205,9 +207,15 @@ struct CrushDetailView: View {
     var imagenPeople:some View{
         HStack{
             ZStack{
-                ImageWeb(url: self.urlImage, placeHolder: "Vectorplaceholder")
-                    .scaleEffect()
+                ImageWeb(url: self.urlImage, placeHolder: "usernoimage")
+                    .scaledToFit()
                     .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .background(
+                        ImageWeb(url: self.urlImage, placeHolder: "usernoimage")
+                            .scaledToFill()
+                            .blur(radius: 5)
+                            .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    )
                     .cornerRadius(16)
                     .overlay(
                         VStack{
@@ -233,7 +241,7 @@ struct CrushDetailView: View {
                                         self.alertRating.toggle()
                                        
                                     }
-                                    .cornerRadius(20, corners: [.topLeft,.bottomRight])
+                                    .cornerRadius(14, corners: [.topLeft,.bottomRight])
                                     .frame(width: 62, height: 38, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .foregroundColor(Color("Degradado"))
                                     
@@ -260,9 +268,16 @@ struct CrushDetailView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                      
                     ForEach(self.viewModel.images, id: \.self){ images in
-                            ImageWeb(url: "\( Connections.url_photo)/\(idss)/\(images.name)", placeHolder: "Vectorplaceholder")
-                                .scaleEffect()
+                        var p:String = "\( Connections.url_photo)/\(self.users.id)/\(images.name)"
+                        ImageWeb(url: "\( Connections.url_photo)/\(self.users.id)/\(images.name)", placeHolder: "usernoimage")
+                                .scaledToFit()
                                 .frame(width: 106, height: 121, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .background(
+                                    ImageWeb(url: p, placeHolder: "usernoimage")
+                                        .scaledToFill()
+                                        .blur(radius: 5)
+                                        .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                )                                .cornerRadius(12)
                       
                         }
                     

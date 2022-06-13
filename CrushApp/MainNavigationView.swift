@@ -29,8 +29,6 @@ struct MainNavigationView: View {
          	
         }.frame(width: .infinity, height: .infinity)
         .background(Color("BackGroundVistas"))
-         
-        
     }
     
 
@@ -76,21 +74,25 @@ struct MainNavigationView: View {
         
     }
     var vistas:some View{
-        ZStack{
-        switch self.viewmodel.indexSel{
-            case 0 :
-                HomeView(vm: vmHome)
-            case 1:
-                FotosView()
-            case 2 :
-                CrushView()
-            case 3 :
-                SettingsView()
-            case 4:
-                ListNotificationView()
-            default:
-                HomeView(vm: vmHome)
-            }
+        NavigationView{
+            ZStack{
+            switch self.viewmodel.indexSel{
+                case 0 :
+                    HomeView(vm: vmHome)
+                case 1:
+                    FotosView()
+                case 2 :
+                    CrushView()
+                case 3 :
+                    SettingsView()
+                case 4:
+                    ListNotificationView()
+                default:
+                    HomeView(vm: vmHome)
+                }
+            }.navigationBarTitle("")
+                .navigationBarHidden(true)
+                .background(Color("BackGroundVistas"))
         }
     }
     

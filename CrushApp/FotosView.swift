@@ -80,7 +80,7 @@ struct FotosView: View {
                print("crush")
                 self.viewModel.dialogAction.toggle()
             }, label: {
-                Text("Nueva Foto")
+                Text("Subir foto de perfil")
             })
             
             .buttonStyle(crushButtonDefault())
@@ -100,13 +100,15 @@ struct FotosView: View {
             if(self.viewModel.image != nil){
                 self.viewModel.image?
                     .resizable()
+                    .scaledToFit()
                     .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .cornerRadius(16)
             }else{
-                Image("defaultGirl")
+                 Image("usernoimage")
                     .resizable()
                     .frame(width: 326, height: 495, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .cornerRadius(16)
+                
             }
            
             HStack{

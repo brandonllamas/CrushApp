@@ -16,7 +16,7 @@ class ViewModelFotos:ObservableObject{
     //para tomar foto
     @Published var showCaptureImage:Bool = false;
     @Published var showCaptureImageGalery:Bool = false;
-    @Published var image: Image? =   Image("defaultGirl");
+    @Published var image: Image? =   Image("usernoimage");
     
     //Loadings
     @Published var LoadSubirImage:Bool = false;
@@ -30,6 +30,10 @@ class ViewModelFotos:ObservableObject{
     
     init() {
         self.getGalery()
+    }
+    
+    func closeDialog(){
+        self.dialogAceptCamera = false
     }
     
     func getGalery(){

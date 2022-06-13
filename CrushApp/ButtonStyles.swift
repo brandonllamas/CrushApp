@@ -83,9 +83,39 @@ struct btnDialogDetail: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View{
         configuration.label
             .frame(width: 330, height: 20)
-            .foregroundColor(Color("textoNormal"))
+            .foregroundColor(Color(.black))
             .padding()
-            .background(Color(.white))
+            .background(Color("SoftBlue"))
+            .cornerRadius(30)
+    }
+}
+
+struct btnDialogDetailGradient: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label
+            .frame(width: 330, height: 20)
+            .foregroundColor(Color(.white))
+            .padding()
+            .background(degradado)
+            .cornerRadius(30)
+    }
+    var degradado:some View{
+        LinearGradient(gradient: Gradient(colors: [
+            Color("SoftGradient1"),
+            Color("SoftGradient2"),
+            Color("SoftGradient3"),
+            Color("SoftGradient4")
+        ]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        .ignoresSafeArea(.all)
+    }}
+
+struct btnDialogDetailClose: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label
+            .frame(width: 330, height: 20)
+            .foregroundColor(Color(.white))
+            .padding()
+            .background(Color("CloseRed"))
             .cornerRadius(30)
     }
 }
